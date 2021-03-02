@@ -1,0 +1,45 @@
+<div align="center" style="margin-top:20px; min-height:500px;">
+	<img id="imgPlayer" name="imgPlayer" src="" style="display:none; max-width:100%; max-height:100%;"></img>
+</div>
+
+<script type="text/javascript">
+var height =  window.screen.height;
+console.log("window height=" + height)
+height *= 0.95;
+console.log("dialog height=" + height)
+document.getElementById('imgPlayer').style.height = height + "px";
+
+var ImgViewer = (function () {
+	var docInfo = {};
+	
+	function imgViewerPageInit(Input_doc)
+	{
+		console.log("imgViewerPageInit InputDoc:", Input_doc);
+		docInfo = Input_doc;
+		
+	    var fileLink = docInfo.fileLink;	    
+	    if(!fileLink || fileLink != null)
+	    {
+	    	getDocFileLink(docInfo, showImage, showErrorMessage);    	
+	    }
+	    else
+	    {
+	    	showImage(fileLink);
+	    }
+  	}
+    
+	function showImage(fileLink)
+	{	
+		console.log("showImage() fileLink:", fileLink);
+		$("#imgPlayer").attr('src', fileLink);
+		$("#imgPlayer").show();
+	}
+	
+    return {
+        imgViewerPageInit: function(docInfo){
+        	imgViewerPageInit(docInfo);
+        },
+    };
+})();
+
+</script>

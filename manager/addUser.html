@@ -1,0 +1,118 @@
+<script src="js/md5.js"></script>
+<script type="text/javascript">
+	function AddUserPageInit()
+	{
+		console.log("addUserPageInit()");
+		EnterKeyListenerForAddUser();
+	}
+	
+	function showAddUserModal(text){
+		$(".addUserModal").fadeIn("slow");
+		$("#name").focus();
+	}
+	
+	function closeAddUserModal(){
+		$(".addUserModal").fadeOut("slow");
+	}
+	
+	//回车键监听函数
+	function EnterKeyListenerForAddUser(){
+		console.log("start enter key listener");
+		var event=arguments.callee.caller.arguments[0]||window.event;//消除浏览器差异  
+	 	if (event.keyCode == 13){  
+	 		addUser();
+	 	}  
+	}
+	
+	function addUser(obj,event){
+		console.log("addUser()");
+		
+		//Disable the obj
+		$(obj).attr("disabled",true);
+		
+		var name = $("#name").val();
+	    var realName = $("#realName").val();
+	    var pwd =  $("#pwd").val();
+	    var type =  $("#type").val();
+	    
+	    console.log(name,realName,pwd,type);
+	    
+        $.ajax({
+            url : "/DocSystem/Manage/addUser.do",
+            type : "post",
+            dataType : "json",
+            data : {
+                 name : name,
+                 realName : realName,
+                 type : type,
+                 pwd : MD5(pwd),
+            },
+            success : function (ret) {
+        		//Enable the obj
+        		$(obj).attr("disabled",false);
+
+                if( "ok" == ret.status ){
+                	showUserList();	//刷新UserList
+                	alert("新增成功");
+                }else {
+                	alert("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+        		//Enable the obj
+        		$(obj).attr("disabled",false);
+
+            	alert("服务器异常:新增失败");
+            }
+        });
+	}
+	
+	//页面初始化代码    
+    $(function(){
+    	console.log("addUser Page init");
+    	AddUserPageInit();
+		$("#name").click().focus();
+	});
+</script>
+                    
+                  <div class="form-horizontal">
+                    <!-- userName -->
+                    <div class="form-group">
+                      <label class="control-label col-lg-3" for="name">用户名</label>
+                      <div class="col-lg-9">
+                        <input type="text" class="form-control" id="name" name="name">
+                      </div>
+                    </div>
+                    <!-- realName -->
+                    <div class="form-group">
+                      <label class="control-label col-lg-3" for="realName">名字</label>
+                      <div class="col-lg-9">
+                        <input type="text" class="form-control" id="realName" name="realName">
+                      </div>
+                    </div>
+                    <!-- Cateogry -->
+                    <div class="form-group">
+                      <label class="control-label col-lg-3">角色</label>
+                      <div class="col-lg-9">
+                        <select class="form-control" id="type" name="type">
+                          <option value="0">普通用户</option>
+                          <option value="1">管理员</option>
+                          <option value="2">超级管理员</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-lg-3" for="password">密码</label>
+                      <div class="col-lg-9">
+                        <input type="password" class="form-control" id="pwd" name="pwd">
+                      </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="form-group">
+                      <!-- Buttons -->
+                      <div class="col-lg-offset-9 col-lg-2">
+                        <button type="submit" class="btn btn-success" id="btn_addUser" onclick="addUser(this,event)">添加</button>
+                      </div>
+                    </div>
+                  </div>

@@ -1,0 +1,101 @@
+<div class="row">
+        <div class="col-md-12">
+          <div class="widget">
+            <div class="widget-head">
+              <div class="pull-left">系统设置</div>
+              <div class="widget-icons pull-right">
+                <button id="btnEnableSystemInfoSet" onclick="enableSystemInfoSet()" class="btn btn-lg btn-success examine_ban">编辑</button>
+                <button id="btnSaveSystemInfoSet" onclick="saveSystemInfoSet()" class="btn btn-lg btn-success examine_ban"  style="display:none;">保存</button>                
+                <button id="btnCancelSystemInfoSet" onclick="cancelSystemInfoSet()" class="btn btn-lg btn-warning examine_ban" style="display:none;">取消</button>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="widget-content">
+	          <table class="table table-striped table-bordered table-hover">
+	                <thead>
+	                <tr>
+	                  <th>系统信息</th>
+	                  <th>详情</th>
+	                  <th>操作</th>
+	                </tr>
+	                </thead>
+	                <tbody>
+	                  <tr>
+	                    <td>当前版本</td>
+	                    <td>
+	                    	<input type="text" class="form-control" id="systemVersion" name="systemVersion" value="{{value.version}}" disabled="disabled" >
+	                    </td>
+	                    <td class="edit">
+	                      	<button onclick="upgradeSystem()" data-id="" class="btn btn-lg btn-warning examine_ban">系统升级</button>
+	                    </td>
+	                  </tr>
+	                  <tr>
+	                    <td>服务器</td>
+	                    <td>
+	                    	<input type="text" class="form-control" id="tomcatPath" name="tomcatPath" value="{{value.tomcatPath}}" disabled="disabled" >
+	                    </td>
+	                    <td class="edit">
+	                      	<button onclick="restartTomcat()" data-id="" class="btn btn-lg btn-warning examine_ban">重启服务</button>
+	                    </td>
+	                  </tr>
+	                  <tr>
+	                    <td>JavaHome</td>
+	                    <td>
+	                    	<input type="text" class="form-control" id="javaHome" name="javaHome" value="{{value.javaHome}}" disabled="disabled" >
+	                    </td>
+	                    <td class="edit">
+	                    </td>
+	                  </tr>
+	                  <tr>
+	                    <td>OpenOffice</td>
+	                    <td>
+	                    	<input type="text" class="form-control" id="openOfficePath" name="openOfficePath" value="{{value.openOfficePath}}" disabled="disabled" >
+	                    </td>
+	                    <td class="edit">
+	                    </td>
+	                  </tr>
+	                  <tr>
+	                    <td>OfficeEditor</td>
+	                    <td>
+	                    	<input type="text" class="form-control" id="officeEditorApi" name="officeEditorApi" value="{{value.officeEditorApi}}" disabled="disabled" placeholder="http://localhost:88\web-apps\apps\api\documents\api.js">
+	                    </td>
+	                    <td class="edit">
+	                    </td>
+	                  </tr>
+	                  <tr>
+	                    <td>仓库默认存储位置</td>
+	                    <td>
+	                    	<input type="text" class="form-control" id="defaultReposStorePath" name="defaultReposStorePath" value="{{value.defaultReposStorePath}}" disabled="disabled">
+	                    </td>
+	                    <td class="edit">
+	                    </td>
+	                  </tr>
+	                  <tr>
+	                    <td>系统密钥</td>
+	                    <td></td>
+	                    <td class="edit">
+	                      	<button onclick="generateRootKey()" data-id="" class="btn btn-lg btn-warning examine_ban">生成</button>
+	                      	<button onclick="exportRootKey()" data-id="" class="btn btn-lg btn-warning examine_ban">下载</button>
+	                    	<button onclick="deleteRootKey()" data-id="" class="btn btn-lg btn-danger examine_ban"><i class="icon-remove"></i>删除 </button>
+	                    </td>
+	                  </tr>
+	                  <tr>
+	                    <td>证书密钥</td>
+	                    <td></td>
+	                    <td class="edit">
+	                      	<button onclick="generateLicenseKeyPair()" data-id="" class="btn btn-lg btn-warning examine_ban">生成</button>
+	                      	<button onclick="exportLicenseKeyPair()" data-id="" class="btn btn-lg btn-warning examine_ban">下载</button>
+	                    	<button onclick="deleteLicenseKeyPair()" data-id="" class="btn btn-lg btn-danger examine_ban"><i class="icon-remove"></i>删除 </button>
+	                    </td>
+	                  </tr>
+	                </tbody>
+	          </table>
+              <div class="widget-foot">
+                <div class="clearfix"></div>                
+              </div>
+            </div>
+            <!-- Matter ends -->
+          </div>
+        </div>
+      </div>

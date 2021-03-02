@@ -1,0 +1,4971 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Rainy" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <link rel="shortcut icon"  href="static/SmartWiki/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+
+    <title>仓库详情-MxsDoc</title>
+    <!-- BootStarp CSS -->
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootStrapQ -->
+	<link href="static/bootstrapQ/qiao.css" rel="stylesheet">
+    <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/highlight/styles/default.css" rel="stylesheet">
+    <link href="static/highlight/styles/zenburn.css" rel="stylesheet">
+    <link href="static/fonts/font.css" rel="stylesheet">
+    <link href="static/zTree/css/metroStyle/standardStyle.css" rel="stylesheet" id="zTreeCss">
+    <link href="static/nprogress/nprogress.css" rel="stylesheet">
+    <link href="static/styles/kancloud.css" rel="stylesheet">
+	<!-- this style seems conflict with css/style.css"
+	<link rel="stylesheet" type="text/css" href="static/styles/styles.css">
+	 -->
+    <!-- editormd -->
+	<link href="static/markdown/css/editormd.min.css" rel="stylesheet">
+	<link href="static/markdown/css/add.css" rel="stylesheet">
+	<!-- contextMenu -->
+	<link rel="stylesheet" type="text/css" href="static/ContextJS/css/demo.css">
+	<link rel="stylesheet" type="text/css" href="static/ContextJS/css/context.standalone.css">
+	<link rel="stylesheet" type="text/css" href="css/zjp-css.css">
+	<!-- FreeTeam CSS-->
+	<link rel="stylesheet" href="static/freeTeam/css/resetV2.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="static/freeTeam/css/boot-css/bootstrap.custom.css" type="text/css" media="screen" /> 
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	<!-- Video --> 
+	<!--
+	<link href="static/video-js/video-js.min.css" rel="stylesheet">
+ 	-->
+ 	
+     <style type="text/css">
+     	html {
+			overflow-x: hidden;
+			overflow-y: hidden;
+		}
+        .editormd-preview{
+            left: 0 !important;
+            right: auto !important;
+        }
+
+        .editormd .CodeMirror {
+            float: right !important;
+        }
+
+        .editor-content table thead tr {
+            color: #111111 !important;
+        }
+        .manual-mask{
+	        position: absolute;
+		    left: 0;
+		    right: 0;
+		    background: #fafafa;
+		    top: 0;
+		    bottom: 0;
+		    z-index: 19;
+		    opacity: 0.5;
+		    display:none;
+        }
+        .closeBtn{
+        	position:absolute;
+        	top:20px;
+        	right:15px;
+        	font-size:13px;
+        	cursor: pointer;
+        }
+        
+        .uploadFileName{
+        	cursor: text;
+        }
+        .reuploadAllBtn{
+        	position:absolute;
+        	top:15px;
+        	right:50px;
+        	font-size:13px;
+        	cursor: pointer;
+        }
+        
+        .reuploadBtn{
+        	position:absolute;
+        	top:0px;
+        	right:50px;
+        	font-size:13px;
+        	cursor: pointer;
+        }
+        
+    	.disallowcopy{-moz-user-select: none;
+			-khtml-user-select: none;
+			-webkit-user-select: none;
+			user-select: none;
+		}
+    	
+		/* 调整zTree每行的高度 */
+		.ztree li a {
+            /*height: 25px !important;*/
+            width: 100% !important;
+        }
+        .ztree li .caret {
+            margin-top: 8px !important;
+        }
+    </style>
+
+    <style>
+        /* 强制不换行 */
+        .nowrap{white-space:nowrap;}
+        /* 允许单词内断句，首先会尝试挪到下一行，看看下一行的宽度够不够，不够的话就进行单词内的断句 */
+        .breakword{word-wrap: break-word;}
+        /* 断句时，不会把长单词挪到下一行，而是直接进行单词内的断句 */
+        .breakAll{word-break:break-all;}            
+        /* 超出部分显示省略号 */
+        .ellipsis{text-overflow:ellipsis;overflow:hidden;}
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="static/bootstrap/js/html5shiv.min.js"></script>
+    <script src="static/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="static/artDialog/lib/jquery-1.10.2.js" type="text/javascript"></script>
+    
+	<script src="static/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="static/bootstrapQ/qiao.js" type="text/javascript"></script>
+    <script src="static/markdown/editormd.js" type="text/javascript"></script>
+    <script src="static/markdown/plugins/link-dialog/link-dialog.js" type="text/javascript"></script>
+    <script src="static/markdown/plugins/reference-link-dialog/reference-link-dialog.js" type="text/javascript"></script>
+    <script src="static/markdown/plugins/image-dialog/image-dialog.js" type="text/javascript"></script>
+    <script src="static/markdown/plugins/code-block-dialog/code-block-dialog.js" type="text/javascript"></script>
+    <script src="static/markdown/plugins/table-dialog/table-dialog.js" type="text/javascript"></script>
+    <script src="static/markdown/plugins/emoji-dialog/emoji-dialog.js" type="text/javascript"></script>
+    <script src="static/markdown/plugins/goto-line-dialog/goto-line-dialog.js" type="text/javascript"></script>
+    <script src="static/markdown/plugins/help-dialog/help-dialog.js" type="text/javascript"></script>
+    <script src="static/markdown/plugins/html-entities-dialog/html-entities-dialog.js" type="text/javascript"></script>
+    <script src="static/markdown/plugins/preformatted-text-dialog/preformatted-text-dialog.js" type="text/javascript"></script>
+    <script src="static/pdfjs/build/pdf.js"></script>
+    <script src="static/pdfjs/build/pdf.worker.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script type="text/javascript" src="static/layer/layer.js"></script>
+	<script type="text/javascript" src="static/nprogress/nprogress.js"></script>
+	<script type="text/javascript" src="static/highlight/highlight.js"></script>
+	<script type="text/javascript" src="static/highlight/highlightjs-line-numbers.min.js"></script>
+	<script type="text/javascript" src="js/logon.js"></script>
+	<script type="application/javascript" src="static/markdown/lib/raphael.min.js"></script>
+	<script type="application/javascript" src="static/scripts/jsonEscape.js"></script>
+	<!-- zTree -->
+	<script type="text/javascript" src="static/zTree/js/jquery.ztree.all.min.js"></script>
+	<!-- For ajax form submit -->
+	<script  type="text/javascript" src="static/scripts/jquery.form.js"></script>
+	<!-- context.js -->
+	<script type="text/javascript" src="static/ContextJS/js/context.js"></script>
+	
+	<!-- DocSys Utils class -->
+	<script type="text/javascript" src="js/fileReader.js"></script>
+	<script type="text/javascript" src="js/base64.js"></script>
+	<script type="text/javascript" src="static/js-spark-md5/spark-md5.min.js"></script>
+	
+	<!-- Video -->
+	<!-- 
+	<script src="static/video-js/video.js"></script>
+	<script src="static/DPlayer/DPlayer.min.js"></script>
+    -->
+    
+    <!-- artDialog -->
+	<link rel="stylesheet" href="static/artDialog/css/ui-dialog.css">
+	<script src="static/artDialog/dist/dialog-min.js"></script>
+	<script src="static/artDialog/dist/dialog-plus-min.js"></script>
+	    
+	<!-- DocSys class -->
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/DocSys.js"></script>
+	<script type="text/javascript" src="js/DocDownload.js"></script>
+	<script type="text/javascript" src="js/DocUpload.js"></script>
+	<script type="text/javascript" src="js/DocDelete.js"></script>
+	<script type="text/javascript" src="js/DocCopy.js"></script>
+	<script type="text/javascript" src="js/DocMove.js"></script>
+	<script type="text/javascript" src="js/DocEdit.js"></script>
+	<script type="text/javascript" src="js/DocHistoryDetail.js"></script>
+    <script type="text/javascript">
+    	//这里的接口会在body元素加载时被调用，因此需要放到header这里
+	    function FileLogoErrHandler()
+		{
+			console.log("FileLogoErrHandler");
+			$("#fileLogo").attr('src',"images/file_icon/icon_file/file.png"); 
+		}
+		
+		function FileImgErrHandler()
+		{
+			console.log("FileImgErrHandler");
+			$("#imgPreview").attr('src',"images/file_icon/icon_file/file.png"); 
+		}
+    </script>
+</head>
+<body class="-webkit-overflow-scrolling:touch;">
+<div class="m-manual manual-reader">
+
+    <header class="navbar navbar-static-top  smart-nav navbar-fixed-top" role="banner" style="z-index:300">
+        <div class="container-fluid">
+            <div class="navbar-header">
+  				<a class="navbar-brand" style="font-weight: 600;" href="/DocSystem/web/projects.html"><i class="fa fa-paper-plane"></i> MxsDoc</a>
+                <a  id="projectName" class="navbar-brand" style="font-weight: 600; width: 50vw; white-space:nowrap; text-overflow: ellipsis; overflow: hidden;" href="">仓库名</a>
+                            
+	            <div class="btn-group dropdown-menu-right pull-right slidebar visible-xs-inline-block" style="right:12px; top:12px;">
+	                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width:26px; height:26px; border-radius:13px;">
+	                	<i class="icons plus" style="margin-left:-9px;margin-top:-3px;"></i>
+	                </button>
+	                <ul class="dropdown-menu" role="menu">
+	                    <li>
+	                    	<a onclick="newDocEx(1)">新建文件</a>
+	                    </li>
+						<li>
+							<a onclick="newDocEx(2)">新建文件夹</a>
+						</li>
+						<li>
+							<a onclick="uploadFilesEx();">上传文件</a>
+						</li>
+						<li>
+							<a onclick="uploadDirEx()">上传文件夹</a>
+						</li>
+	                </ul>
+	            </div>  
+            </div>
+
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav navbar-right">
+				    <li id="userImgDiv" style="display:none"><img id="userImg" name="userImg" width="40px" height="40px" src="images/default/defaultHeadPic.png" onerror="UserImgErrHandler();" class="img-circle m5"/></li>
+					<li id="userInfoDiv" style="display:none">
+							<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span>Rainy</span><span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/DocSystem/web/myHostPage.html">个人中心</a></li>
+								<li><a href="/DocSystem/web/shareManager.html">我的分享</a></li>
+								<li><a onclick="showReposManagerPage()">仓库管理</a></li>
+								<li id="logoutBtn"><a onclick="userLogout()">退出登录</a></li>
+							</ul>
+					</li>
+					<li id="modeSwitchBtn" style="display:none">
+                        <a id="modeSwitchBtnText" onclick="switchShowMode()"  title="电子书模式">切换模式</a>
+                    </li>
+					<li id="loginBtn">
+                        <a onclick="showLoginPanel()"  title="用户登录">登录</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>      
+    </header>
+    <article class="container-fluid manual-body">
+        <div class="manual-left disallowcopy">
+            <div class="manual-tab">
+	            <div class="tab-navg" style="height:59px">
+	         		<div style="padding:20px 0;position: relative; cursor: pointer; margin: 0 auto; width: 100px; display: block;">
+	         			<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+	         				<i class="glyphicon glyphicon-plus" style="zoom:1.2"></i>
+	         				<span>新文档</span>
+	         				<span class="caret"></span>
+	         			</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a onclick="newDocEx(1)">新建文件</a></li>
+							<li><a onclick="newDocEx(2)">新建文件夹</a></li>
+							
+							<li><a onclick="uploadFilesEx();">上传文件</a></li>
+							<li><a onclick="uploadDirEx()">上传文件夹</a></li>
+						</ul>
+	         		</div>
+	         	</div>
+                <div id="treeBody" class="tab-wrap">
+                    <div class="tab-item manual-catalog" id="uuz">
+
+                        <div class="catalog-list read-book-preview" id="tree">
+                            <ul id="doctree" class="ztree" style="margin-bottom: 120px;"></ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+			<div id="container" class="m-copyright" style="border-style:none;overflow:hidden;">
+            </div>
+        </div>
+        <div id="line" class="manual-line" ></div>
+        <div class="second-table disallowcopy"  id="secondDropZone">
+         	<div class="searchBox">
+         		<div class="back" onclick="backToParentDoc();"> 
+         			<i class="backicon glyphicon glyphicon-arrow-left"></i>
+         		</div>
+         		<div class="content">
+         			<i class="glyphicon glyphicon-search icon" onclick="searchDoc();"></i>
+         			<input placeholder="搜索..." type="text" id="searchWord"/>
+         			<span class="caret  pull-right  dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="margin-right:-9px;margin-top:-15px;"></span>
+         			<ul class="dropdown-menu" style="left:160px">
+         			        <li><a href="#" onclick="setSearchFolder('currentFolder')">当前目录</a></li>
+ 		                    <li><a  href="#" onclick="setSearchFolder('all')">全部文件</a></li>
+ 		            </ul>
+         		</div>
+         		<div class="dropdown">
+         			<a class="selecticon glyphicon glyphicon-align-justify dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></a>
+         			<ul class="dropdown-menu" style="left:210px">
+ 		                    <li><a href="#">摘要</a></li>
+ 		                    <li><a  href="#">列表</a></li>
+ 		                    <li class="divider"></li>
+ 		                    <li><a  href="#" onclick="sortDocList('createTimeR')">创建时间</a></li>
+ 		                    <li><a  href="#" onclick="sortDocList('modifyTimeR')">修改时间</a></li>
+ 		                    <li><a  href="#" onclick="sortDocList('name')">文件名称</a></li>
+ 		                    <li><a  href="#" onclick="sortDocList('sizeR')">文件大小</a></li>
+ 		                    <li><a  href="#" onclick="sortDocList('')">默认排序</a></li>
+ 		                </ul>
+         		</div>
+         	</div>
+         	<div id="secondListBody" class="second-list" style="padding-bottom: 120px;">
+         		<ul id="secondList">
+         		</ul>
+         	</div>
+         </div>
+        <div id="second-line" class="second-line" ></div>
+        
+        <div class="manual-right">
+            <div class="searchBox" style="white-space:nowrap">
+         		<div class="back" onclick="showCenterDiv();"> 
+         			<i class="backicon glyphicon glyphicon-arrow-left"></i>
+         		</div>
+        		<div class="filetitle nowrap ellipsis" id="filetitle"></div>
+        		<div style="position:absolute; right:5px; top:10px">
+	                    <button id="btnExitEdit" class="btn btn-default" type="button" onclick="DocEdit.exitEdit()" style="display:none">退出编辑
+	                   	</button>
+	                    <button id="btnSaveWiki" class="btn btn-default" type="button" onclick="DocEdit.saveWiki()" style="display:none">保存
+	                    </button>
+        		</div>
+         	</div>
+            <div class="manual-article" id="previewZone">
+                <div class="article-body editor-content"  id="docPreview" style="display:none;border-bottom: 1px solid #e0e1e5;">
+                	<div align=center style="margin-top:20px" >
+                		<img id="fileLogo" name="fileLogo" src="" style="display:none; width:128px; height:128px;cursor:pointer;" onclick="DocOnClick();" ondblclick="DocOnDblClick();" onerror="FileLogoErrHandler();"></img>
+                		<img id="imgPreview" name="imgPreview" src="" style="display:none; max-width:60%; max-height:60%;cursor:pointer;" onclick="DocOnClick();" ondblclick="DocOnDblClick();" onerror="FileImgErrHandler();"></img>
+                		<!-- HTML5 Default Mode --> 
+                		<video id="videoPreview" name="videoPreview" src="" controls="controls" style="display:none;max-width:60%; max-height:60%;"></video>
+                		<!-- VideoJs Mode  -->
+                		<!-- 
+                		<video id="videoPreview" class="video-js vjs-big-play-centered vjs-fluid" webkit-playsinline x-webkit-airplay="allow"></video>
+                		-->
+                		<!-- DPlayer Mode -->
+                		<!-- 
+                		<div id="videoPreview"></div> 
+                		-->
+                	</div>
+	            </div>
+                <div class="article-body editor-content"  id="vdocPreview" style="min-height: 650px;">
+                </div>
+            </div>
+        </div>
+        <div  class="uploadBox ">
+			<ul style="display:none" class="el-upload-list el-upload-list--text">
+			</ul>
+		</div>
+        <div class="manual-progress"><b class="progress-bar"></b></div>
+    </article>
+    <div class="manual-mask"></div>
+</div>
+
+<!-- 全屏遮罩 -->
+<div id="statusDiv" style="display:none">
+	<p>文件上传中...</p>
+</div>
+
+<div id="downloadConfirmDialog" style="display:none">
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">文件名：</label>
+            <div class="col-sm-10">
+                <input type="text" value="" class="form-control" name="entryPath" title="download">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div id="revertConfirmDialog" style="display:none">
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">文件名：</label>
+            <div class="col-sm-10">
+                <input type="text" value="" class="form-control" name="entryPath" title="revert">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div  style="opacity: 0;position: absolute;">
+	<textarea id="copiedText"></textarea>
+</div>	
+
+<!-- multiple file and dir upload triger div -->
+<div style="display:none">
+	<input id="checkInFile" name="checkInFile" type="file" onchange="checkInUploadConfirm(event)"/>
+	<input id="uploadFiles" name="uploadFiles" type="file" onchange="selectUploadConfirm(event)" multiple="multiple"/>
+	<input id="uploadDir" type="file" onchange="selectUploadConfirm(event)" webkitdirectory>
+</div>
+<!-- single file upload form -->
+<div style="display:none">
+	<form id="FileUploadForm" action="/DocSystem/Doc/uploadDoc.do" method="post" enctype="multipart/form-data">  
+		<input id="uploadFile" name="uploadFile" type="file" class="fLeft" 		//$("#imgPreview").show(); multiple="multiple"/>
+		<input type="text" value="0" id="reposId" name="reposId" title="所在仓库"/>
+		<input type="text" value="0" id="parentId" name="parentId" title="父节点"/>	
+		<input type="text" value="-1" id="docId" name="docId" title="文件节点"/>
+		<input type="text" value="1" id="uploadType" name="uploadType" title="上传类型：1文件 2文件夹"/>
+	</form>
+</div>
+
+<script type="text/javascript">
+	/* webSocketTest
+	var token='dcvuahsdnfajw12kjfasfsdf34';
+	var webSocket = new WebSocket("ws://localhost:8090/DocSystem/websocket",[token]);
+	//var webSocket = new WebSocket("ws://echo.websocket.org");
+	//var webSocket = new WebSocket("wss://echo.websocket.org");
+	webSocket.onopen = function(event){
+	    console.log("连接成功");
+	    console.log(event);
+	};
+	webSocket.onerror = function(event){
+	    console.log("连接失败");
+	    console.log(event);
+	};
+	webSocket.onclose = function(event){
+	    console.log("Socket连接断开");
+	    console.log(event);
+	};
+	webSocket.onmessage = function(event){
+	    //接受来自服务器的消息
+	    //...
+	}
+	*/
+	
+	//全局变量定义 
+	//Repos Info
+	var gInitReposInfo = {};
+	var gReposInfo = {};
+	
+	function showReposManagerPage(){
+		//open reposManager in current page
+		//window.open("/DocSystem/web/reposManager.html?vid=" + gReposInfo.id);
+		window.location.href = "/DocSystem/web/reposManager.html?vid=" + gReposInfo.id;
+	}
+	
+	//DocShare Info
+	var gShareId;
+	
+	//RootDoc Inof
+	var gRootDoc = {
+			docId : 0,
+			path : "",
+			name : "",
+			type : 2,
+			//showName: "仓库名",
+	};
+	
+	//Doc Info
+	//页面第一次加载时从URL中获取的信息
+	var gInitDocInfo = {
+			docId : 0,
+			path : "",
+			name : "",
+			doc : null, //从后台取回的数据
+			dataEx : null, //文件的链接等信息
+			openMode : 1, //1:摘要模式  2:详情模式
+			edit : false, //编辑状态
+	};	
+	var gDocInfo = {};
+	
+	//当前处于展示状态的内容
+	var gDocContent = "";
+	var gTmpSavedDocContent = "";
+	
+	//当前页面显示模式
+	var gInitShowType = 1;
+	var gShowType = 1; //1:标准模式 2:电子书模式
+	
+	function getDeleteNodes()
+	{
+		var deleteNodes = [];
+		
+		var treeObj = $.fn.zTree.getZTreeObj("doctree");
+		var selectedNodes = treeObj.getSelectedNodes();
+		if(selectedNodes == null || selectedNodes.length < 2)
+		{
+			console.log("selectedNodes",selectedNodes);
+			if(curRightClickedTreeNode != null)
+			{
+				deleteNodes.push(curRightClickedTreeNode);
+			}
+		}
+		else
+		{
+			deleteNodes = selectedNodes;
+		}
+		
+		return deleteNodes;
+	}
+	
+	//callback is for success delete
+	function DoDelete(treeNodes)
+	{
+		if(treeNodes == null || treeNodes.length < 1)
+		{
+			showErrorMessage("清选择需要删除的文件或目录");
+		}
+		else
+		{
+			var treeNode = treeNodes[0];
+			var msg =  "是否删除文件 " + treeNode.name;
+			if(treeNodes.length > 1)
+		  	{
+				msg =  "是否删除 " + treeNode.name + "等" + treeNodes.length  +"文件";	
+		  	}
+			else
+			{
+				if(treeNode.type == 2)
+				{
+					msg =  "是否删除整个目录 " + treeNode.name;	
+				}
+			}
+			
+			bootstrapQ.confirm({
+				id: "deleteConfirm",
+				title: "删除确认",
+				msg : msg,
+				},function () {
+			    	//alert("点击了确定");
+					DocDelete.deleteDocs(treeNodes, gReposInfo.id);
+			    	return true;   
+			 	});
+		}
+	}
+
+	function refreshDoc(node, force)
+	{
+		console.log("refreshDoc node:", node);
+		
+		var docId = 0;
+		var pid = -1;
+		var parentPath = "";
+		var docName = "";
+		var level = 0;
+		var type = 2;
+		
+		if(node != null)
+		{	
+			docId = node.id;
+			pid = node.pid;
+			parentPath = node.path;
+			docName = node.name;
+			level = node.level;
+			type = node.type;
+		}
+		
+   		console.log("refreshDoc docId:" + docId + " type:"+ type + " level:" + level + " pid:" + pid + " path:" + parentPath + " name:" + docName);
+		$.ajax({
+            url : "/DocSystem/Doc/refreshDoc.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            	reposId: gReposInfo.id,
+                docId : docId,
+                pid	: pid,
+                type: type,
+                level: level,
+                path: parentPath,
+                name: docName,
+                force: force,
+                shareId: gShareId,
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                	console.log("refresh ok:", ret.data);
+			     	/*bootstrapQ.msg({
+							msg : "刷新成功！",
+							type : 'success',
+							time : 1000,
+					});*/
+			     	
+			     	//2秒后刷新页面
+			        setTimeout(function () 
+			        {
+				     	window.location.reload();			        	
+		            }, 100);
+                }
+                else
+                {
+                	showErrorMessage("刷新失败:" + ret.msgInfo);
+                }
+            },
+            error : function () {
+	               showErrorMessage("刷新失败:服务器异常！");
+            }
+    	});
+	}
+	
+	function showRenameDialog(node)
+	{
+		console.log("showRenameDialog node:", node);
+
+		bootstrapQ.dialog(
+			{
+				id: 'renameConfirm',
+				url: 'renameConfirm.html',
+				title: '重命名',
+				msg: '页面正在加载，请稍等...',
+				foot: false,
+		        //okbtn: "确定",
+				callback: function(){
+					renameConfirmPageInit(node);
+				}, 
+			});
+		
+		return true;
+	}
+
+	function getSelectedNodes()
+	{
+		var treeNodes = [];
+		
+		var treeObj = $.fn.zTree.getZTreeObj("doctree");
+		var selectedNodes = treeObj.getSelectedNodes();
+		if(selectedNodes == null || selectedNodes.length < 2)
+		{
+			console.log("selectedNodes",selectedNodes);
+			if(curRightClickedTreeNode != null)
+			{
+				treeNodes.push(curRightClickedTreeNode);
+			}
+		}
+		else
+		{
+			treeNodes = selectedNodes;
+		}
+		
+		return treeNodes;
+	}
+
+	function DoPaste(treeNodes,dstParentNode, isCopy)
+	{
+		console.log("DoPaste()",treeNodes,dstParentNode);
+		if(treeNodes == null || treeNodes.length < 1)
+		{
+			if(isCopy)
+			{
+				showErrorMessage("请选需要复制的文件！");
+			}
+			else
+			{
+				showErrorMessage("请选需要移动的文件！");
+			}
+			return;	
+		}
+		
+		if(isCopy)
+		{
+			console.log("StartCopy");
+			DocCopy.copyDocs(treeNodes,dstParentNode,gReposInfo.id);
+		}
+		else
+		{
+			console.log("StartMove");
+			DocMove.moveDocs(treeNodes,dstParentNode,gReposInfo.id);			
+		}
+	}
+
+	function copyDocName(node){
+		if(node == null)
+		{
+			showErrorMessage("请选择文件或目录");
+			return false;
+		}
+		
+		var docName = node.name;
+		console.log("copiedDocName:" + docName);
+		
+		//window.clipboardData.setData("Text",url);	//剪贴板存在兼容性问题
+		var obj=document.getElementById("copiedText");
+		obj.value=docName;	//修改其中的值
+		obj.select(); // 选择对象
+		document.execCommand("Copy"); // 执行浏览器复制命令
+        // 普通消息提示条
+		bootstrapQ.msg({
+					msg : '复制成功！',
+					type : 'success',
+					time : 1000,
+		});
+	}
+	
+	function copyDocPath(node){
+		if(node == null)
+		{
+			showErrorMessage("请选择文件或目录");
+			return false;
+		}
+
+		var docPath = node.path + node.name;
+		console.log("docPath:" + docPath);
+		
+		//window.clipboardData.setData("Text",url);	//剪贴板存在兼容性问题
+		var obj=document.getElementById("copiedText");
+		obj.value=docPath;	//修改其中的值
+		obj.select(); // 选择对象
+		document.execCommand("Copy"); // 执行浏览器复制命令
+        // 普通消息提示条
+		bootstrapQ.msg({
+					msg : '复制成功！',
+					type : 'success',
+					time : 1000,
+		});
+	}
+	
+	function copyUrl(node){
+		if(node == null)
+		{
+			showErrorMessage("请选择文件或目录");
+			return false;
+		}
+		
+		var vid = gReposInfo.id;
+		var docId = node.docId;
+	   	var path = base64_encode(node.path);
+	   	var name = base64_encode(node.name);
+	   	var href = "/DocSystem/web/project.html?vid="+gReposInfo.id+"&doc="+docId+"&path="+path+"&name="+name;
+		if(gShareId)
+		{
+			href += "&shareId"+gShareId;
+		}
+		console.log(href);
+		var host = window.location.host;	//域名带端口
+		//var host2=document.domain; 			//域名不带端口
+		//var url = window.location.href;		//全路径
+		console.log(host);
+		//console.log(host2);
+		//console.log(url);
+		var url = host+href;
+		console.log(url);
+		
+		//window.clipboardData.setData("Text",url);	//剪贴板存在兼容性问题
+		var obj=document.getElementById("copiedText");
+		obj.value=url;	//修改其中的值
+		obj.select(); // 选择对象
+		document.execCommand("Copy"); // 执行浏览器复制命令
+        // 普通消息提示条
+		bootstrapQ.msg({
+					msg : '复制成功！',
+					type : 'success',
+					time : 1000,
+		});
+	}
+	
+	function copyString(str)
+	{
+		var obj=document.getElementById("copiedText");
+		obj.value=str;	//修改其中的值
+		obj.select(); // 选择对象
+		document.execCommand("Copy"); // 执行浏览器复制命令
+	    // 普通消息提示条
+		bootstrapQ.msg({
+					msg : '复制成功！',
+					type : 'success',
+					time : 1000,
+		});
+	}
+	
+	//文件下载接口 
+ 	function downloadDoc(treeNodes,needConfirm,downloadType)
+	{
+		console.log("downloadDoc downloadType:" + downloadType + " treeNodes:", treeNodes);
+		if(!treeNodes || treeNodes == null)
+		{
+			showErrorMessage("请选择需要下载的文件！");
+			return;
+		}
+		if(needConfirm)
+		{
+			var fileName = treeNodes[0].name;
+			if(treeNodes[0].docId == 0)
+			{
+				fileName = gReposInfo.name;
+			}
+			console.log("firstFile:"+fileName);
+		  	
+		  	var downloadDispInfo = fileName;
+		  	if(treeNodes.length > 1)
+		  	{
+		  		downloadDispInfo = downloadDispInfo + " 等" + treeNodes.length + "个文件";
+		  	}
+		  	
+			if(downloadType && downloadType == 2)
+			{
+	  			downloadDispInfo = downloadDispInfo + " 备注";		
+			}
+						
+			qiao.bs.confirm({
+		        id: 'downloadConfirm',
+		        msg: '是否下载：' + downloadDispInfo,
+		    },function(){
+		        //alert('点击了确定！');
+				DocDownload.downloadDocs(treeNodes, null, gReposInfo.id,downloadType);
+		    },function(){
+		        //alert('点击了取消！');
+		    });
+		}
+		else
+		{			
+			DocDownload.downloadDocs(treeNodes, null, gReposInfo.id,downloadType);
+		}
+	}
+		
+    /*文件上传实现*/
+   	function uploadFilesEx()
+    {
+    	var node = getNodeByNodeId(gDocInfo.docId);
+		gParentNodeForUpload = getParentNodeByNode(node);
+	    uploadFiles();
+    }
+    
+   	function uploadDirEx()
+    {
+    	var node = getNodeByNodeId(gDocInfo.docId);
+		gParentNodeForUpload = getParentNodeByNode(node);
+	    uploadDir();
+    }
+    
+	//文件上传入口
+	function uploadFiles(){
+		console.log("uploadFiles() gParentNodeForUpload:",gParentNodeForUpload);
+  		//清除文件控件
+		$("#uploadFiles").val("");
+
+  		$("#uploadType").val(1); //文件	
+	    return $("#uploadFiles").click();
+	}
+	
+	//文件夹上传入口
+	function uploadDir(){
+		console.log("uploadDir() gParentNodeForUpload:",gParentNodeForUpload);
+  		//清除文件控件
+		$("#uploadDir").val("");
+  		
+		$("#uploadType").val(2);
+	    return $("#uploadDir").click();
+	}
+	
+	//文件chekcIn入口
+	function checkInFile(){
+		console.log("checkInFile() gParentNodeForUpload:",gParentNodeForUpload);
+  		//清除文件控件
+  		$("#checkInFile").val("");
+
+  		return $("#checkInFile").click();
+	}
+	
+	
+	//get the filename 
+	function getFileName(o){
+	    var pos=o.lastIndexOf("\\");
+	    return o.substring(pos+1);  
+	}
+	
+	//upload file confirm dialog
+	function selectUploadConfirm(e)
+	{
+		console.log("selectUploadConfirm",e,gParentNodeForUpload);
+	    var entrys = e.target.files;
+	    
+		checkUserUploadRight(entrys,gParentNodeForUpload,uploadConfirm);		
+	    return true;
+	}
+	
+	function dragUploadConfirm(e,parentNode)
+	{
+		console.log("dragUploadConfirm",e);
+        
+		//getFileList
+        var entrys = getFileList(e);
+        //console.log("entrys",entrys);
+        		
+		//用户确认上传
+		checkUserUploadRight(entrys,parentNode,uploadConfirm);
+	    return true;
+	}
+	
+	//CheckInUpload Confirm
+	function checkInUploadConfirm(e)
+	{
+		console.log("checkInUploadConfirm",e,gParentNodeForUpload);
+	    var entrys = e.target.files;
+	    var fileName = entrys[0].name;
+	    console.log("checkInUploadConfirm fileName" + fileName);
+	    
+	    if(fileName != curCheckInDoc.name)
+	    {
+	    	showErrorMessage("请选择文件：" + curCheckInDoc.name);
+		    return false;	
+	    }
+	    
+	    checkUserUploadRight(entrys,gParentNodeForUpload,uploadWithoutConfirm);		
+	    return true;
+	}
+	
+	//获取用户的权限
+	function checkUserUploadRight(files,parentNode,callback)
+	{
+		console.log("checkUserUploadRight() parentNode:",parentNode);
+		
+		//get the parentInfo
+	  	var parentPath = "";
+	  	var parentId = 0;
+	  	var level = 0;
+	  	var pPath = "";
+	  	var pName = "";
+		if(parentNode && parentNode != null)
+		{
+			parentPath = parentNode.path + parentNode.name+"/";
+			pPath = parentNode.path;
+			pName = parentNode.name;
+			parentId=parentNode.id;
+			level = parentNode.Level;
+		}
+		else
+		{
+			parentNode=null;
+			
+		}
+		
+		var vid = gReposInfo.id;
+		var remoteDir = "/" + parentPath;	//only for display
+		
+		$.ajax({
+			url : "/DocSystem/Repos/getUserDocAuth.do",
+			type : "post",
+			dataType : "json",
+			data : {
+				docId : parentId,
+				reposId : vid,
+				path: pPath,
+				name: pName,
+				shareId: gShareId,
+			},
+			success : function (ret){
+				if( "ok" == ret.status){
+					var docAuth = ret.data;
+					console.log(docAuth);
+					if(docAuth.addEn == 1 || docAuth.editEn == 1)
+					{
+						callback && callback(files,parentNode);
+					}
+					else
+					{
+						showErrorMessage("您没有目录 "+remoteDir+" 的新增或修改权限");
+					}
+					return;
+ 				}
+				else
+				{
+					showErrorMessage("Error:" + ret.msgInfo);
+					return;
+				}
+			},
+			error : function () {
+				showErrorMessage("获取用户权限异常");
+				return;
+			}
+		});
+	}
+	
+	//drag upload file confirm dialog（拖拽上传的确认对话框）
+	function uploadConfirm(files,parentNode)
+	{	
+		console.log("uploadConfirm()");
+		showUploadConfirmPanel(files, parentNode);
+		return true;
+	}
+	
+	function showUploadConfirmPanel(files, parentNode)
+	{
+		console.log("showUploadConfirmPanel()");
+		
+		bootstrapQ.dialog(
+			{
+				id: 'uploadConfirm',
+				url: 'uploadConfirm.html',
+				title: '文件上传',
+				msg: '页面正在加载，请稍等...',
+				foot: false,
+				big: false,
+				//okbtn: "开始上传",
+				callback: function(){	//page load ok callback
+					uploadConfirmPageInit(files, parentNode);
+				},
+			});		
+	}
+	
+	function uploadWithoutConfirm(files,parentNode)
+	{	
+		console.log("uploadWithoutConfirm()");		
+		
+		//get the parentInfo
+	  	var parentPath = "";
+	  	var parentId = 0;
+	  	var level = 0;
+		if(parentNode && parentNode != null)
+		{
+			parentPath = parentNode.path + parentNode.name+"/";
+			parentId=parentNode.id;
+			level = parentNode.Level;
+		}
+		else
+		{
+			parentNode=null;
+		}
+		
+		var vid = gReposInfo.id;
+		
+		//开始上传
+		DocUpload.uploadDocs(files,parentNode,parentPath,parentId,level,vid);
+	    return true;   
+	}
+
+
+
+	//Re Upload Fail Docs
+    function reuploadFailDocs(index)
+    {
+    	console.log("reuploadFailDocs() index:" + index);
+    	DocUpload.reuploadFailDocs(index);    	
+    }
+    	
+	//Stop Upload
+	function stopUpload(index)
+	{
+    	//var index = $(this).attr('value');	//value 不是i的原生属性，所以不能用value
+    	console.log("stopUpload " + index);
+    	DocUpload.stopUpload(index);
+    }
+	
+	//删除多余的treeNode
+	function deleteDuplicatedTreeNode(name,parentNode)
+    {
+		console.log("deleteDuplicatedTreeNode",name,parentNode);
+		var treeObj = $.fn.zTree.getZTreeObj("doctree");
+		var nodes = treeObj.getNodesByParam("name", name, parentNode);
+		console.log(nodes);
+		if(nodes!=null && nodes.length > 1)
+		{
+			var size = nodes.length;
+			var i = 1;
+			//删除多余的treeNode
+			for(i=1;i<size;i++)
+			{
+				Node = nodes[i];
+				treeObj.removeNode(Node);
+			}
+		}
+		return;
+    }
+	
+	function deleteTreeNodeById(docId)
+    {
+		console.log("deleteTreeNode docId:" + docId);
+    	if(docId && docId != null)
+    	{
+			var zTree = $.fn.zTree.getZTreeObj("doctree");
+			var node = zTree.getNodeByParam("id",docId);
+    		if(node!=null)
+			{
+    			zTree.removeNode(node);
+			}
+    	}
+    }
+	
+	function deleteTreeNode(name,parentNode)
+    {
+		console.log("deleteTreeNode",name,parentNode);
+		var treeObj = $.fn.zTree.getZTreeObj("doctree");
+		var Node = treeObj.getNodeByParam("name", name, parentNode); //找到新的目录下，id与被复制的节点相同id的Node(这是zTree自动产生的，我要删掉他)
+		if(Node!=null)
+		{
+			treeObj.removeNode(Node);
+		}
+    }
+</script>
+
+<script>
+	//上传进度框显示控制
+	$(".el-upload-list").delegate(".closeBtn","click",function(){
+		var uploadStatus = DocUpload.getUploadStatus();
+		//uploadStatus = "busy";
+		console.log("uploadStatus:" + uploadStatus);
+		if(uploadStatus == "busy")
+	    {
+			qiao.bs.confirm({
+		        id: 'bsconfirm',
+		        msg: '上传还未结束，是否终止上传！'
+		    },function(){
+		        //alert('点击了确定！');
+		    	DocUpload.stopAllUpload();
+		    },function(){
+		        //alert('点击了取消！');
+		    });
+	    }
+	    else
+	    {
+	    	$(".el-upload-list").hide();
+	    }
+	});
+	
+	var showUploadList = true;
+	$(".el-upload-list").delegate(".upload-list-title","click",function(){
+		if(showUploadList == true)
+		{
+			showUploadList = false;
+			//收起进度
+			var height = - $(".el-upload-list").height()+"px";
+			$(".el-upload-list").animate({bottom: height});
+			$(".closeBtn").animate({opacity: 0});	//隐藏关闭按键
+			//$(this).animate({opacity: 0});	//隐藏title，好像title不应该隐藏
+		}
+		else
+		{
+			showUploadList = true;
+			$(".el-upload-list").animate({bottom: "0px"});
+			$(".closeBtn").animate({opacity: 1});	//显示关闭按键
+			//$(this).animate({opacity: 1});	//this 指向的是title，显示title
+		}
+	});
+	
+	/* 上传进度放在目录树的实现，不友好，代码放这里是可能给其他实现作参考
+	$('.lookPro').on('click',function(){
+		$(".el-upload-list").show();
+		$('.main').removeClass('active');
+		$(this).addClass('active');
+	});
+	$('.main').on('click',function(){
+		$(".el-upload-list").hide();
+		$('.lookPro').removeClass('active');
+		$(this).addClass('active');
+	});
+	*/
+	
+    var zTree = jQuery.fn.zTree;
+
+    $(document).keydown(function(e){
+        // ctrl + s
+        if( e.ctrlKey  == true && e.keyCode == 83 ){
+
+            return false;
+        }
+    });
+
+    // 从 url 中获取参数
+    function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
+
+	function getTime() {
+        var now= new Date(),
+        h=now.getHours(),
+        m=now.getMinutes(),
+        s=now.getSeconds(),
+        ms=now.getMilliseconds();
+        return (h+":"+m+":"+s+ " " +ms);
+    }
+</script>
+
+
+<script type="text/javascript">
+
+
+
+    var events = $("body");
+    var catalog = null;
+    /**
+     * 初始化高亮插件
+     */
+    function initHighlighting() {
+        $('pre code').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+
+        hljs.initLineNumbersOnLoad();
+    }
+    $(function () {
+        initHighlighting();
+
+        var windowHeight = $(window).height();
+        var bodyHeight = $(document).height();
+
+        $(window).resize(function(){
+            var windowHeight = $(window).height();
+            var bodyHeight = $(document).height();
+        });
+
+        /*
+         catalog = $("#sidebar").jstree({
+         'plugins':["wholerow","types"],
+         "types": {
+         "default" : {
+         "icon" : false  // 删除默认图标
+         }
+         },
+         'core' : {
+         'check_callback' : false,
+         "multiple" : false ,
+         'animation' : 0
+         }
+         }).on('select_node.jstree',function (node,selected,event) {
+         $(".m-manual").removeClass('manual-mobile-show-left');
+         var url = selected.node.a_attr.href;
+
+         if(url == window.location.href){
+         return false;
+         }
+
+
+         $.ajax({
+         url : url,
+         type : "GET",
+         beforeSend :function (xhr) {
+         var body = events.data('body_' + selected.node.id);
+         var title = events.data('title_' + selected.node.id);
+         var doc_title = events.data('doc_title_' + selected.node.id);
+
+         if(body && title && doc_title){
+
+         $("#page-content").html(body);
+         $("title").text(title);
+         $("#article-title").text(doc_title);
+
+         events.trigger('article.open',url,true);
+
+         return false;
+         }
+         NProgress.start();
+         },
+         success : function (res) {
+         if(res.errcode == 0){
+         var body = res.data.body;
+         var doc_title = res.data.doc_title;
+         var title = res.data.title;
+
+         $("#page-content").html(body);
+         $("title").text(title);
+         $("#article-title").text(doc_title);
+
+         events.data('body_' + selected.node.id,body);
+         events.data('title_' + selected.node.id,title);
+         events.data('doc_title_' + selected.node.id,doc_title);
+
+         events.trigger('article.open',url,false);
+
+         }else{
+         layer.msg("加载失败");
+         }
+         },
+         complete : function () {
+         NProgress.done();
+         }
+         });
+         });*/
+
+        $("#slidebar").on("click",function () {
+            $(".m-manual").addClass('manual-mobile-show-left');
+        });
+        $(".manual-mask").on("click",function () {
+            $(".m-manual").removeClass('manual-mobile-show-left');
+        });
+    });
+
+    events.on('article.open', function (event, url,init) {
+        if ('pushState' in history) {
+
+            if (init == false) {
+                history.replaceState({}, '', url);
+                init = true;
+            } else {
+                history.pushState({}, '', url);
+            }
+
+        } else {
+            location.hash = url;
+        }
+        initHighlighting();
+
+    });
+
+</script>
+
+
+<script type="text/javascript">
+	/******************************** Repos Interfaces***************************************/
+    function getReposInfo(reposId, callback){
+		console.log("getReposInfo");
+        $.ajax({
+            url : "/DocSystem/Repos/getRepos.do",
+            type : "post",
+            dataType : "json",
+            data : {
+                vid : reposId,
+                shareId: gShareId,
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                	gReposInfo = ret.data;
+                	console.log("gReposInfo:", gReposInfo);
+
+                	if(!gRootDoc.showName)
+                	{
+	                	gRootDoc.showName = gReposInfo.name;
+	                    $("#projectName").text(gRootDoc.showName);
+                	}
+                    
+					callback && callback();
+                    //初始化目录树和Doc
+					//InitMenuAndDoc();
+                }else {
+                    $("#projectName").text("仓库名");
+                    showErrorMessage("获取仓库信息失败:" + ret.msgInfo);
+                }
+            },
+            error : function () {
+                showErrorMessage("服务器异常:获取仓库信息失败");
+            }
+        });
+    }
+	
+
+    function getNodeById(docId)
+   	{
+    	if(docId && docId != null)
+    	{
+			var zTree = $.fn.zTree.getZTreeObj("doctree");
+			var node = zTree.getNodeByParam("id",docId);
+			return node;
+    	}
+    	return null;
+   	}
+
+	//从后台获取zTree数据: callback1是成功后的回调函数1，需要后续处理的话加在这里处理
+	function getInitMenu(docId, parentPath, docName, callback) 
+   	{
+		console.log("getInitMenu docId:" + docId + " parentPath:" + parentPath + " docName:" + docName);
+		
+		$.ajax({
+		    url : "/DocSystem/Repos/getReposInitMenu.do",
+		    type : "post",
+		    dataType : "json",
+		    data : {
+		        reposId : gReposInfo.id,  
+		    	docId:  docId,
+		    	path: parentPath,
+		    	name: docName,
+		    	shareId: gShareId,
+		    },
+		    success : function (ret) {
+		        	if( "ok" == ret.status ){
+		        		console.log("getMenu() ret",ret);
+		                reDrawMenu(ret.data);
+		                //选中文件
+		         		var treeNode = getNodeByNodeId(docId);
+		        		if(treeNode && treeNode != null)
+		        		{
+		        			var zTree = $.fn.zTree.getZTreeObj("doctree");
+		        			//select this node in zTree
+		        		 	zTree.selectNode(treeNode);
+		        		}
+		        		callback && callback();
+		            }
+		            else
+		           	{
+	                	if(ret.msgData && ret.msgData == "1")	//需要验证访问密码
+	                	{
+	                		var node = ret.data;
+	                		showDocPwdVerifyPanel(node, refreshPage);
+	                	}
+	                	else
+	                	{
+	                    	showErrorMessage("获取仓库目录失败:" + ret.msgInfo);
+	                	}
+		           	}
+		        },
+		        error : function () {
+		            showErrorMessage("获取文件列表失败:服务器异常");
+		        }
+		    });
+	}
+   	
+   	function refreshPage()
+   	{
+   		console.log("refreshPage()");
+        setTimeout(function () 
+        {
+	     	window.location.reload();			        	
+        }, 100);
+   	}
+
+	/******************************** Doc Interfaces***************************************/
+	function updateProjectName()
+	{
+		if(!gDocInfo.docId || gDocInfo.docId == 0)
+		{
+			$("#projectName").text(gRootDoc.showName);		
+		}
+		else
+		{
+			if(gDocInfo.type == 2)
+			{
+				$("#projectName").text(gDocInfo.name);
+			}
+			else
+			{
+				//For File need to show parent docName
+				$("#projectName").text(gDocInfo.name);				
+			}
+		}
+	}
+	
+	function updateUrl()
+    {
+    	console.log("updateUrl() reposId:" + gReposInfo.id + " gDocInfo:", gDocInfo);
+    	updateProjectName();
+    	if(gDocInfo.docId)
+    	{
+	    	//避免取回来时乱码
+		   	var path = base64_encode(gDocInfo.path);
+		   	var name = base64_encode(gDocInfo.name);
+		   	console.log("after encode path:" + path + " name:" + name);
+	   	
+		   	//path = decodeURI(path);
+		   	//name = decodeURI(name);
+		   	//console.log("after decode path:" + path + " name:" + name);
+	        //Update URL 保证页面刷新后还是处于正确的状态
+	        var param = {
+	        	vid : gReposInfo.id,
+	            shareId: gShareId,
+		        doc : gDocInfo.docId,
+	            path: path,
+	            name: name,
+	            edit: gDocInfo.edit,
+	            showType: gShowType,
+	        };
+	        var url = makeUrl(param);
+			window.history.pushState({}, "wiki", url);
+    	}
+    	else
+    	{
+            //Update URL 保证页面刷新后还是处于正确的状态
+            var param = {
+            	vid : gReposInfo.id,
+            	shareId: gShareId,
+            	showType: gShowType,
+            };
+            var url = makeUrl(param);
+    		window.history.pushState({}, "wiki", url);
+    	}	
+	}
+    
+    //清除Doc预览信息
+	function cleanDocPreview()
+	{
+    	console.log("cleanDocPreview() ");
+		//清除当前选中的信息
+		gDocInfo = {};
+		updateUrl();
+		
+		//清除文件名
+	  	$('#filetitle').html("");
+	  		
+	  	//清除文件预览内容
+	  	DocEdit.loadmd("");
+	  	$(".editormd-preview-close-btn").hide();//css("display","none");
+	}
+	
+	//获取文件信息并显示
+    function getAndShowDoc(node, openMode, edit)
+	{	
+		console.log("getAndShowDoc() gShowType:" + gShowType + " openMode:" + openMode + " edit:" + edit + " node:", node);
+      	if(!node || node == null || node.id == 0)	//undefine do clean the info of rightDiv
+      	{
+      		cleanDocPreview();
+          	return;
+        }
+      	
+        //To get DocInfo and Show Doc 
+    	$.ajax({
+            url : "/DocSystem/Doc/getDoc.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            	reposId: gReposInfo.id,
+                docId : node.id,
+                pid: node.pid,
+                path: node.path,
+                name: node.name,
+                docType: 2, //取回备注内容
+                shareId: gShareId,
+            },
+            success : function (ret) {
+            	console.log("getAndShowDoc ret",ret);
+            	if( "ok" == ret.status )
+            	{
+            		var doc = ret.data
+            		console.log("getAndShowDoc gDocInfo.docId:" + gDocInfo.docId + " docId:" + doc.docId + " gShowType:" + gShowType);
+            		
+					//当前有打开的文件，还处于编辑状态必须先退出编辑，理论上不应该执行到这里
+	            	if(gDocInfo.docId && gDocInfo.docId != 0 && gDocInfo.docId != doc.docId && gDocInfo.edit == true)
+	            	{
+	            		console.log("getAndShowDoc() 理论上不应该执行到这里，处于编辑状态的文件必须先退出编辑！");
+	            		DocEdit.exitEdit();
+	            		return;
+	            	}
+            		
+                	//Show Doc and update gDocInfo
+            		$('#filetitle').html(doc.name);
+	                //Reset gDocInfo
+                	gDocInfo = {};
+	                gDocInfo.vid = gReposInfo.id;
+                	gDocInfo.docId = doc.docId;
+	            	gDocInfo.path = doc.path;
+	            	gDocInfo.name = doc.name;
+	            	gDocInfo.type = doc.type;
+                	gDocInfo.dataEx = ret.dataEx;
+	                
+                	gDocInfo.openMode = openMode;
+	            	gDocInfo.edit = edit;
+	            	updateUrl();
+	                
+	            	gDocInfo.content = parseDocContent(doc.content);
+	                gDocInfo.tmpContent = parseDocContent(doc.tmpContent);
+	                
+	                showGDoc(gShowType);
+                }
+                else 
+                {
+                	console.log(ret.msgInfo);
+                	if(ret.msgData && ret.msgData == "1")	//需要验证访问密码
+                	{
+                		if(gDocInfo.docId || gDocInfo.docId == 0)
+                		{
+                			showDocPwdVerifyPanel(node, refreshPage);	//rootDoc need refreshPage
+                		}
+                		else
+                		{
+                			showDocPwdVerifyPanel(node);                			
+                		}
+                	}
+                	else
+                	{
+                    	showErrorMessage("获取文件信息失败：" + ret.msgInfo);
+                    	cleanDocPreview();
+                	}
+                }
+            },
+            error : function () {
+                showErrorMessage("获取文件信息失败：服务器异常");
+                cleanDocPreview();
+            }
+        });
+    }
+	
+	function showDocPwdVerifyPanel(node, successCallback)
+	{
+		console.log("showDocPwdVerifyPanel node",node);
+		bootstrapQ.dialog({
+			id: 'docPwdVerify',
+			url: 'docPwdVerify.html',
+			title: '密码验证',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false,
+			callback: function(){
+				DocPwdVerifyPageInit(gReposInfo.id, node, successCallback);
+			},
+		});
+	}	
+	
+	//showGDoc根据showType和edit显示gDoc
+    function showGDoc(showType)
+    {
+		console.log("showGDoc gShowType:" + gShowType + " gDocInfo", gDocInfo);
+		
+		//显示文件图标
+		var fileSuffix = getFileSuffix(gDocInfo.name);
+		gDocInfo.fileSuffix = fileSuffix;
+		
+		if(showType == 2)	//电子书模式：不显示图标
+		{
+		     $("#docPreview").hide();      	
+		}
+		else	//标准模式：显示图标或图片、视频
+		{	
+			$("#docPreview").show();  
+			if(isPicture(fileSuffix))
+			{
+				showFileLogo(null);
+				showFileImg(gDocInfo);
+	            showVideoPreview(false);
+			}
+			else if(isVideo(fileSuffix))
+			{
+				showFileLogo(null);
+				showFileImg(null);
+	            showVideoPreview(true);
+			}
+			else
+			{
+				showFileLogo(gDocInfo);
+				showFileImg(null);
+		        showVideoPreview(false);
+			}
+		}
+		
+		//显示备注
+	    $("#btnExitEdit").hide();
+      	$("#btnSaveWiki").hide(); 
+    	showGDocVDocContent();
+		
+    	//显示文件内容
+    	if(gDocInfo.openMode == 2)
+    	{
+			//Open Doc in Dialog
+			openDoc(gDocInfo, false, "openInArtDialog");
+		}
+    }
+	
+	function showGDocVDocContent()
+	{
+		console.log("showGDocVDocContent gDocInfo.docId:" + gDocInfo.docId);
+	    $("#vdocPreview").show();	      				
+		
+		gDocInfo.contentType = 2; //MdEditor中的是备注内容
+		gDocContent = gDocInfo.content;
+		gTmpSavedContent = gDocInfo.tmpContent;
+		//console.log("showGDocVDocContent gDocInfo.content:" + gDocInfo.content + " gDocContent:" + gDocContent);
+		
+		DocEdit.loadmd(gDocContent, gDocInfo.edit);
+	  	$(".editormd-preview-close-btn").show();//css("display","none");
+	}
+	
+	function DocOnClick()
+	{
+		console.log("DocOnClick()");
+		//for pad or phone need to open it
+		if(gIsPC == false)
+		{			
+			DocOnDblClick();
+		}
+	}
+	
+	//对于直接图标直接点击将尝试打开二进制文件
+    function DocOnDblClick()
+    {
+		if(gDocInfo.type == 1)
+		{
+	    	//open doc in dialog
+	    	openDoc(gDocInfo, true, "openInArtDialog");
+		}
+		else
+		{
+			showDocList(gDocInfo);
+			showCenterDiv();			
+		}
+    }
+	
+	function showFileImg(docInfo)
+	{
+		if(docInfo == null)
+		{
+			$("#imgPreview").attr('src', "");
+			$("#imgPreview").hide();
+			return;
+		}
+				
+		return showImgPreview(docInfo);
+	}
+	
+	function showImgPreview(docInfo)
+	{	
+		var docDataEx = docInfo.dataEx;
+		if(!docDataEx || docDataEx == null)	//表明不是文件，无法预览
+		{
+			console.log("showImgPreview() dataEx is null");
+			showFileImg(docInfo);
+			return;
+		}
+		
+		var docLink = getDocDownloadLink(docInfo);
+
+		console.log("showImgPreview() docLink:" + docLink);
+		$("#imgPreview").attr('src', docLink);
+		$("#imgPreview").show();
+	}
+
+	function showFileLogo(docInfo)
+	{
+		if(docInfo == null)
+		{
+			$("#fileLogo").attr('src', "");
+			$("#fileLogo").hide();
+			return;
+		}
+		
+		if(docInfo.type == 2)
+		{
+			//showFolderLogo("win10");
+			showFolderLogo("mac");
+			return;
+		}
+				
+		//Show File Logo
+		var fileSuffix = docInfo.fileSuffix;
+		var logoLink = "/DocSystem/web/images/file_icon/icon_file/file.png";
+		if(fileSuffix && fileSuffix != "")
+		{
+			logoLink = "/DocSystem/web/images/file_icon/icon_file/" + fileSuffix + ".png";			
+		}
+		$("#fileLogo").attr('src', logoLink);
+		$("#fileLogo").show();
+	}
+	
+	function showFolderLogo(style)
+	{
+		var logoLink = "/DocSystem/web/images/file_icon/icon_others/folder.png";
+		if(style && style != "")
+		{
+			logoLink = "/DocSystem/web/images/file_icon/icon_others/folder_" + style + ".png";			
+		}
+		$("#fileLogo").attr('src', logoLink);
+		$("#fileLogo").show();
+	}
+	
+	function showVideoPreview(showFlag)
+	{		
+		if(showFlag == false)
+		{
+			$("#videoPreview").attr('src', "");
+			$("#videoPreview").hide();
+			return;
+		}
+		
+ 		var docLink = getDocDownloadLink(gDocInfo);
+ 		if(docLink == null)
+ 		{
+ 			console.log("showVideoPreview() docLink is null");
+ 			$("#videoPreview").attr('src', "");
+ 			$("#videoPreview").hide();
+ 		}
+ 		else
+ 		{
+			console.log("showVideoPreview() docLink:" + docLink);
+			$("#videoPreview").attr('src', docLink);
+			$("#videoPreview").show();
+			//var type = getVideoTypeByFileSuffix(gDocInfo.fileSuffix);
+			//showVideoWithVideojs('videoPreview', docLink, type);
+			//showVideoWithDPlayer('videoPreview', docLink);
+ 		}
+	}
+	
+	function parseDocContent(content)
+	{
+        if(!content || content == "")
+        {
+        	content = "";	//Convert it to empty String
+        }
+        else
+        {	
+        	//docContent = JSON.parse(content);
+        }
+        
+        //前台的Decode和Encode结果是一致的，后台的Decode一致但Encode之后Decode的结果不正确
+        //base64_encode(content);
+        //base64_decode(content);
+        
+        return content;
+	}
+	
+	function showDocHistory(node, historyType)
+	{
+		console.log("showDocHistory()");
+
+		var parentPath ="";
+		var docName = "";
+		var docId = 0;
+		var pid = 0;
+		var docType = 2;
+			
+		var treeNode = node;
+		if(treeNode != null)
+		{
+			docId = treeNode.id;
+			pid = treeNode.pid;
+			parentPath = treeNode.path;
+			docName = treeNode.name;
+			docType = treeNode.type;
+		}
+		console.log("docId:" + docId + "parentPath:" + parentPath + " docName:"+docName);
+		
+		var title = "文件历史版本:" + docName;
+		if(historyType == 0)
+		{
+			if(docId == 0)
+			{
+				var title = "仓库历史版本: " + gReposInfo.name;
+			}
+			else
+			{
+				if(docType == 2)
+				{
+					var title = "目录历史版本:" + docName + "/";				
+				}
+			}
+		}
+		else
+		{
+			if(docId == 0)
+			{
+				var title = "仓库备注历史:" + gReposInfo.name;
+			}
+			else
+			{
+				var title = "文件备注历史:" + docName;				
+			}
+		}
+		
+		//show HistoryLogs page
+		bootstrapQ.dialog({
+			id: "historyPage",
+			title: title,
+			url: 'historyLogs.html',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: true,
+			callback: function(){
+				DocHistory.historyLogsPageInit(gReposInfo.id, docId, pid, parentPath, docName, historyType);
+			},
+		});
+	}
+</script>
+
+<script type="text/javascript">
+	/********************* 文件编辑接口 *********************************************/
+	function lockDoc(node, lockType)
+	{
+		console.log("lockDoc() lockType:" + lockType, node);
+		if(!node || node == null)
+		{
+			showErrorMessage("请选择文件！");
+			return;
+		}
+		
+		var docId = node.docId;
+		var pid = node.pid;
+		var path = node.path;
+		var name = node.name;
+		var type = node.type;
+		
+		$.ajax({
+			url : "/DocSystem/Doc/lockDoc.do",
+			type : "post",
+			dataType : "json",
+			data : {
+				lockType : lockType, //lockType: CheckOut
+				reposId : gReposInfo.id, 
+				docId : docId,
+				pid: pid,
+				path: path,
+				name: name,
+				type: type,
+                shareId: gShareId,
+			},
+			success : function (ret) {
+				if( "ok" == ret.status){
+					console.log(ret.data);
+					$("[dataId='"+ docId +"']").children("div:first-child").css("color","red");
+					return;
+ 				}
+				else
+				{
+					showErrorMessage("LockDoc Error:" + ret.msgInfo);
+					return;
+				}
+			},
+			error : function () 
+			{
+				showErrorMessage("LockDoc 异常");
+				return;
+			}
+		});
+	}
+	
+	function unlockDoc(node, lockType)
+	{
+		console.log("unlockDoc() lockType:" + lockType, node);
+		if(!node || node == null)
+		{
+			showErrorMessage("请选择文件！");
+			return;
+		}
+		
+		var docId = node.docId;
+		var pid = node.pid;
+		var path = node.path;
+		var name = node.name;
+		var type = node.type;
+		
+		$.ajax({
+			url : "/DocSystem/Doc/unlockDoc.do",
+			type : "post",
+			dataType : "json",
+			data : {
+				lockType : lockType, //lockType: Edit
+				reposId : gReposInfo.id, 
+				docId : docId,
+				pid: pid,
+				path: path,
+				name: name,
+				type: type,
+                shareId: gShareId,
+			},
+			success : function (ret) {
+				if( "ok" == ret.status){
+					console.log(ret.data);
+					$("[dataId='"+ docId +"']").children("div:first-child").css("color","black");
+				    return;
+ 				}
+				else
+				{
+					showErrorMessage("UnlockDoc Error:" + ret.msgInfo);
+					return;
+				}
+			},
+			error : function () 
+			{
+				showErrorMessage("UnlockDoc 异常");
+				return;
+			}
+		});
+	}
+</script>
+
+<SCRIPT type="text/javascript" >
+	/********************** zTree设置与接口**********************************/
+	
+	//右键点击所在的zTreeNode：用于右键菜单相关的操作:rename, remove, 新建,上传,下载
+	var curRightClickedTreeNode = null;
+	var gCopiedNodes = null;	//右键复制操作选中的节点
+	var gIsCopy = true;
+	var gParentNodeForUpload = null; //用于保存右键选择上传的父节点
+	
+	//zTree's setting
+	var setting = {
+	   	//可编辑功能设置
+		edit: {
+               enable: true,
+               removeTitle : "删除",
+               renameTitle : "改名",
+               showRemoveBtn : false,
+               showRenameBtn : false,
+               drag: {
+                   autoExpandTrigger: true,
+                   prev: dropPrev,
+                   inner: dropInner,
+                   next: dropNext,
+               },
+           },
+           //zTree数据格式
+	   	data: {
+	   			//使用简单数据模式
+	            simpleData: {
+	                enable: true,
+	            },
+	            //不允许修改leaf node and parent node的isParent属性
+	            keep: {
+	            	leaf: true,
+	            	parent: true,
+	            },
+	    },
+	    //zTree各种操作的回调函数定义
+	    callback: {
+	            beforeAsync: zTreeBeforeAsync, //异步加载前的回调函数， 可以用来判断是否需要异步加载
+                onAsyncSuccess: zTreeOnAsyncSuccess, //异步加载完成后的回调
+	            beforeDrag: zTreeBeforeDrag,
+	            beforeDrop: zTreeBeforeDrop,
+	            onDrag : zTreeOnDrag,
+	            onDrop : zTreeOnDrop,
+	            onChange: zTreeOnChange,
+	            onClick: zTreeOnClick,
+	            onDblClick: zTreeOnDbClick,
+	            beforeRightClick: zTreeBeforeRightClick
+	            //onRightClick: zTreeOnRightClick, //定义该回调将会屏蔽系统右击事件
+	    },
+	    view: {
+        	//showLine: false,	//不显示文件下面的下划线
+        	//addDiyDom: addDiyDom         //设置zTree的自定义图标
+
+        }
+	};
+
+    function addDiyDom(treeId, treeNode) {
+        var aObj = $("#" + treeNode.tId + "_a");
+        if ($("#diyBtn_"+treeNode.id).length>0) return;
+		var cs = $("#" + treeNode.tId + "_a > span")[0];
+		console.log("cs", cs);
+		cs.remove();
+		console.log( "treeNode" , treeNode);
+
+        var switchObj = $("#" + treeNode.tId + "_switch");
+        switchObj.remove();
+        
+        var iType = getIconByNameAndType( treeNode.name , treeNode.type);
+        var iconType = '<svg class="color-icon" aria-hidden="true">\n' +
+            '  <use xlink:href="'+ iType + '"></use>\n' +
+            '</svg>';
+       
+        aObj.prepend( iconType );
+        aObj.prepend( switchObj );
+        
+        //增加边距
+        //此处通过往a标签最前位置增加透明元素来实现层级的缩进，层级越高，缩进的距离越大。同时也需要将原本的css中控制缩进的padding删除掉
+        //var spaceWidth = 15;
+        //var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level+15)+ "px'></span>";
+        //var spaceStr = "<span style='display: inline-block;'></span>";
+        //aObj.prepend( spaceStr )
+    };
+	
+	function asyncDataFilter(treeId, parentNode, responseData) {
+		console.log("asyncDataFilter");
+		var docList = responseData.data;
+		if(!docList)
+		{
+			return docList;
+		}
+		//遍历jason_arry, convert the node type to isParent flag
+      	for(var i=0; i<docList.length; i++)
+      	{
+           var jsonObj = docList[i];
+           jsonObj.id = jsonObj.docId;
+           jsonObj.pId = jsonObj.pid != 0? jsonObj.pid : "root",
+           jsonObj.isParent = jsonObj.type == 1? false: true;
+           //设置用户自定义文件图标（必须在standardStyle中有定义）
+           if(jsonObj.type == 1)
+           {
+        	   var iconType = getDiyFileIconType(jsonObj.name);
+        	   if(iconType && iconType != "")
+        	   {
+        		   jsonObj.iconSkin = iconType;
+        	   }
+           }
+       }
+       console.log(docList);
+	   return docList;
+	}
+	
+    function zTreeBeforeAsync(treeId, treeNode) {  
+    	console.log("zTreeBeforeAsync treeId:"+ treeId, treeNode);
+    }  
+      
+    function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
+    	console.log("zTreeOnAsyncSuccess treeId:" + treeId);
+    }
+
+	//This function was used to get the rightClick treeNode,it will be used for contextjs
+	function zTreeBeforeRightClick(treeId, treeNode) {
+		
+		curRightClickedTreeNode = treeNode;
+    	return true;	
+	};
+		
+	//This function will replace all righot click, so i did not use it
+	function zTreeOnRightClick(event, treeId, treeNode) {
+    	alert(treeNode ? treeNode.tId + ", " + treeNode.name : "isRoot");
+	};
+		
+	//Drag and Drop Implementation Start: curDragNhodes was used to remember DragNodes
+    var className = "dark", curDragNodes, autoExpandNode;        
+    //拖动前的检查 
+    function zTreeBeforeDrag(treeId, treeNodes) {
+        console.log("zTreeBeforeDrag");
+        className = (className === "dark" ? "":"dark");
+        for (var i=0,l=treeNodes.length; i<l; i++) {
+            if (treeNodes[i].drag === false) {	//Current node can not drag
+                curDragNodes = null;
+                return false;
+            } else if (treeNodes[i].parentTId && treeNodes[i].getParentNode().childDrag === false) { //Parent's child can not drag
+                curDragNodes = null;
+                return false;
+            }
+        }
+        curDragNodes = treeNodes;
+        return true;
+    }
+        
+    function zTreeBeforeDragOpen(treeId, treeNode) {
+        console.log("zTreeBeforeDragOpen");
+        autoExpandNode = treeNode;
+        return true;
+    }
+    
+    //zTree拖动处理接口
+    function zTreeOnDrag()
+    {
+    	console.log("zTreeOnDrag");
+     	//updateMenu();
+    }
+        
+    //dropPre Next and Inner was use to check if it was allowed to drop
+	function dropPrev(treeId, nodes, targetNode) {
+		console.log("dropPrev");
+           var pNode = targetNode.getParentNode();
+           if (pNode && pNode.dropInner === false) {
+               return false;
+           } else {
+           	//当前被拖动的节点和目标节点如果在同一个目录不变化；不同目录，但所在目录子节点不允许移动则不变化
+           	var l=curDragNodes.length;
+               for (var i=0; i<l; i++) {
+                   var curPNode = curDragNodes[i].getParentNode();
+                   if (curPNode && curPNode !== targetNode.getParentNode() && curPNode.childOuter === false) {
+                       return false;
+                   }
+               }
+           }
+           return true;
+    }
+    function dropInner(treeId, nodes, targetNode) {
+      	  console.log("dropInner");
+          if (targetNode && targetNode.dropInner === false) {
+              return false;
+          }
+          else {
+              //if the curDragNodes was in the same directory with TargetNode do nothing
+              for (var i=0,l=curDragNodes.length; i<l; i++) {
+                  if (!targetNode && curDragNodes[i].dropRoot === false) {
+                      return false;
+                  } else if (curDragNodes[i].parentTId && curDragNodes[i].getParentNode() !== targetNode && curDragNodes[i].getParentNode().childOuter === false) {
+                      return false;
+                  }
+              }
+          }
+          return true;
+      }
+      function dropNext(treeId, nodes, targetNode) {
+      	console.log("dropNext");
+          var pNode = targetNode.getParentNode();
+          if (pNode && pNode.dropInner === false) {
+              return false;
+          } else {
+              for (var i=0,l=curDragNodes.length; i<l; i++) {
+                  var curPNode = curDragNodes[i].getParentNode();
+                  if (curPNode && curPNode !== targetNode.getParentNode() && curPNode.childOuter === false) {
+                      return false;
+                  }
+              }
+          }
+          return true;
+      }
+		
+	  //drop前检查函数
+      function zTreeBeforeDrop(treeId, treeNodes, targetNode, moveType, isCopy) {
+          console.log("zTreeBeforeDrop");
+          
+          //move this confirm to dropInner, it will be better
+          //if (targetNode && targetNode.isParent !== true) { //leaf node can not drop
+          //	console.log("can not drop to leaf node");
+          //	return false;
+          //}
+		            
+          if(targetNode.drop === false)
+          {
+          	console.log("drop was not allowed for this node");
+          	return false;
+          }
+          
+          //get targe parentNode
+      	  var parentNode = targetNode;
+      	  if(targetNode)
+      	  {
+      			if(moveType == "prev" || moveType == "next")	//如果拖到节点的前面或后面，则表示要放到上一层目录,leaf的inner属性是通过setting来控制的
+      			{
+      				parentNode = targetNode.getParentNode();
+      			}
+      			else
+      			{
+	      			parentNode = targetNode;
+      			}
+      	  }
+      	  else
+      	  {
+      			showErrorMessage("targetNode is null,理论上不该出现");
+      			return false;
+      	  }
+          
+          className = (className === "dark" ? "":"dark");
+          return true;
+      }
+      
+      //Drop处理函数
+      function zTreeOnDrop(event, treeId, treeNodes, targetNode, moveType, isCopy)
+      {
+      		console.log("zTreeOnDrop");
+      		
+      		if(moveType == null)	//无效拖放，不处理
+			{
+				//alert("Invalid drag and drop!");
+				return;
+			}
+      		
+      		//get targe parentNode
+      		var parentNode = targetNode;
+      		if(targetNode)
+      		{
+      			//对于leaf node, prev next inner都是指放到其父节点下
+      			if(targetNode.isParent == false)
+ 				{
+ 					parentNode = targetNode.getParentNode();
+ 	 			}
+ 	 			else
+ 	 			{
+ 	 				if(moveType == "prev" || moveType == "next")	//如果拖到节点的前面或后面，则表示要放到上一层目录
+      				{
+      					parentNode = targetNode.getParentNode();
+      				}
+      				else
+      				{
+	      				parentNode = targetNode;
+      				}
+ 	 			}
+      		}
+      		else
+      		{
+      			showErrorMessage("目标节点不存在！");
+      			return;
+      		}
+			
+			var vid = gReposInfo.id;
+ 	 		
+			qiao.bs.confirm({
+			        id: 'bsconfirm',
+			        msg: '是否移动文件！'
+			},function(){
+			        //alert('点击了确定！');
+		      		DocMove.moveDocs(treeNodes,parentNode,vid); 
+			},function(){
+			        //alert('点击了取消！');
+			});
+      }
+      //Drag and Drop Implementation End
+      
+      //zTree API没有onChange事件定义啊，汗，大概就zTree发送变化时的处理函数
+      function zTreeOnChange()
+      {
+       	console.log("zTreeOnChange");
+      }
+      
+      function selectAllNode(currentNode)
+      {
+    	  var parentNode = null;
+    	  var pid = 0;
+    	  if(currentNode != null)
+    	  {
+	  			var node = getNodeByNodeId(currentNode.docId);
+				gParentNode = getParentNodeByNode(node);
+	  		    pid = currentNode.pid;
+    	  }
+  		  var treeObj = $.fn.zTree.getZTreeObj("doctree");
+		  var nodes = treeObj.getNodesByParam("pid", pid, parentNode);
+		  for (var i=0, l=nodes.length; i < l; i++) {
+				treeObj.selectNode(nodes[i], true, true); //
+		  }
+      }
+      
+      //为了能够让外部接口能够调用zTree的callback，需要记录当前treeNode等变量
+      function zTreeOnClick(event, treeId, treeNode) 
+      {
+    	  DocListState = 0;
+    	  
+    	  if(!gDocInfo.docId || gDocInfo.docId == 0)
+    	  {
+    	  		//没有处于打开状态的文件，直接打开文件，摘要模式
+	      		getAndShowDoc(treeNode, 1, false);
+    	  		return;
+    	  }
+    	  
+    	  if(gDocInfo.docId == treeNode.id)
+    	  {
+    		  //文件已打开了不处理
+    		  return;
+    	  }
+    	  
+    	  showDocList(treeNode);
+    	  
+          if(gDocInfo.edit == true)
+          {
+				//如果当前打开的文件处于编辑状态，必须先退出编辑再显示新文件
+              	DocEdit.exitEdit(treeNode);
+          }
+          else
+          {
+        	  //当前打开的文件未处于编辑模式，直接打开新文件（摘要模式）
+	      	  getAndShowDoc(treeNode, 1, false);
+          }
+      }
+      
+      //Double Click 对于文件应该是编辑，对于目录应该是打开
+      function zTreeOnDbClick(event, treeId, treeNode) 
+      {
+    	  //alert("zTreeOnDbClick");
+    	  if(!gDocInfo.docId || gDocInfo.docId == 0)
+    	  {
+    	  		//没有处于打开状态的文件，直接打开新文件（详情模式）
+	      		getAndShowDoc(treeNode, 2, false);
+    	  		return;
+    	  }
+    	  
+    	  if(gDocInfo.docId == treeNode.id)
+    	  {
+    		  openDoc(gDocInfo, false, "openInArtDialog");
+    		  return;
+    	  }
+    	  
+    	  //当前
+          if(gDocInfo.edit == true)
+          {
+				//如果当前打开的文件处于编辑状态，必须先退出编辑再显示新文件
+              	DocEdit.exitEdit(treeNode);
+          }
+          else
+          {
+        	  //当前打开的文件未处于编辑模式，直接打开新文件（详情模式）
+	      	  getAndShowDoc(treeNode, 2, false);        	  
+          }
+     }
+
+	//判断当前目录下名字为 name的Node是否已经存在，parentNode是null表示根目录
+	function isNodeExist(name,parentNode)
+	{
+		var parentId = null;
+		if(parentNode && parentNode.id) 
+		{
+			parentId =  parentNode.id;
+		}
+		
+		var treeObj = $.fn.zTree.getZTreeObj("doctree");
+		var nodes = treeObj.getNodesByParam("name", name, parentNode);
+		for (var i=0,l=nodes.length; i<l; i++)
+		{
+			if(nodes[i].pId == parentId)
+			{	
+				//alert(name + " 已存在");
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	//get the treeNode under parentNode with name
+	function getNodeByName(name,parentNode)
+	{
+		var parentId = null;
+		if(parentNode && parentNode.id) 
+		{
+			parentId =  parentNode.id;
+		}
+		
+		var treeObj = $.fn.zTree.getZTreeObj("doctree");
+		var nodes = treeObj.getNodesByParam("name", name, parentNode);
+		for (var i=0,l=nodes.length; i<l; i++)
+		{
+			if(nodes[i].pId == parentId)
+			{	
+				return nodes[i];
+			}
+		}
+		return null;
+	}
+	
+	//获取Node的path
+	function getNodePath(treeNode)
+	{
+		var path = "";
+		if(treeNode)
+		{
+			var nodes = treeNode.getPath();	//获取当前节点的所有父节
+			console.log("getNodePath() nodes ",nodes);	
+			for( var i = 0 ; i < nodes.length-1; i++ )
+			{
+				path = path + nodes[i].name + "/"; 
+			}
+		}
+		return path;
+	}
+
+    //该接口是为了避免新增Node时触发的异步加载导致出现多个Node
+	function addTreeNode(node)
+	{
+		console.log("addTreeNode() node:",node);
+
+		if(!node || node == null)
+		{
+			console.log("addTreeNode() node is null");
+			return;
+		}
+		
+		var isParent = false;
+		if(node.type == 2)
+		{
+			isParent = true;
+		}
+
+		var parentNode = undefined;	
+		var pId = node.pid;
+		if(node.pid == 0)
+		{
+			parentNode = null;	//parentNode is rootNode
+			pId = "root"; //zTree root id is root -__-!
+		}
+		else
+		{
+			parentNode = getNodeById(pId);
+			if(parentNode == null || parentNode.open == false)
+			{
+				console.log("addTreeNode() parentNode is null or not exists");
+				return;
+			}
+		}
+		
+		//Add zTree Node
+		//parentNode处于展开状态时，需要手动addTreeNode以保证与后台同步，否则只要触发异步加载即可
+		if(parentNode == null || parentNode.open == true)
+		{
+			console.log("addTreeNode() parentNode is open");
+			
+			//add the treeNode
+			var treeObj = $.fn.zTree.getZTreeObj("doctree");
+			var treeNode = getNodeByNodeId(node.docId);
+			if(treeNode == null)
+			{
+	      		var newNode = {
+	      				//For zTree
+	      				id : node.docId,	//it is for zTree
+	      				pId: pId,
+	      				level: node.level,  //it is for zTree
+	      				isParent: isParent, 
+	      				//For Doc
+	      				docId: node.docId,
+	      				pid: node.pid, 
+	      				path: node.path, 
+	      				name: node.name, 
+	      				type: node.type,
+	      				Leve: node.level, 
+	      				size: node.size, 
+	      				createTime: node.createTime,
+	      				latestEditTime: node.latestEditTime,
+	      				};
+	      		newNodes = treeObj.addNodes(parentNode, newNode);
+			}
+		}
+		else
+		{
+			console.log("addTreeNode() parentNode is closed, do not addTreeNode");
+
+			//open the parentNode
+			//var treeObj = $.fn.zTree.getZTreeObj("doctree");
+			//treeObj.expandNode(parentNode, true, false, true);
+		}
+	}
+	
+	//zTree初始化接口:根据data和setting生成zTree
+	function zTreeInit(data) {
+	    console.log("zTreeInit");
+	    //console.log(setting);
+	
+	    var doctree = zTree.init($("#doctree"), setting, data);
+	    //doctree.expandAll(true); //考虑只自动展开根目录下目录
+	}
+	
+	//PageInit
+	var login_user = "";	//用来保存刚注册的用户、或刚才登录的用户
+	function SysInit()
+	{
+		console.log("SysInit");
+    	
+		//Set the event handler for keydown
+		document.onkeydown=function(event)
+		{
+			//浏览器兼容性处理
+			var e = event || window.event || arguments.callee.caller.arguments[0];
+			EnterKeyListenerForSearchDoc(e);	
+		}
+		
+		if(gShareId)
+		{
+			
+    		getReposInfo(gInitReposInfo.id,InitMenuAndDoc);	
+		}
+		else
+		{
+	    	//确定当前登录用户是否已登录
+	    	$.ajax({
+	            url : "/DocSystem/User/getLoginUser.do",
+	            type : "post",
+	            dataType : "json",
+	            data : {},
+	            success : function (ret) {
+	                if( "ok" == ret.status )
+	                {
+	                	var user = ret.data;
+	                	login_user = user;
+	                	//显示用户信息
+	                	ShowUserInfo(user);
+	                	loginBtnCtrl(user);
+	                	
+	                	//获取仓库信息（获取成功的话会调用getAndShowDoc和getInitMenu）
+	            		getReposInfo(gInitReposInfo.id,InitMenuAndDoc);
+	                }
+	                else 
+	                {
+	                	console.log(ret.msgInfo);
+	                	//showErrorMessage("获取用户信息失败:" + ret.msgInfo);
+	                	//Jump to index.html
+	                    //window.location.href = "index.html";
+	                    
+	                	//Show Login Dialog
+	                    //showLoginPanel();
+	                }
+	            },
+	            error : function () {
+	            	showErrorMessage("服务器异常:获取用户信息失败");
+	            }
+	        });		
+		}
+	}
+	
+	//初始化目录树显示和Doc显示
+	//该接口只能被调用一次，否则会导致逻辑错误
+	function InitMenuAndDoc()
+	{
+		console.log("InitMenuAndDoc() gInitDocInfo:", gInitDocInfo);	
+		
+		if(gInitDocInfo.docId == 0)
+		{
+			gInitDocInfo.docId = gRootDoc.docId;
+			gInitDocInfo.path = gRootDoc.path;
+			gInitDocInfo.name = gRootDoc.name;
+		}
+		
+		getInitMenu(gInitDocInfo.docId, gInitDocInfo.path, gInitDocInfo.name, showInitDocAndSubDocList);
+	}
+	
+	function showInitDocAndSubDocList()
+	{
+		console.log("showInitDocAndSubDocList() gInitDocInfo:",gInitDocInfo);
+		showDocList(gInitDocInfo);		
+		getAndShowDoc(gInitDocInfo, 1, gInitDocInfo.edit);
+	}
+	
+    function userLogout()
+   	{
+    	logout();
+    	loginBtnCtrl();
+   	}
+    
+    function loginBtnCtrl(user)
+    {
+    	if(user)
+    	{
+        	$('#loginBtn').hide();
+        	$('#logoutBtn').show();
+           	$('#modeSwitchBtn').show();
+    	}
+    	else
+    	{
+        	$('#loginBtn').show();
+        	$('#logoutBtn').hide();
+           	$('#modeSwitchBtn').hide();
+    	}
+    }
+	
+	//将后台Menu,同步回前台
+	function syncUpMenu()
+	{
+		console.log("syncUpMenu");
+	    getInitMenu(gDocInfo.docId, gDocInfo.path, gDocInfo.name);
+	}
+	
+	function reDrawMenu(data)
+	{
+	   drawMenu(data);
+	}
+	
+	//绘制zTree with the data:强制绘制，判断的东西不应该放在这里
+	function drawMenu(data) {
+		console.log("drawMenu");
+		window.menu = data;
+	    //data = JSON.parse('"' + data + '"'); //We need to use JSON parse one more time here  
+	    //var menu = JSON.parse(data);
+	    var menu = data;
+	    //遍历jason_arry
+      	for(var i=0; i<menu.length; i++)
+      	{
+           var jsonObj = menu[i];
+           jsonObj.id = jsonObj.docId;
+           jsonObj.pId = jsonObj.pid != 0? jsonObj.pid : "root",
+           jsonObj.isParent = jsonObj.type == 1? false: true;
+           jsonObj.Level = jsonObj.level;
+           //设置用户自定义文件图标（必须在standardStyle中有定义）
+           if(jsonObj.type == 1)
+           {
+        	   var iconType = getDiyFileIconType(jsonObj.name);
+        	   if(iconType && iconType != "")
+        	   {
+        		   jsonObj.iconSkin = iconType;
+        	   }
+           }
+       }
+	   //console.log(menu);
+	   zTreeInit(menu);
+	}
+		
+	//DocList类
+	var DocListState = 0;
+	var DocListParentDocId = -1; //无效值
+	var DocList = (function () {    	
+    	//Draw DocList
+    	function showList(data){
+     	 	var str="";
+           	for(var i=0; i<data.length; i++)
+     	    {
+ 	        	  
+           		var iconType = docListGetIconItemStr(data[i].name , data[i].type, gShowType);
+           		var node = data[i];
+       			str+= '<li dataId='+ node.docId 
+	   				+ ' dataPid='+ node.pid 
+	   				+' dataPath="'+ node.path + '"' 
+	   				+' dataName="' + node.name + '"'
+	   				+' dataType=' + node.type
+	   				+' dataSize=' + node.size
+	   				+' createTime=' + node.createTime
+	   				+' latestEditTime=' + node.latestEditTime;     	        				
+       			
+       			if(node.state && (node.state | 0b00000010) != 0) //只显示文件编辑锁定 
+       			{
+       				if(node.type == 2)
+       				{
+       					if(DocListState == 0)
+       					{
+	   	        			str += ' class="second-listBox" onmousedown="docListOnMouseDown(this,event)"><div onclick="DocListOnClick(this)" ondblclick="DocListOnDbClick(this)" class="filename pull-left  nowrap ellipsis" style="width: 60%; color:red">'+iconType + node.name+'</div><div class="filedate pull-right">'+formatDate(node.latestEditTime)+'</div><div class="handle pull-right"><i class="icons note" onclick="xs(this,event)"></i><i onclick="showContextMenu(this,event)" class="icons more"></i></div></li>';   
+       					}
+       					else
+       					{
+	   	        			str += ' class="second-listBox" onmousedown="docListOnMouseDown(this,event)"><div onclick="DocListOnClick(this)" ondblclick="DocListOnDbClick(this)" class="filename pull-left  nowrap ellipsis" style="width: 60%; color:red">'+iconType + node.name+'</div><div class="filedate pull-right">'+formatDate(node.latestEditTime)+'</div><div class="handle pull-right"><i class="icons folder-open2" onclick="dk(this,event)"></i><i onclick="showContextMenu(this,event)" class="icons more"></i></div></li>';          						
+       					}
+       				}
+       				else
+       				{
+   	        			str += ' class="second-listBox" onmousedown="docListOnMouseDown(this,event)"><div onclick="DocListOnClick(this)" ondblclick="DocListOnDbClick(this)" class="filename pull-left  nowrap ellipsis" style="width: 60%; color:red">'+iconType + node.name+'</div><div class="filedate pull-right">'+formatDate(node.latestEditTime)+'</div><div class="handle pull-right"><i onclick="showContextMenu(this,event)" class="icons more"></i></div></li>';          					
+       				}
+   	        	}
+   	           	else
+   	           	{
+   	           		if(node.type == 2)
+   	           		{
+       					if(DocListState == 0)
+       					{
+		   	           	    str += ' class="second-listBox" onmousedown="docListOnMouseDown(this,event)"><div onclick="DocListOnClick(this)" ondblclick="DocListOnDbClick(this)"  class="filename pull-left  nowrap ellipsis" style="width: 60%;">'+iconType + node.name + '</div><div class="filedate pull-right">'+formatDate(node.latestEditTime)+'</div><div class="handle pull-right"><i class="icons note" onclick="xs(this,event)"></i><i onclick="showContextMenu(this,event)" class="icons more"></i></div></li>';
+       					}
+       					else
+       					{
+		   	           	    str += ' class="second-listBox" onmousedown="docListOnMouseDown(this,event)"><div onclick="DocListOnClick(this)" ondblclick="DocListOnDbClick(this)"  class="filename pull-left  nowrap ellipsis" style="width: 60%;">'+iconType + node.name + '</div><div class="filedate pull-right">'+formatDate(node.latestEditTime)+'</div><div class="handle pull-right"><i class="icons folder-open2" onclick="dk(this,event)"></i><i onclick="showContextMenu(this,event)" class="icons more"></i></div></li>';       						
+       					}
+   	           		}
+   	           		else
+   	           		{
+	   	           	    str += ' class="second-listBox" onmousedown="docListOnMouseDown(this,event)"><div onclick="DocListOnClick(this)" ondblclick="DocListOnDbClick(this)"  class="filename pull-left  nowrap ellipsis" style="width: 60%;">'+iconType + node.name + '</div><div class="filedate pull-right">'+formatDate(node.latestEditTime)+'</div><div class="handle pull-right"><i onclick="showContextMenu(this,event)" class="icons more"></i></div></li>';   	           			
+   	           		}
+   	           	}	 
+     	    }
+           	$("#secondList").html(str);
+     	}
+    	
+    	function docListGetIconItemStr(name, type, showType)
+    	{
+			//console.log("docListGetIconItemStr name:" + name + " showType:" + showType);
+    		var iconItemStr = "";
+    		if(type == 2)
+			{
+				iconItemStr =  '<i class="icons folder"></i>';
+				return iconItemStr;
+			}
+			
+    		if(showType == 2)
+    		{
+				iconItemStr = '<i class="icons file"></i>';
+				return iconItemStr;
+    		}
+    		
+ 			var iconType = getDiyFileIconType(name);
+			//console.log("docListGetIconItemStr iconType:" + iconType);
+	       	if(iconType && iconType != "")
+	       	{
+	        	iconItemStr = '<i class="icons file ' + iconType + '"></i>';       					
+	     	}
+	       	else
+	       	{
+	    		iconItemStr = '<i class="icons file"></i>';
+	    	}
+	       	//console.log("docListGetIconItemStr iconItemStr:" + iconItemStr);
+	       	return iconItemStr;
+    	}
+    	
+    	//Check if node exists
+		function isNodeExists(docId)
+		{
+			if($("[dataId='"+ docId +"']").length > 0)
+			{
+				return true;
+			}
+			return false;
+		}
+    	
+    	//Add Node
+		function addNode(node)
+		{
+	        var iconType = docListGetIconItemStr(node.name, node.type, gShowType);
+         	var nodeStr='<li dataId='+ node.docId 
+         				+ ' dataPid='+ node.pid 
+         				+' dataPath="' + node.path +'"'
+         				+ 'dataName="' + node.name + '"'
+         				+' dataType=' + node.type 
+         				+' dataSize=' + node.size 
+         				+' createTime='+ node.createTime 
+         				+' latestEditTime=' + node.latestEditTime;
+         	if(node.type == 2)
+         	{
+         		nodeStr += ' class="second-listBox" onmousedown="docListOnMouseDown(this,event)"><div onclick="DocListOnClick(this)" ondblclick="DocListOnDbClick(this)" class="filename pull-left nowrap ellipsis" style="width: 60%;">'+iconType + node.name+'</div><div class="filedate pull-right">'+formatDate(node.latestEditTime)+'</div><div class="handle pull-right"><i class="icons note" onclick="xs(this,event)"></i><i onclick="showContextMenu(this,event)" class="icons more"></i></div></li>';
+         	}
+         	else
+         	{
+         		nodeStr += ' class="second-listBox" onmousedown="docListOnMouseDown(this,event)"><div onclick="DocListOnClick(this)" ondblclick="DocListOnDbClick(this)" class="filename pull-left nowrap ellipsis" style="width: 60%;">'+iconType + node.name+'</div><div class="filedate pull-right">'+formatDate(node.latestEditTime)+'</div><div class="handle pull-right"><i onclick="showContextMenu(this,event)" class="icons more"></i></div></li>';             		
+         	}
+         	$("#secondList").append(nodeStr);
+		}
+
+    	//Delete Node
+		function deleteNode(docId)
+		{
+    		var obj = $("[dataId='"+ docId +"']");
+    		if(obj)
+    		{
+    			obj.remove();
+    		}
+		}
+    	
+    	//Rename Node
+		function renameNode(docId, node)
+		{
+			deleteNode(docId);
+			addNode(node);
+		}
+		
+		//Delete Node
+		function focusNode(docId)
+		{
+			var obj = $("[dataId='"+ docId +"']");
+			if(obj)
+			{
+				obj.focus();
+			}
+		}
+
+    	//开放给外部的调用接口
+        return {
+        	showList: function(data){
+        		showList(data);
+            },
+    		isNodeExists: function (docId)
+    		{
+    			return isNodeExists(docId);	
+    		},
+    		addNode: function(node){
+        		addNode(node);
+            },
+            deleteNode: function(docId){
+            	deleteNode(docId);
+            },
+            renameNode: function(docId, newNode){
+            	renameNode(docId, newNode);
+            },
+            focusNode: function(docId){
+            	focusNode(docId);
+            },
+        };
+    })();		
+    
+    function addDocListNode(node)
+    {
+		console.log("addDocListNode() pid:" + node.pid + " DocListParentDocId:" + DocListParentDocId );
+		if(node.pid == DocListParentDocId)
+		{
+			if(DocList.isNodeExists(node.docId) == false)
+			{
+				DocList.addNode(node);
+			}
+		}
+    }
+	
+	var curRightClickedDocListNode = null;
+    function docListOnMouseDown(obj,ev)
+    {
+   	 	var docId = $(obj).attr('dataId');
+   	 	var pid = $(obj).attr('dataPid');
+   	 	var path = $(obj).attr('dataPath');
+   	 	var name = $(obj).attr('dataName');
+   	 	var type = $(obj).attr('dataType');
+   	 	var size = $(obj).attr('dataSize');
+   	 	var createTime = $(obj).attr('createTime');
+   	 	var latestEditTime = $(obj).attr('latestEditTime');
+	 	
+   	 	var node = {};
+   	 	node.vid = gReposInfo.id;
+   	 	node.id = docId;
+   	 	node.docId = docId;
+   	 	node.pid = pid;
+   		node.path = path;
+   		node.name = name;
+   		node.type = type;
+   		node.size = size;
+   		node.createTime = parseInt(createTime);
+   		node.latestEditTime = parseInt(latestEditTime);
+   		
+   		curRightClickedDocListNode = node;
+	 	console.log("docListOnMouseDown on doc:",curRightClickedDocListNode);
+    }
+	
+ 	function DocListOnClick(obj)
+ 	{ 			
+ 		var docListNode = $(obj).parents('li');
+ 		var docId = docListNode.attr('dataId');
+   	 	var pid = docListNode.attr('dataPid');
+   	 	var path = docListNode.attr('dataPath');
+   	 	var name = docListNode.attr('dataName');
+   	 	var type = docListNode.attr('dataType');
+   	 	var latestEditTime = docListNode.attr('latestEditTime');
+	 	
+   	 	var node = {};
+   	 	node.vid = gReposInfo.id;
+   	 	node.id = docId;
+   	 	node.pid = pid;
+   		node.path = path;
+   		node.name = name;
+   		node.type = type;
+   		node.latestEditTime = latestEditTime;
+ 		
+ 		console.log("DocListOnClick node:", node);
+ 		
+		if(DocListState == 0 && type == 2)
+		{
+			//更新DocList
+			showDocList(node);
+		}
+		
+		//显示预览或备注
+		getAndShowDoc(node, 1, false);
+
+		//如果是文件或者搜索结构那么在手机上显示详情
+		if(type == 1 || DocListState == 1)
+		{
+		 	showRightDiv();
+		}
+		 	
+		 //在zTree上选中该doc
+		 zTreeSelectDoc(docId, path, name);		
+  	}
+ 	
+ 	function DocListOnDbClick(obj)
+ 	{	
+ 		var docListNode = $(obj).parents('li');
+
+ 		var docId = docListNode.attr('dataId');
+   	 	var pid = docListNode.attr('dataPid');
+   	 	var path = docListNode.attr('dataPath');
+   	 	var name = docListNode.attr('dataName');
+   	 	var type = docListNode.attr('dataType');
+   	 	var latestEditTime = docListNode.attr('latestEditTime');
+	 	
+   	 	var node = {};
+   	 	node.vid = gReposInfo.id;
+   	 	node.id = docId;
+   	 	node.pid = pid;
+   		node.path = path;
+   		node.name = name;
+   		node.type = type;
+   		node.latestEditTime = latestEditTime;
+ 		
+ 		console.log("DocListOnDbClick node:", node);
+ 		
+ 		if(DocListState == 0 && type == 2)
+		{
+	 		//更新DocList
+			showDocList(node);
+		}
+		
+		//显示预览或备注
+		getAndShowDoc(node, 2, false);
+			
+		//如果是文件或者搜索结构那么在手机上显示详情
+		if(type == 1 || DocListState == 1)
+		{
+		 	showRightDiv();
+		}
+		 	
+		 //在zTree上选中该doc
+		 zTreeSelectDoc(docId, path, name);		
+  	}
+ 	
+ 	//根据gDocInfo.docId选中文件
+ 	function zTreeSelectDoc(docId, path, name)
+ 	{
+		console.log("zTreeSelectDoc docId:" + docId);
+		if(!docId || docId == 0)	//表示不选中任何文件
+ 		{
+		  	var treeObj = $.fn.zTree.getZTreeObj("doctree");
+			var selectedNode = treeObj.getSelectedNodes()[0];
+			if(selectedNode && selectedNode != null)
+			{
+				zTree.cancelSelectedNode(selectedNode);
+			}
+ 			return;
+ 		}
+ 	
+		//检查当前选中的文件是否为期望选中的文件
+ 		var treeObj = $.fn.zTree.getZTreeObj("doctree");
+		var selectedNode = treeObj.getSelectedNodes()[0];
+		if(selectedNode)
+		{
+			if(selectedNode.id == docId)
+			{
+				return;
+			}
+		}
+		
+		//期望的文件未选中但已加载
+ 		var treeNode = getNodeByNodeId(docId);
+		if(treeNode && treeNode != null)
+		{
+			var zTree = $.fn.zTree.getZTreeObj("doctree");
+			//select this node in zTree
+		 	zTree.selectNode(treeNode);
+				
+			if(treeNode.type == 1)	//For File, show RightDiv
+		 	{
+		 		showRightDiv();
+		 	}
+		 	else
+		 	{
+		 		//Open the dir in zTree
+				zTree.reAsyncChildNodes(treeNode, "refresh",true);
+		 	}		
+			return;
+		}
+		
+		//期望的文件未加载
+		console.log("node was not exists in current zTree, getInitMenu for:" + docId  + " " + path + name);
+		getInitMenu(docId, path, name);
+ 	}
+
+ 	//显示
+ 	function xs(obj,event){
+		var docListNode = $(obj).parents('li');
+
+ 		var docId = docListNode.attr('dataId');
+   	 	var pid = docListNode.attr('dataPid');
+   	 	var path = docListNode.attr('dataPath');
+   	 	var name = docListNode.attr('dataName');
+   	 	var type = docListNode.attr('dataType');
+   	 	var latestEditTime = docListNode.attr('latestEditTime');
+	 	
+   	 	var node = {};
+   	 	node.vid = gReposInfo.id;
+   	 	node.id = docId;
+   	 	node.pid = pid;
+   		node.path = path;
+   		node.name = name;
+   		node.type = type;
+   		node.latestEditTime = latestEditTime;
+ 		
+ 		console.log("xs() node:", node);
+ 		
+		//显示预览或备注
+		getAndShowDoc(node, 1, false);
+
+		showRightDiv();
+	}
+ 	
+ 	//打开目录
+ 	function dk(obj,event){
+		var docListNode = $(obj).parents('li');
+
+ 		var docId = docListNode.attr('dataId');
+   	 	var pid = docListNode.attr('dataPid');
+   	 	var path = docListNode.attr('dataPath');
+   	 	var name = docListNode.attr('dataName');
+   	 	var type = docListNode.attr('dataType');
+   	 	var latestEditTime = docListNode.attr('latestEditTime');
+	 	
+   	 	var node = {};
+   	 	node.vid = gReposInfo.id;
+   	 	node.id = docId;
+   	 	node.pid = pid;
+   		node.path = path;
+   		node.name = name;
+   		node.type = type;
+   		node.latestEditTime = latestEditTime;
+ 		
+ 		console.log("dk() node:", node);
+
+ 		DocListState = 0;
+ 		showDocList(node);		
+	}
+ 	
+ 	function fx(obj,event){
+ 		var docListNode = $(obj).parents('li');
+ 		var path = docListNode.attr('dataPath');
+   	 	var name = docListNode.attr('dataName');
+   	 	
+   	 	var node = {
+   			path : path,
+   			name : name,
+   	 	};
+   	 	shareDoc(node);	
+ 	}
+ 	
+ 	function xz(obj,event){
+ 		var docListNode = $(obj).parents('li');
+
+ 		var docId = docListNode.attr('dataId');
+   	 	var pid = docListNode.attr('dataPid');
+   	 	var path = docListNode.attr('dataPath');
+   	 	var name = docListNode.attr('dataName');
+   	 	var type = docListNode.attr('dataType');
+   	 	var latestEditTime = docListNode.attr('latestEditTime');
+   	 	
+   	 	var node = {};
+   	 	node.vid = gReposInfo.id;
+   	 	node.id = docId;
+   	 	node.pid = pid;
+   		node.path = path;
+   		node.name = name;
+   		node.type = type;
+   		node.latestEditTime = latestEditTime;
+   		
+   		var treeNodes = [];
+   		treeNodes.push(node);
+ 		downloadDoc(treeNodes,true,1);
+ 		event.stopPropagation();
+ 	}
+ 	
+ 	function sc(obj,event){
+ 		var docListNode = $(obj).parents('li');
+
+ 		var docId = docListNode.attr('dataId');
+   	 	var pid = docListNode.attr('dataPid');
+   	 	var path = docListNode.attr('dataPath');
+   	 	var name = docListNode.attr('dataName');
+   	 	var type = docListNode.attr('dataType');
+   	 	var latestEditTime = docListNode.attr('latestEditTime');
+   	 	
+   	 	var node = {};
+   	 	node.vid = gReposInfo.id;
+   	 	node.id = docId;
+   	 	node.pid = pid;
+   		node.path = path;
+   		node.name = name;
+   		node.type = type;
+   		node.latestEditTime = latestEditTime;
+ 		
+		var deleteNodes = [];
+		deleteNodes.push(node);
+		DoDelete(deleteNodes);
+		event.stopPropagation();
+ 	}
+ 	
+ 	function showContextMenu(obj,event){
+ 		event.stopPropagation();
+ 		var xOffset = 0;
+ 		if(gIsPC == false)
+ 		{
+ 			xOffset = -150;	
+ 		}
+ 		context.show('#secondList',event,xOffset);
+ 	}
+ 	
+ 	function formatDate(date) {
+ 		var now = new Date(date);
+ 		var year=now.getFullYear(); 
+ 		var month=now.getMonth()+1;
+ 		var date=now.getDate(); 
+ 		return year+"-"+month+"-"+date; 
+ 	}
+ 	
+ 	function formatTime(time){
+ 		var now = new Date(time);
+ 		var year=now.getFullYear(); 
+ 		var month=now.getMonth()+1;
+ 		var date=now.getDate(); 
+ 		var hh=now.getHours(); 
+ 		var mm=now.getMinutes(); 
+ 		var ss=now.getSeconds(); 
+ 		
+ 		return year+"-"+month+"-"+date + " " + hh+":"+mm+":"+ss; 
+ 	}
+ 	
+ 	var gSearchFolder = "";
+ 	function setSearchFolder(searchFolder)
+ 	{
+ 		gSearchFolder = searchFolder;
+ 		searchDoc();
+ 	}
+ 	
+ 	var gSortType = "";
+ 	function sortDocList(sortType)
+ 	{
+ 		gSortType = sortType;
+ 		showDocList(gDocInfo);
+ 	}
+ 	
+	function showDocList(node)
+	{
+		console.log("showDocList() node:", node);
+		
+		var docId = gRootDoc.docId;
+		var path = gRootDoc.path;
+		var name = gRootDoc.name;
+    
+		if(node &&  node != null)
+		{
+			docId = node.id;
+		    path = node.path;
+		    name = node.name;
+			//如果是文件且不是根文件则获取上层目录的文件
+		    if(node.type == 1 && docId != gRootDoc.docId)
+			{
+		    	console.log("showDocList() node is File and is not rootDoc");
+				docId = node.pid;
+				path = node.path;
+				name = "";				
+			}	
+	    }
+
+		console.log("showDocList() DocListParentDocId:" + DocListParentDocId + " docId:" + docId );	
+		//if(DocListParentDocId == docId)
+		//{
+		//	return;
+		//}
+			
+		$.ajax({
+            url : "/DocSystem/Repos/getSubDocList.do",
+            type : "post",
+            dataType : "json",
+            data : {
+                vid: gReposInfo.id,
+                docId: docId,
+                path: path,
+                name: name,
+                shareId: gShareId,
+                sort: gSortType,
+                needLockState: 1,
+            },
+            success : function (ret) {
+         		console.log("showDocList ret:", ret)
+         		if(ret.status == "ok")
+            	{
+         			if(docId)
+         			{
+	         		    DocListParentDocId = docId;
+         			}
+         			DocList.showList(ret.data);
+                }
+                else
+                {
+                	console.log(ret.msgInfo);
+                	if(ret.msgData && ret.msgData == "1")	//需要验证访问密码
+                	{
+                		//showDocPwdVerifyPanel(node);
+                	}
+                	else
+                	{
+                    	showErrorMessage("获取子目录错误:" + ret.msgInfo);
+                	}
+                }
+            },
+            error : function () {
+            	showErrorMessage('服务器异常: 获取子目录异常');
+            }
+        });
+	}
+	
+	function backToParentDoc()
+	{
+		console.log("backToParentDoc() gDocInfo.docId:" + gDocInfo.docId);
+		DocListState = 0;
+		if(!gDocInfo.docId || gDocInfo.docId == gRootDoc.docId)	//reach the top level
+		{	
+			showDocList(gRootDoc);
+			return;
+		}
+		
+		var zTree = $.fn.zTree.getZTreeObj("doctree");
+		var node = zTree.getNodeByParam("id",gDocInfo.docId);
+		
+		//current Doc not exists, update gDocInfo.docId and URL and showDocList under root dir
+		if(node == null)
+		{
+			console.log("backToParentDoc node not exist:" + gDocInfo.docId);
+			cleanDocPreview();
+
+			//Show DocList
+			showDocList(gRootDoc);
+			return;
+		}
+		else
+		{
+			var parentNode = node.getParentNode();
+			console.log("backToParentDoc parentNode:" + parentNode);
+			if(parentNode && parentNode.id)
+			{
+				zTree.selectNode(parentNode);
+				showDocList(parentNode);
+				getAndShowDoc(parentNode, 1, false);
+			}
+			else
+			{
+				zTree.cancelSelectedNode(node);
+				showDocList(gRootDoc);
+				getAndShowDoc(gRootDoc, 1, false);
+			}
+		}
+		
+
+		return;
+   	}         
+	
+	//回车键监听函数，该event已经过兼容性处理 
+	function EnterKeyListenerForSearchDoc(event){
+		console.log("enter key listener for SearchDoc");
+		if (event.keyCode == 13)
+		{  
+			var isFocus=$("#searchWord").is(":focus");  
+			if(isFocus)
+			{
+				searchDoc();
+			}
+			return;
+	 	}
+
+		/*
+		if(event.ctrlKey)
+		{
+	    	if(event.keyCode == 67)
+	    	{
+	    		handlePasteImgEvent(event);
+	        }
+		}*/
+	}
+	
+	function searchDoc()
+	{
+		var searchWord = $("#searchWord").val();
+		if(searchWord == "")
+		{
+			return;
+		}
+		
+		var sort = "";
+
+		var parentPath = "";
+		if(gSearchFolder == "currentFolder")
+		{
+			if(gDocInfo.type == 2)
+			{
+				parentPath = gDocInfo.path + gDocInfo.name;
+			}
+			else
+			{
+				parentPath = gDocInfo.path;				
+			}
+		}
+		
+       	$.ajax({
+               url : "/DocSystem/Doc/searchDoc.do",
+               type : "post",
+               dataType : "json",
+               data : {
+                   searchWord:searchWord,
+                   sort:sort,
+                   reposId: gReposInfo.id,
+                   //pid: pDocId,
+         		   path: parentPath,
+   	               shareId: gShareId,
+               },
+               success : function (ret) {
+            		console.log("searchDoc ret:", ret)
+            		if(ret.status == "ok")
+               		{
+            			//Set it as search result
+            			DocListState = 1;
+            			DocListParentDocId = -1;
+            			DocList.showList(ret.data);
+               			console.log("文件搜索成功");
+                   	}
+                   	else
+                   	{
+                   		showErrorMessage("文件搜索出错:" + ret.msgInfo);
+                   	}
+               },
+               error : function () {
+            	   showErrorMessage('服务器异常: 搜索文件异常');
+               }
+           });
+	}
+	
+	function WikiEditBtnCtrl(edit)
+	{
+		 if(edit == true)
+	   	 {
+		    $("#btnExitEdit").show();
+	      	$("#btnSaveWiki").show();  
+	     }
+	     else
+	     {
+		    $("#btnExitEdit").hide();
+	      	$("#btnSaveWiki").hide();
+	     }
+	}
+	
+
+	function switchShowMode(showType)
+	{
+		 console.log("switchShowMode showType:" + showType);
+		 
+		 if(!showType)	//showType为定义则进行切换
+		 {
+			 console.log("switchShowMode gShowType:" + gShowType);			 
+			 if(gShowType == 2)	//Swith To 显示预览
+		   	 {
+				gShowType = 1;
+			 }
+		     else
+		     {
+				 gShowType = 2;	    	 
+			 }
+		 }
+		 else
+		 {
+			 gShowType = showType;
+		 }
+		 
+		 console.log("switchShowMode after switch gShowType:" + gShowType);
+		 
+		 if(gShowType == 1)	//预览
+	   	 {
+		    $("#modeSwitchBtnText").css("title","标准模式");
+		    $("#docPreview").show(); 
+	     }
+	     else
+	     {
+			$("#modeSwitchBtnText").css("title","电子书模式");
+			$("#docPreview").hide(); 
+	     }
+
+		 updateUrl();
+		 
+		 changePageStyle(gShowType);		 
+	}
+
+	 function changePageStyle(showType)
+	 {
+		  var obj = document.getElementById("zTreeCss");
+		  if(showType == 1)
+		  {
+			  obj.setAttribute("href","static/zTree/css/metroStyle/standardStyle.css");			  
+		  }
+		  else
+		  {
+			  obj.setAttribute("href","static/zTree/css/metroStyle/metroStyle.css");			  
+		  }
+	}
+	/************************** contextMenu 接口***************************/	
+	//Get Node by NodeId
+	function getNodeByNodeId(nodeId)
+	{
+		var zTree = $.fn.zTree.getZTreeObj("doctree");
+		var node = zTree.getNodeByParam("id",nodeId);
+		return node;
+	}
+	
+	//Get NodeId by Node
+	function getNodeIdByNode(node)
+	{
+		if(node && node.id)
+		{
+			return node.id;
+		}
+		return 0;
+	}
+	
+	//Get ParentNode of Node(zTree)
+	function getParentNodeByNode(node)
+	{
+		console.log("getParentNodeByNode",node);
+     	//Get ParentNode
+		var parentNode = node;
+		if(node && node.isParent === false)
+		{
+			parentNode = node.getParentNode();
+		}
+		return parentNode;
+	}
+	
+	//Get ParentNode of NodeId(zTree)
+	function getParentNodeByNodeId(nodeId)
+	{
+		console.log("getParentNodeByNodeId:" + nodeId);
+		var node = getNodeByNodeId(nodeId);
+     	return getParentNodeByNode(node);
+	}
+	
+	//Get ParentNodeId of Node(zTree)
+	function getParentNodeIdByNode(node)
+	{
+		var parentNode = getParentNodeByNode(node);
+     	return getNodeIdByNode(parentNode);
+	}
+	
+	//Get ParentNodeId of NodeId(zTree)
+	function getParentNodeIdByNodeId(nodeId)
+	{
+		console.log("getParentNodeByNodeId" + nodeId);
+		var node = getNodeByNodeId(nodeId);
+     	var parentNode = getParentNodeByNode(node);
+     	return getNodeIdByNode(parentNode);
+	}
+	
+	//add a new Doc
+	function newDocEx(type)
+	{
+		var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+		newDoc(type,parentNode);
+	}
+	
+	//add a new Doc: type 1: 文件  2:目录
+    function newDoc(type,parentNode) {
+		console.log("type:" + type, parentNode);
+        showAddDocPanel(type, parentNode);
+   	}
+	
+	//不再使用非标的bootstrapQ
+	function showAddDocPanel(type, parentNode)
+	{	    
+		console.log("showAddDocPanel()");
+
+		//对话框 title
+        var title = "新建文件";
+        if(type == 2)
+        {
+        	title = "新建目录";
+        }
+
+		bootstrapQ.dialog({
+				id: 'addDoc',
+				url: 'addDoc.html',
+				title: title,
+				msg: '页面正在加载，请稍等...',
+				foot: false,
+				big: false,
+				//okbtn: "确定",
+				callback: function(){
+					addDocPageInit(type, parentNode);
+				}, 
+		});
+	}
+    
+    //ShowCenter: hide left and right
+    function showCenterDiv(){
+    	if(gIsPC == false)
+    	{
+	        $(".second-table").show();
+	        $(".manual-right").hide();
+    	}
+    }
+    
+    //ShowRight
+	function showRightDiv(){
+    	if(gIsPC == false)
+    	{
+	        $(".second-table").hide();
+	        $(".manual-right").show();
+    	}
+    }
+    
+	//LockDoc and Download it
+	function checkOut(node)
+	{
+		console.log("checkOut()", node);
+		if(!node || node == null)
+		{
+			showErrorMessage("请选择文件！");
+			return;
+		}
+		
+		var docId = node.docId;
+		var pid = node.pid;
+		var path = node.path;
+		var name = node.name;
+		var type = node.type;
+		
+		$.ajax({
+			url : "/DocSystem/Doc/lockDoc.do",
+			type : "post",
+			dataType : "json",
+			data : {
+				lockType : 1, //lockType: CheckOut
+				reposId : gReposInfo.id, 
+				docId : docId,
+				pid: pid,
+				path: path,
+				name: name,
+				type: type,
+                shareId: gShareId,
+			},
+			success : function (ret) {
+				if( "ok" == ret.status){
+					console.log(ret.data);
+					$("[dataId='"+ docId +"']").children("div:first-child").css("color","red");
+				    var treeNodes = [];
+				    treeNodes.push(node);
+					downloadDoc(treeNodes,false,1);
+				    return;
+ 				}
+				else
+				{
+					showErrorMessage("LockDoc Error:" + ret.msgInfo);
+					return;
+				}
+			},
+			error : function () 
+			{
+				showErrorMessage("LockDoc 异常");
+				return;
+			}
+		});
+	}
+	
+	//UnlockDoc and Upload doc
+	var curCheckInDoc = [];
+	function checkIn(node)
+	{
+		console.log("checkIn()", node);
+		curCheckInDoc.id = node.docId;
+		curCheckInDoc.pid = node.pid;
+		curCheckInDoc.path = node.path;
+		curCheckInDoc.name = node.name;
+		curCheckInDoc.type = node.type;
+		
+		gParentNodeForUpload = getParentNodeByNodeId(node.docId);
+		checkInFile();
+		return;
+ 	}
+    
+	//目录列表区域拖放功能：预览区和子目录区域需要一起变化
+    var oDiv=document.getElementById('line');
+    oDiv.onmousedown=function(ev){
+      var disX=ev.clientX-oDiv.offsetLeft;
+      var disY=ev.clientY-oDiv.offsetTop;
+
+      document.onmousemove=function(ev){
+          var l=ev.clientX-disX;	//计算Line的位置
+          oDiv.style.left=l+'px';	//设置Line的位置
+          
+          //左边框的偏移位置总是0，因此只需要设置with
+     	  $(".manual-left")[0].style.width=ev.clientX+'px';
+          //second-table只要调整左边位置就可以了，宽度不变
+       	  $(".second-table").css("left",$(".manual-left").width() + $("#line").width());
+       	  $(".second-line").css("left", $(".manual-left").width() + $("#line").width() + $(".second-table").width()); //第二个拖拽线的位置
+          $(".manual-right").css("left", $(".manual-left").width() + $("#line").width() + $(".second-table").width() + $(".second-line").width()); //第二个拖拽线的位置
+          //$(".manual-right")[0].style.left = $(".manual-left").width() + $("#line").width()) + $(".second-table").width() + $(".second-table").width() + 'px';
+          DocEdit.resize();
+      };
+      
+      document.onmouseup=function(ev){
+   	  	//$(".manual-left")[0].style.width=ev.clientX+'px';
+   	 	//$(".manual-right")[0].style.left=ev.clientX+'px';
+   	 	document.onmousemove=null;
+   	  	document.onmouseup=null;
+      };
+    };
+    
+    var oDiv2=document.getElementById('second-line');
+    oDiv2.onmousedown=function(ev){
+        var disX=ev.clientX-oDiv2.offsetLeft;
+        var disY=ev.clientY-oDiv2.offsetTop;
+   
+       document.onmousemove=function(ev){
+       		var l=ev.clientX-disX;	//计算Line的位置
+           oDiv2.style.left=l+'px';	//设置Line的位置
+           $('.second-table').width($(".second-line").position().left-$('.manual-left').width());
+           $(".manual-right").css("left", $('.manual-left').width() + $(".second-table").width() + $(".second-line").width());
+
+           DocEdit.resize();
+           return false;
+   	  };
+    	  document.onmouseup=function(ev){
+    	 	document.onmousemove=null;
+    	  	document.onmouseup=null;
+        };
+    };
+    
+    //页面加载完成处理函数    
+    $(document).ready(function()
+    {
+    	//初始化全局变量
+    	globalVarInit();
+    	
+    	//zTree配置初始化
+		zTreeSettingInit(gInitReposInfo.id);
+        
+    	
+		treeBodyZoneInit();
+    	//拖拽上传区域初始化
+		dragDropUploadZoneInit();
+        
+		//右键菜单初始化
+		contextMenuInit();
+
+		if(gShareId)
+		{
+			getDocShare(SysInit);
+		}
+		else
+		{
+			//系统初始化
+			SysInit();
+		}
+    });
+    
+    function getDocShare(callback)
+    {
+    	//获取DocShare
+    	$.ajax({
+            url : "/DocSystem/Doc/getDocShare.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            	shareId: gShareId,
+            },
+            success : function (ret) {
+                if( "ok" == ret.status )
+                {
+                	var docShare = ret.data;
+                	
+                	gRootDoc.showName = docShare.name;
+                	gRootDoc.name = docShare.name;
+                	gRootDoc.path = docShare.path;
+                	gRootDoc.docId = docShare.docId;                	
+                	$("#projectName").text(gRootDoc.showName);
+            		
+                	//成功后台回调
+                	callback && callback();
+                }
+                else 
+                {
+                	console.log(ret.msgInfo);
+                	if(ret.msgData && ret.msgData == "1")	//需要验证分享密码
+                	{
+                		showDocSharePwdVerifyPanel(gShareId, callback);
+                	}
+                	else
+                	{
+                		showErrorMessage(ret.msgInfo);
+                	}
+                }
+            },
+            error : function () {
+            	showErrorMessage("服务器异常:获取文件分享信息失败");
+            }
+        });    	
+    }
+    
+	function showDocSharePwdVerifyPanel(shareId, successCallback)
+	{
+		console.log("showDocSharePwdVerifyPanel shareId:" + shareId);
+		bootstrapQ.dialog({
+			id: 'docSharePwdVerify',
+			url: 'docSharePwdVerify.html',
+			title: '密码验证',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false,
+			callback: function(){
+				DocSharePwdVerifyPageInit(shareId, successCallback);
+			},
+		});
+	}	
+    
+    function globalVarInit()
+   	{
+        //Confirm if it is PC
+    	if(gIsPC == true)
+        {	
+    	    console.log("It is PC");
+        }
+        else
+        {
+        	console.log("It is MP");
+    	    //hide the drag lines
+    	    $("#line").hide();
+    	    $(".second-line").hide();
+    	    //hide the left div
+	        $(".manual-left").hide();
+    	    //show Center Div
+    	    $(".second-table").css("left",0);
+	        $(".second-table")[0].style.width=100+'vw';
+	        //hide right Dive 
+	        $(".manual-right")[0].style.left = 0;
+	        $(".manual-right")[0].style.width = 100+'vw';
+	        $(".manual-right").hide();
+        }
+    	
+        console.log("globalVarInit() start");
+    	
+        setGDocShareInfo();
+        
+        setGInitReposInfo();
+
+		//set gInitDocInfo
+		setGInitDocInfo();
+
+		//setGShowType
+		setGShowType();
+		
+		console.log("globalVarInit() gInitReposId:" + gInitReposInfo.id  + " gShowType:" + gShowType + " gInitDocInfo:", gInitDocInfo);
+   	}
+    
+    function setGDocShareInfo()
+    {
+    	var shareId = getQueryString("shareId");
+		if(shareId)
+		{
+			gShareId = shareId;
+			//不允许登录
+			$('#loginBtn').hide();
+        	$('#logoutBtn').hide();
+           	$('#modeSwitchBtn').hide();
+		}
+    }
+
+    function setGInitReposInfo()
+    {
+    	var reposId = getQueryString("vid");
+		
+    	gInitReposInfo.id = reposId;
+    	
+    	//set the vid in upload form
+		$("#reposId").val(reposId);
+
+    }
+    
+    function setGShowType()
+    {
+		gInitShowType = getQueryString("showType");
+		if(!gInitShowType)
+		{
+			//保持页面默认的gShowType
+		}
+		else
+		{
+			gShowType = gInitShowType;
+		}
+		
+		changePageStyle(gShowType);
+		 
+		if(gShowType == 1)	//预览
+	   	{
+		    $("#modeSwitchBtnText").css("title","标准模式");
+	    }
+	    else
+	    {
+			$("#modeSwitchBtnText").css("title","电子书模式"); 
+	    }
+    }
+    
+    function setGInitDocInfo()
+    {
+		var docId = getQueryString("doc");
+		if(!docId)
+		{
+			docId = 0;
+		}
+		
+		var path = getQueryString("path");
+		if(path && path != null)
+		{
+			path = base64_decode(path);
+		}
+		else
+		{
+			path = "";
+		}
+		
+		var name = getQueryString("name");
+		if(name && name != null)
+		{
+			name = base64_decode(name);
+		}
+		else
+		{
+			name = "";
+		}
+		
+		var edit = getQueryString("edit");
+		if(!edit)
+		{
+			edit = false;
+		}
+		if(docId == 0)
+		{
+			edit = false;
+		}		
+		
+		gInitDocInfo.docId = docId;
+		gInitDocInfo.path = path;
+		gInitDocInfo.name = name;
+		gInitDocInfo.edit = edit;
+    }
+    
+	function treeBodyZoneInit()
+	{
+		console.log("treeBodyZoneInit()");
+      	//拖拽上传:目录树区域
+    	var treeBodyZone = document.getElementById("treeBody");  
+    	treeBodyZone.onclick = function(e){
+    		console.log("treeBodyZone.onclick() e.target.tagName:", e.target.tagName);
+            e.preventDefault();
+            //判断现在所在的zTree Node
+            if(e.target.tagName != "SPAN" && e.target.tagName != "A")
+            {
+            	var treeObj = $.fn.zTree.getZTreeObj("doctree");
+            	treeObj.cancelSelectedNode();
+				showDocList(gRootDoc);
+				getAndShowDoc(gRootDoc, 1, false);
+            }            
+        }; 
+	}
+    
+	function dragDropUploadZoneInit()
+	{
+      	//拖拽上传:目录树区域
+    	var uuz = document.getElementById("uuz");  
+    	uuz.ondragenter = function(e){  
+            e.preventDefault();  
+        };  
+        uuz.ondragover = function(e){  
+            e.preventDefault();
+            //判断现在所在的zTree Node并选中它
+            if(e.target.tagName=="SPAN"){
+            	e.target.parentNode.click();
+            }
+        };  
+        uuz.ondrop = function(e){   
+            console.log("uuz.ondrop() event:",e);
+        	e.preventDefault();
+    	  	
+        	//If File drop on the zTree Item, trigger the click event on it
+    	  	console.log("uuz.ondrop() e.target:",e.target);
+            if(e.target.tagName=="SPAN"){
+            	e.target.parentNode.click();
+            }
+            
+            //Choose the selectNode as the place for upload
+    	  	var treeObj = $.fn.zTree.getZTreeObj("doctree");
+    		var selectedNode = treeObj.getSelectedNodes()[0];
+    		console.log("uuz.ondrop() selectedNode",selectedNode);
+    		var parentNode = selectedNode;
+    		if(selectedNode && selectedNode.isParent === false)
+    		{	
+    			console.log("uuz.ondrop() selectedNode:" + selectedNode.name);
+    			parentNode = selectedNode.getParentNode();
+    		}
+    		console.log("uuz.ondrop() parentNode:" + parentNode);
+            dragUploadConfirm(e,parentNode);
+        };
+        
+    	//拖拽上传:子目录区域
+    	//目标目录是当前选中的Doc
+    	var docListZone = document.getElementById("secondDropZone");  
+    	docListZone.ondragenter = function(e){  
+            e.preventDefault();  
+        };  
+        docListZone.ondragover = function(e){  
+            e.preventDefault();
+        };  
+        docListZone.ondrop = function(e){   
+            e.preventDefault();
+    	  	//get the parentNode
+    	  	var treeObj = $.fn.zTree.getZTreeObj("doctree");
+    		var selectedNode = treeObj.getSelectedNodes()[0];
+    		console.log(selectedNode);
+    		var parentNode = selectedNode;
+    		if(selectedNode && selectedNode.isParent === false)
+    		{	
+    			console.log("selectedNode:" + selectedNode.name);
+    			parentNode = selectedNode.getParentNode();
+    		}
+            dragUploadConfirm(e,parentNode);
+        };
+        
+        //文件预览区的拖拽上传
+        var docZone =  document.getElementById("previewZone");  
+        docZone.ondragenter = function(e){  
+            e.preventDefault();  
+        };  
+        docZone.ondragover = function(e){  
+            e.preventDefault();  
+        };  
+        docZone.ondrop = function(e){   
+            e.preventDefault();
+    	  	//get the parentNode
+    	  	var treeObj = $.fn.zTree.getZTreeObj("doctree");
+    		var selectedNode = treeObj.getSelectedNodes()[0];
+    		console.log(selectedNode);
+    		var parentNode = selectedNode;
+    		if(selectedNode && selectedNode.isParent === false)
+    		{	
+    			console.log("selectedNode:" + selectedNode.name);
+    			parentNode = selectedNode.getParentNode();
+    		}
+            dragUploadConfirm(e,parentNode);
+        };
+	}
+    
+	//zTreeSeting
+    function zTreeSettingInit(reposId)
+    {
+    	//处于编辑状态下，需要禁用删除和改名等所有编辑操作，避免出错
+        if(gInitDocInfo.edit == true){
+            var edit = {};
+            setting.edit = edit;
+        }
+        //设置异步加载的参数
+        var async =  {  
+    		enable : true,//设置 zTree 是否开启异步加载模式  
+            url : "/DocSystem/Repos/getSubDocList.do",
+            type : "post",
+    		autoParam : ["id","Level","path","name"],//异步加载时需要自动提交父节点属性的参数  
+    		otherParam:{
+    			"vid": reposId,
+                "shareId": gShareId,
+    		},
+    		dataFilter: asyncDataFilter, 
+		};
+		setting.async = async;
+		
+		/*if(gShowType == 1)
+		{
+			var view = {
+	        	showLine: false,	//不显示文件下面的下划线
+	        	addDiyDom: addDiyDom         //设置zTree的自定义图标
+			};
+			setting.view = view;
+		}*/
+    }
+    
+    function contextMenuInit()
+    {
+		//右键菜单实现：contextMenu Start
+		context.init({preventDoubleContext: true});
+		
+		//zTree外部的右键菜单
+		context.attach('#treeBody', [
+			{text: '新建', subMenu: [
+				{text: '文件',  action: function(e){
+						e.preventDefault();
+						curRightClickedTreeNode = null; 
+						var parentNode = getParentNodeByNode(null);
+	        			newDoc(1,parentNode);
+					}
+				},
+				{text: '文件夹',  action: function(e){
+						e.preventDefault();
+	        			curRightClickedTreeNode = null;
+	        			var parentNode = getParentNodeByNode(null);
+	        			newDoc(2,parentNode);
+					}
+				},
+				]
+			},
+			{text: '上传', subMenu: [
+				{text: '文件',  action: function(e){
+						e.preventDefault();
+						curRightClickedTreeNode = null;
+					    gParentNodeForUpload = null;	//uploadFiles is the trigger, so need to save the destination dir to gVar
+					  	uploadFiles();
+					}
+				},
+				{text: '文件夹',  action: function(e){
+						e.preventDefault();
+						curRightClickedTreeNode = null; 
+					    gParentNodeForUpload = null;	//uploadFiles is the trigger, so need to save the destination dir to gVar
+						uploadDir();
+					}
+				},	
+				]
+			},
+			{divider: true},
+			{text: '下载', action: function(e){
+						e.preventDefault();
+						var treeNodes = [];
+						treeNodes.push(gRootDoc);
+						downloadDoc(treeNodes,true,1);
+					}
+			},
+			{divider: true},
+			{text: '粘贴', action: function(e){
+						e.preventDefault();
+						curRightClickedTreeNode = null; 
+						DoPaste(gCopiedNodes,null,gIsCopy);
+					}
+			},
+			{divider: true},
+			{text: '分享', action: function(e){
+						e.preventDefault();
+						shareDoc(gRootDoc);    
+					}
+			},
+			{divider: true},
+			{text: '刷新', action: function(e){
+						e.preventDefault();
+						refreshDoc(null, 0);
+					}
+			},			
+			{divider: true},
+			{text: '全选', action: function(e){
+					e.preventDefault();
+					selectAllNode(null);
+		    	}
+			},
+			{divider: true},
+			{text: '更多...', subMenu: [
+						{text: '查看仓库历史', action: function(e){
+									e.preventDefault();
+									curRightClickedTreeNode = null; 
+				        			showDocHistory(gRootDoc,0);
+								}
+						},
+						{text: '查看备注历史', action: function(e){
+							e.preventDefault();
+							curRightClickedTreeNode = null; 
+		        			showDocHistory(gRootDoc, 1);
+		        			}
+						},
+						{divider: true},
+						{text: '锁定', action: function(e){
+								e.preventDefault();
+								lockDoc(gRootDoc, 1);
+							}
+						},
+						{text: '解锁', action: function(e){
+								e.preventDefault();
+								unlockDoc(gRootDoc, 1);
+							}
+						},
+						{text: '强制锁定', action: function(e){
+								e.preventDefault();
+								lockDoc(gRootDoc, 2);
+							}
+						},
+						//{divider: true},
+						//{text: '强制刷新', action: function(e){
+						//	e.preventDefault();
+						//	refreshDoc(null, 1);
+						//	}
+						//},
+				]
+   			},
+			]
+		);
+		//zTree上的右键菜单
+		context.attach('#tree', [
+			{text: '新建', subMenu: [
+				{text: '文件',  action: function(e){
+						e.preventDefault();
+						var parentNode = getParentNodeByNode(curRightClickedTreeNode);
+						newDoc(1,parentNode);
+					}
+				},
+				{text: '文件夹',  action: function(e){
+						e.preventDefault();
+						var parentNode = getParentNodeByNode(curRightClickedTreeNode);
+						newDoc(2,parentNode);
+					}
+				},
+				]
+			},
+			{text: '上传', subMenu: [
+				{text: '文件',  action: function(e){
+						e.preventDefault();
+						gParentNodeForUpload = getParentNodeByNode(curRightClickedTreeNode);	//uploadFiles is the trigger, so need to save the destination dir to gVar
+						uploadFiles();
+					}
+				},
+				{text: '文件夹',  action: function(e){
+						e.preventDefault();
+						gParentNodeForUpload = getParentNodeByNode(curRightClickedTreeNode);	//uploadFiles is the trigger, so need to save the destination dir to gVar
+						uploadDir();
+					}
+				},	
+				]
+			},
+			{divider: true},
+			{text: '预览', action: function(e){
+					e.preventDefault();
+					openDoc(curRightClickedTreeNode, true, "openInArtDialog", "pdf");  
+				}
+			},
+			{text: '打开', action: function(e){
+					e.preventDefault();
+					openDoc(curRightClickedTreeNode, true, "openInNewPage");  
+				}
+			},
+			{text: '下载', action: function(e){
+						e.preventDefault();
+						var treeNodes = getSelectedNodes();
+						downloadDoc(treeNodes,true,1);
+					}
+			},
+			{text: '分享', action: function(e){
+						e.preventDefault();
+						shareDoc(curRightClickedTreeNode);    
+					}
+			},
+			{divider: true},
+			{text: '复制', action: function(e){
+						e.preventDefault();
+						gCopiedNodes = getSelectedNodes();
+						gIsCopy = true;
+						console.log("gCopiedNodes",gCopiedNodes);
+					}
+			},
+			{text: '剪切', action: function(e){
+					e.preventDefault();
+					gCopiedNodes = getSelectedNodes();
+					gIsCopy = false;
+					console.log("gCopiedNodes",gCopiedNodes);
+				}
+			},
+			{divider: true},
+			{text: '粘贴', action: function(e){
+						e.preventDefault();
+						var parentNode = getParentNodeByNode(curRightClickedTreeNode);
+						DoPaste(gCopiedNodes,parentNode, gIsCopy);
+					}
+			},
+			{divider: true},
+			{text: '删除', action: function(e){
+						e.preventDefault();
+						var deleteNodes = getDeleteNodes();
+						DoDelete(deleteNodes);
+					}
+			},
+			{text: '重命名', action: function(e){
+						e.preventDefault();
+						if(curRightClickedTreeNode !== null)
+						{
+							showRenameDialog(curRightClickedTreeNode);
+							//treeObj.editName(curRightClickedTreeNode);
+							curRightClickedTreeNode = null;
+		    			}
+					}
+			},
+			{divider: true},
+			{text: '详细信息', action: function(e){
+					e.preventDefault();
+					if(curRightClickedTreeNode == null)
+					{
+						showErrorMessage("请选择需要文件或目录");
+						return false;
+					}
+					showDocDetail(curRightClickedTreeNode);
+				}
+			},
+			{divider: true},
+			{text: '刷新', action: function(e){
+						e.preventDefault();
+						if(curRightClickedTreeNode !== null)
+						{
+							refreshDoc(curRightClickedTreeNode, 0);
+							curRightClickedTreeNode = null;
+		    			}
+					}
+			},
+			{divider: true},
+			{text: '全选', action: function(e){
+					e.preventDefault();
+					selectAllNode(curRightClickedTreeNode);
+		    	}
+			},
+			{divider: true},
+			{text: '更多...', subMenu: [
+						{text: '查看历史版本', action: function(e){
+									e.preventDefault();
+						      			showDocHistory(curRightClickedTreeNode,0);
+								}
+						},
+						{text: '查看备注历史', action: function(e){
+								e.preventDefault();
+								showDocHistory(curRightClickedTreeNode,1);
+							}
+						},
+						{divider: true},
+						{text: '下载备注', action: function(e){
+									e.preventDefault();
+									var treeNodes = getSelectedNodes();
+									downloadDoc(treeNodes,true,2);
+								}
+						},
+						{divider: true},
+						{text: '锁定', action: function(e){
+								e.preventDefault();
+								lockDoc(curRightClickedTreeNode, 1);
+							}
+						},
+						{text: '解锁', action: function(e){
+								e.preventDefault();
+								unlockDoc(curRightClickedTreeNode, 1);
+							}
+						},
+						{text: '强制锁定', action: function(e){
+								e.preventDefault();
+								lockDoc(curRightClickedTreeNode, 2);
+							}
+						},
+						{divider: true},
+			           	{text: '复制名字', action: function(e){
+								e.preventDefault();
+			        			copyDocName(curRightClickedTreeNode);
+							}
+						},
+						{text: '复制路径', action: function(e){
+									e.preventDefault();
+				        			copyDocPath(curRightClickedTreeNode);
+								}
+						},
+						{text: '复制链接', action: function(e){
+									e.preventDefault();
+				        			copyUrl(curRightClickedTreeNode);
+								}
+						},
+						{text: '复制本地路径', action: function(e){
+								e.preventDefault();
+								var localPath = getDocLocalPath(gReposInfo, curRightClickedTreeNode);
+								console.log("本地路径 localPath:" + localPath);	
+								copyString(localPath);
+							}
+						},
+						//{divider: true},
+			           	//{text: '执行', action: function(e){
+			           	//运行需要进行远程登录后实现	
+						//		e.preventDefault();
+			        	//		executeDoc(curRightClickedTreeNode);
+						//	}
+						//},
+						//{divider: true},
+						//{text: '本地打开', action: function(e){
+						//		e.preventDefault();
+						//		var localPath = getDocLocalPath(gReposInfo, curRightClickedTreeNode);
+						//		console.log("本地打开 localPath:" + localPath);									
+						//		var href="file:///" + localPath;
+						//		window.location.href = href;
+						//	}
+						//},
+						//{divider: true},
+						//{text: '强制刷新', action: function(e){
+						//			e.preventDefault();
+						//			if(curRightClickedTreeNode !== null)
+						//			{
+						//				refreshDoc(curRightClickedTreeNode, 1);
+						//				curRightClickedTreeNode = null;
+					    //			}
+						//		}
+						//},
+   				]
+   			},
+		]);
+		
+		
+		//secondList外部的右键菜单
+		context.attach('#secondListBody', [
+			{text: '新建', subMenu: [
+				{text: '文件',  action: function(e){
+						e.preventDefault();
+			    	  	//get the parentNode
+			    	  	newDocEx(1);
+					}
+				},
+				{text: '文件夹',  action: function(e){
+						e.preventDefault();
+						newDocEx(2);
+					}
+				},
+				]
+			},
+			{text: '上传', subMenu: [
+				{text: '文件',  action: function(e){
+						e.preventDefault();
+						uploadFilesEx();
+					}
+				},
+				{text: '文件夹',  action: function(e){
+						e.preventDefault();
+						uploadDirEx();
+					}
+				},	
+				]
+			},
+			{divider: true},
+			{text: '粘贴', action: function(e){
+						e.preventDefault();
+						curRightClickedDocListNode = null;
+						var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+						DoPaste(gCopiedNodes, parentNode, gIsCopy);
+					}
+			},
+			{divider: true},
+			{text: '分享', action: function(e){
+						e.preventDefault();
+						shareDoc(gDocInfo);    
+					}
+			},
+			{divider: true},
+			{text: '刷新', action: function(e){
+						e.preventDefault();
+						var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+						refreshDoc(parentNode, 0);
+					}
+			},			
+			{divider: true},
+			{text: '更多...', subMenu: [
+						{text: '查看历史版本', action: function(e){
+									e.preventDefault();
+									var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+				        			showDocHistory(parentNode,0);
+								}
+						},
+						{text: '查看备注历史', action: function(e){
+								e.preventDefault();
+								var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+			        			showDocHistory(parentNode, 1);
+		        			}
+						},
+						{divider: true},
+						{text: '锁定', action: function(e){
+								e.preventDefault();
+								var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+								lockDoc(parentNode, 1);
+							}
+						},
+						{text: '解锁', action: function(e){
+								e.preventDefault();
+								var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+								unlockDoc(parentNode, 1);
+							}
+						},
+						{text: '强制锁定', action: function(e){
+								e.preventDefault();
+								var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+								lockDoc(parentNode, 2);
+							}
+						},
+						//{divider: true},
+						//{text: '强制刷新', action: function(e){
+						//		e.preventDefault();
+						//		var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+						//		refreshDoc(parentNode, 1);
+						//	}
+						//},
+				]
+   			},
+			]
+		);		
+		//secondList上的右键菜单
+		if(gIsPC == false)
+		{
+			context.attach('#secondList', [
+				{text: '预览', action: function(e){
+						e.preventDefault();
+						openDoc(curRightClickedTreeNode, true, "openInArtDialog", "pdf");  
+					}
+				},
+				{text: '打开', action: function(e){
+						e.preventDefault();
+						openDoc(curRightClickedTreeNode, true, "openInNewPage");  
+					}
+				},
+				{text: '下载', action: function(e){
+						e.preventDefault();
+						var treeNodes = [];
+						treeNodes.push(curRightClickedDocListNode);
+						downloadDoc(treeNodes,true,1);
+					}
+				},
+				{text: '分享', action: function(e){
+							e.preventDefault();
+							shareDoc(curRightClickedDocListNode);    
+						}
+				},
+				{text: '重命名', action: function(e){
+							e.preventDefault();
+							if(curRightClickedDocListNode !== null)
+							{
+								showRenameDialog(curRightClickedDocListNode);
+								curRightClickedDocListNode = null;
+			    			}
+						}
+				},
+				{divider: true},
+				{text: '复制', action: function(e){
+							e.preventDefault();
+							gCopiedNodes = [];
+							gIsCopy = true;
+							if(curRightClickedDocListNode != null)
+							{
+								gCopiedNodes.push(curRightClickedDocListNode);
+							}
+							console.log("gCopiedNodes",gCopiedNodes);
+						}
+				},
+				{text: '剪切', action: function(e){
+						e.preventDefault();
+						gCopiedNodes = [];
+						gIsCopy = false;
+						if(curRightClickedDocListNode != null)
+						{
+							gCopiedNodes.push(curRightClickedDocListNode);
+						}
+						console.log("gCopiedNodes",gCopiedNodes);
+					}
+				},
+				{divider: true},
+				{text: '粘贴', action: function(e){
+							e.preventDefault();
+							var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+							DoPaste(gCopiedNodes, parentNode, gIsCopy);
+						}
+				},
+				{divider: true},
+				{text: '删除', action: function(e){
+							e.preventDefault();
+							console.log(e);
+							var deleteNodes = [];
+							deleteNodes.push(curRightClickedDocListNode);
+							DoDelete(deleteNodes);
+						}
+				},
+				{divider: true},
+				{text: '详细信息', action: function(e){
+						e.preventDefault();
+						showDocDetail(curRightClickedDocListNode);
+					}
+				},
+				{divider: true},
+				{text: '查看历史版本', action: function(e){
+						e.preventDefault();
+						showDocHistory(curRightClickedDocListNode,0);
+					}
+				},
+				{text: '查看备注历史', action: function(e){
+						e.preventDefault();
+					    showDocHistory(curRightClickedDocListNode,1);
+					}
+				},
+			]);			
+		}
+		else
+		{
+			context.attach('#secondList', [
+				{text: '新建', subMenu: [
+					{text: '文件',  action: function(e){
+							e.preventDefault();
+							var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+		        			newDoc(1,parentNode);
+						}
+					},
+					{text: '文件夹',  action: function(e){
+							e.preventDefault();
+							var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+		        			newDoc(2,parentNode);
+						}
+					},
+					]
+				},
+				{text: '上传', subMenu: [
+					{text: '文件',  action: function(e){
+							e.preventDefault();
+							var node = getNodeByNodeId(gDocInfo.docId);
+							gParentNodeForUpload = getParentNodeByNode(node);
+		        			uploadFiles();
+						}
+					},
+					{text: '文件夹',  action: function(e){
+							e.preventDefault();
+							var node = getNodeByNodeId(gDocInfo.docId);
+							gParentNodeForUpload = getParentNodeByNode(node);
+		        			uploadDir();
+						}
+					},	
+					]
+				},
+				{divider: true},
+				{text: '预览', action: function(e){
+							e.preventDefault();
+							openDoc(curRightClickedDocListNode, true, "openInArtDialog", "pdf");    
+						}
+				},
+				{text: '打开', action: function(e){
+							e.preventDefault();
+							openDoc(curRightClickedDocListNode, true, "openInNewPage");    
+						}
+				},
+				{text: '下载', action: function(e){
+						e.preventDefault();
+						var treeNodes = [];
+						treeNodes.push(curRightClickedDocListNode);
+						downloadDoc(treeNodes,true,1);
+					}
+				},
+				{text: '分享', action: function(e){
+							e.preventDefault();
+							shareDoc(curRightClickedDocListNode);    
+						}
+				},
+				{divider: true},
+				{text: '复制', action: function(e){
+							e.preventDefault();
+							gCopiedNodes = [];
+							gIsCopy = true;
+							if(curRightClickedDocListNode != null)
+							{
+								gCopiedNodes.push(curRightClickedDocListNode);
+							}
+							console.log("gCopiedNodes",gCopiedNodes);
+						}
+				},
+				{text: '剪切', action: function(e){
+						e.preventDefault();
+						gCopiedNodes = [];
+						gIsCopy = false;
+						if(curRightClickedDocListNode != null)
+						{
+							gCopiedNodes.push(curRightClickedDocListNode);
+						}
+						console.log("gCopiedNodes",gCopiedNodes);
+					}
+				},
+				{divider: true},
+				{text: '粘贴', action: function(e){
+							e.preventDefault();
+							var parentNode = getParentNodeByNodeId(gDocInfo.docId);
+							DoPaste(gCopiedNodes, parentNode, gIsCopy);
+						}
+				},
+				{divider: true},
+				{text: '删除', action: function(e){
+							e.preventDefault();
+							console.log(e);
+							var deleteNodes = [];
+							deleteNodes.push(curRightClickedDocListNode);
+							DoDelete(deleteNodes);
+						}
+				},
+				{text: '重命名', action: function(e){
+							e.preventDefault();
+							if(curRightClickedDocListNode !== null)
+							{
+								showRenameDialog(curRightClickedDocListNode);
+								curRightClickedDocListNode = null;
+			    			}
+						}
+				},
+				{divider: true},
+				{text: '详细信息', action: function(e){
+						e.preventDefault();
+						showDocDetail(curRightClickedDocListNode);
+					}
+				},
+				{divider: true},
+				{text: '刷新', action: function(e){
+							e.preventDefault();
+							if(curRightClickedDocListNode !== null)
+							{
+								refreshDoc(curRightClickedDocListNode, 0);
+								curRightClickedDocListNode = null;
+			    			}
+						}
+				},
+				{divider: true},
+				{text: '更多...', subMenu: [
+							{text: '查看历史版本', action: function(e){
+									e.preventDefault();
+									showDocHistory(curRightClickedDocListNode,0);
+								}
+							},
+							{text: '查看备注历史', action: function(e){
+									e.preventDefault();
+								    showDocHistory(curRightClickedDocListNode,1);
+								}
+							},
+							{divider: true},
+							{text: '下载备注', action: function(e){
+									e.preventDefault();
+									var treeNodes = [];
+									treeNodes.push(curRightClickedDocListNode);
+									downloadDoc(treeNodes,true,2);
+								}
+							},
+							{divider: true},
+							{text: '锁定', action: function(e){
+									e.preventDefault();
+									lockDoc(curRightClickedDocListNode, 1);
+								}
+							},
+							{text: '解锁', action: function(e){
+									e.preventDefault();
+									unlockDoc(curRightClickedDocListNode, 1);
+								}
+							},
+							{text: '强制锁定', action: function(e){
+									e.preventDefault();
+									lockDoc(curRightClickedDocListNode, 2);
+								}
+							},
+							{divider: true},
+				           	{text: '复制名字', action: function(e){
+										e.preventDefault();
+					        			copyDocName(curRightClickedDocListNode);
+									}
+							},
+							{text: '复制路径', action: function(e){
+										e.preventDefault();
+					        			copyDocPath(curRightClickedDocListNode);
+									}
+							},
+							{text: '复制链接', action: function(e){
+										e.preventDefault();
+					        			copyUrl(curRightClickedDocListNode);
+									}
+							},	
+							{text: '复制本地路径', action: function(e){
+									e.preventDefault();
+									var localPath = getDocLocalPath(gReposInfo, curRightClickedDocListNode);
+									console.log("本地路径 localPath:" + localPath);	
+									copyString(localPath);
+								}
+							},
+							//{divider: true},
+				           	//{text: '运行', action: function(e){
+				           	//运行需要进行远程登录后实现		
+							//		e.preventDefault();
+				        	//		executeDoc(curRightClickedDocListNode);
+							//	}
+							//},
+							//{divider: true},
+							//{text: '本地打开', action: function(e){
+							//		e.preventDefault();
+							//		var localPath = getDocLocalPath(gReposInfo, curRightClickedDocListNode);
+							//		console.log("本地打开 localPath:" + localPath);		
+							//		var href="file:///" + localPath;
+							//		window.location.href = href;
+							//	}
+							//},
+							//{divider: true},
+							//{text: '强制刷新', action: function(e){
+							//			e.preventDefault();
+							//			if(curRightClickedDocListNode !== null)
+							//			{
+							//				refreshDoc(curRightClickedDocListNode, 1);
+							//				curRightClickedDocListNode = null;
+						    //			}
+							//		}
+							//},
+	   				]
+	   			},
+			]);
+		}
+		
+		context.settings({compress: true});
+		
+		$(document).on('mouseover', '.me-codesta', function(){
+			$('.finale h1:first').css({opacity:0});
+			$('.finale h1:last').css({opacity:1});
+			});
+		
+		$(document).on('mouseout', '.me-codesta', function(){
+			$('.finale h1:last').css({opacity:0});
+			$('.finale h1:first').css({opacity:1});
+		});
+		//右键菜单实现：contextMenu End
+    }
+    
+    function getDocLocalPath(repos, doc)
+    {
+    	var reposStorePath = repos.realDocPath;
+    	if(!reposStorePath || reposStorePath == "")
+    	{
+    		reposStorePath = repos.path + repos.id + "/data/rdata/";
+    	}
+    	
+    	var docPath = "";
+    	if(doc.path)
+    	{
+        	docPath = doc.path;    		
+    	}
+    	if(doc.name)
+    	{
+    		docPath += doc.name;
+    	}
+    	
+    	return reposStorePath + docPath;
+    }
+    
+   	function executeDoc(node)
+   	{
+   		console.log("executeDoc()", node);
+
+    	$.ajax({
+             url : "/DocSystem/Doc/executeDoc.do",
+             type : "post",
+             dataType : "json",
+             data : {
+                reposId : gReposInfo.id, 
+				path: node.path,
+                name : node.name,
+                //params: params, //执行参数
+                //对于远程的仓库（远程目录/ftp）执行需要远程进行登录后执行
+                //protocol: ssh,
+                //server: server,
+                //port: port,
+                //user: user,
+             	//pwd: pwd,
+             },
+             success : function (ret) {
+            	console.log("executeDoc ret:", ret);            		
+             	if( "ok" == ret.status){             		                    
+             		// 普通消息提示条
+					bootstrapQ.msg({
+								msg : "执行完成！",
+								type : 'success',
+								time : 2000,
+					});         		
+                }
+                else
+                {
+                	showErrorMessage("执行失败:" + ret.msgInfo);
+                }
+            },
+            error : function () {
+                showErrorMessage("执行失败:服务器异常！");
+            }
+        });
+    }
+    
+ 	function shareDoc(node){
+ 		if(gShareId)
+ 		{
+ 			showErrorMessage("当前为分享链接，无法再次分享！");
+ 			return;
+ 		}
+ 		
+ 		var path = node.path;
+   	 	var name = node.name;
+   	 	if(path == null)
+   	 	{
+   	 		path = "";
+   	 	}
+   	 	
+   	 	var reposId = gReposInfo.id;
+   	 	
+		$.ajax({
+            url : "/DocSystem/Doc/addDocShare.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            	reposId: reposId,
+                path: path,
+                name: name,    
+            	isAdmin : 0,
+            	access : 1,
+            	downloadEn : 1,
+            	addEn : 1,
+            	deleteEn : 0,
+            	editEn : 1,
+            	heritable : 1,     
+            	shareHours : 7*24, //默认7天
+            },
+            success : function (ret) {
+         		console.log("addDocShare ret:", ret)
+         		if(ret.status == "ok")
+            	{
+         			var docShare = ret.data;
+         			var IpAddress = ret.dataEx;
+         			var url = getDocShareLink(reposId,docShare,IpAddress);
+         	 		console.log(url);
+         	 		
+         	 		showDocSharePanel(docShare, name, url);
+            	}
+                else
+                {
+                	showErrorMessage("创建文件分享失败:" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage('服务器异常: 创建文件分享失败');
+            }
+        });
+		
+ 		event.stopPropagation();
+ 	}
+    
+	function showDocSharePanel(docShare, docName, url)
+	{
+		console.log("showDocSharePanel docName:" + docName);
+		bootstrapQ.dialog({
+			id: 'docShare',
+			url: 'docShare.html',
+			title: '文件分享:' + docName,
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false,
+			callback: function(){
+				DocSharePageInit(docShare, docName, url);
+			},
+		});
+	}
+ 	
+    //Markdown的图片截图粘贴接口
+    document.addEventListener('paste', handlePasteImgEvent);        
+    function handlePasteImgEvent(event)
+    {
+    	if(!gDocInfo.edit || gDocInfo.edit == false)
+    	{
+    		return;
+    	}
+    	
+    	var  file = null;
+    	//粘贴事件
+        if (event.clipboardData || event.originalEvent) 
+        {
+        	var clipboardData = (event.clipboardData || event.originalEvent.clipboardData);
+        	console.log("handlePasteImgEvent clipboardData", clipboardData);
+        	var items = clipboardData.items;
+            if(items)
+            {
+            	console.log("handlePasteImgEvent items", items);
+                for (var i = 0; i <items.length; i++) 
+                {
+                	if (clipboardData.items[i].type.indexOf("image") !== -1) 
+                	{
+                		file = items[i].getAsFile();
+                        break;
+                    }
+                }
+            }	
+        }   
+        
+        if(file == null)
+    	{
+        	console.log("handlePasteImgEvent file is null");
+        	return;
+        }
+                
+        uploadMarkdownPic(file);
+        
+    	function uploadMarkdownPic(file)
+    	{
+			console.log("uploadMarkdownPic() file:", file);
+
+			var xhr = new XMLHttpRequest();
+			
+			var form = new FormData();
+			form.append("editormd-image-file", file);
+
+			//上传表单	
+			var imgName =  file.lastModified + "_" + file.name;
+			var path = base64_urlsafe_encode(gDocInfo.path);
+    		var name = base64_urlsafe_encode(gDocInfo.name);
+    		var imageUploadURL = "/DocSystem/Doc/uploadMarkdownPic.do?reposId=" + gReposInfo.id + "&docId=" + gDocInfo.docId + "&path="+ path + "&name="+ name + "&imgName=" + imgName;
+      		if(gShareId)
+      		{
+      			imageUploadURL="&shareId="+gShareId;
+      		}
+    		xhr.open("post", imageUploadURL);
+			xhr.send(form);
+			
+			//设置异步上传状态变化回调处a理函数
+			xhr.onreadystatechange = function() {				
+				//文件上传状态
+				console.log("xhr onreadystatechange() status:" + xhr.status + " readyState:" + xhr.readyState);
+				if(xhr.status == 200) 
+				{
+					if(xhr.readyState != 4)
+					{
+						//文件上传未结束
+						return;
+					}
+					
+					//上传成功！
+					var ret = JSON.parse(xhr.responseText);
+					console.log("uploadMarkdownPic ret", ret);
+					if(1 == ret.success)
+					{
+						//上传失败
+						console.log("上传成功");
+				        DocEdit.insertTextAtCursor("![]("+ ret.url +")");
+					}
+					else	//上传失败
+					{
+						//上传失败
+						console.log("上传失败：" + ret.msgInfo);
+						return;
+		            }
+				}else{
+					if(xhr.status < 300) 
+					{
+						//不是真正的异常
+						return;
+					}
+					//上传失败
+					console.log("系统异常: 上传异常！");
+					return;
+				}
+			};
+    	}
+
+        //setImg Directly,以下代码可以直接将
+        /*
+        var render = new FileReader();
+        render.onload = function (evt) {
+            //输出base64编码
+            var base64 = evt.target.result;
+            document.getElementById('fileLogo').setAttribute('src',base64);
+        }
+        render.readAsDataURL(file);
+        return;*/
+    }
+</SCRIPT>
+</body>
+</html>

@@ -1,0 +1,691 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Cheney" />
+    <title>我的分享-DocSys</title>
+    <!-- Bootstrap -->
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/highlight/styles/default.css" rel="stylesheet">
+    <link href="static/highlight/styles/zenburn.css" rel="stylesheet">
+    <link href="static/zTree/css/metroStyle/metroStyle.css" rel="stylesheet">
+    <link href="static/nprogress/nprogress.css" rel="stylesheet">
+    <link href="static/styles/kancloud.css" rel="stylesheet">
+    <link href="static/bootstrapQ/qiao.css" rel="stylesheet">
+    <link href="static/markdown/css/editormd.min.css" rel="stylesheet">
+    <link href="static/zTree/css/metroStyle/standardStyle.css" rel="stylesheet" id="zTreeCss">
+    
+
+	<!-- FreeTeam CSS-->
+	<link rel="stylesheet" href="static/freeTeam/css/resetV2.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="static/freeTeam/css/boot-css/bootstrap.custom.css" type="text/css" media="screen" /> 
+
+	<!-- context.js -->
+	<link rel="stylesheet" type="text/css" href="static/ContextJS/css/demo.css">
+	<link rel="stylesheet" type="text/css" href="static/ContextJS/css/context.standalone.css">
+
+    <style type="text/css">
+        .editormd-preview{
+            left: 0 !important;
+            right: auto !important;
+        }
+
+        .editormd .CodeMirror {
+            float: right !important;
+        }
+
+        .editor-content table thead tr {
+            color: #111111 !important;
+        }
+    </style>
+
+
+    <script src="static/scripts/jquery.min.js" type="text/javascript"></script>
+    <!-- Include all compiled plugins (below), or include individual file	s as needed -->
+	<script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="static/layer/layer.js"></script>
+	<script type="text/javascript" src="static/nprogress/nprogress.js"></script>
+	<script type="text/javascript" src="static/highlight/highlight.js"></script>
+	<script type="text/javascript" src="static/highlight/highlightjs-line-numbers.min.js"></script>
+	<script type="text/javascript" src="static/bootstrapQ/qiao.js"></script>
+	<script type="application/javascript" src="static/markdown/lib/raphael.min.js"></script>
+	<script type="application/javascript" src="static/scripts/jsonEscape.js"></script>
+	<!-- zTree -->
+	<script type="text/javascript" src="static/zTree/js/jquery.ztree.all.min.js"></script>
+	<!-- For ajax form submit -->
+	<script  type="text/javascript" src="static/scripts/jquery.form.js"></script>
+	<!-- context。js -->
+	<script type="text/javascript" src="static/ContextJS/js/context.js"></script>
+	<!-- <script  type="text/javascript" src="static/ContextJS/js/jquery.min.js"></script>
+	 -->
+    <script src="js/common.js" type="text/javascript"></script>
+    <script src="js/DocSys.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="m-manual manual-reader">
+    <header class="navbar navbar-static-top manual-head" role="banner">
+        <div class="container-fluid">
+            <div class="navbar-header pull-left manual-title">
+            	<a class="navbar-brand" href="/DocSystem/web/projects.html"><i class="fa fa-paper-plane"></i> DocSys</a>
+                <span class="slidebar" id="slidebar">
+                    <i class="fa fa-align-justify"></i>
+                </span>
+            </div>
+
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav navbar-left">
+                	<div>我的分享</div>
+            	</ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <button id="btnEditShare" class="btn btn-default" type="button" onclick="editShare()" style="display:none">编辑</button>
+                    <button id="btnSaveShare" class="btn btn-default" type="button" onclick="saveShare()" style="display:none">保存</button>
+                    <button id="btnCancelSaveShare" class="btn btn-default" type="button" onclick="cancelSaveShare()" style="display:none">取消</button>
+            	</ul>
+            </nav>
+        </div>      
+    </header>
+    <article class="container-fluid manual-body">
+        <div class="manual-right" style="left:0px;overflow-y: auto;">
+            <div class="manual-article">
+               <div class="article-body editor-content"  id="doc" style="min-height: 650px">
+               		<div class="panel-body eventset-list" >	
+	               		<li class="eventset-tit" style="margin-top: 0px;">
+							<i class="cell select w7">选择</i>
+							<i class="cell shareinfo w30">分享路径</i>
+							<i class="cell shareinfo w10">过期时间</i>
+							<i class="cell add w7">上传权限</i>
+							<i class="cell download w7">下载权限</i>
+							<i class="cell edit w7">修改权限</i>
+							<i class="cell delete w7">删除权限</i>
+							<i class="cell selectAll w7"></i>
+							<i class="cell operation w10">操作</i>						
+						</li>
+					</div>
+               		<div class="panel-body eventset-list" id="shareListArea">
+			 			<!-- 分享列表区域-->
+					</div>
+			 </div>
+			</div>
+        <div class="manual-progress"><b class="progress-bar"></b></div>
+    </article>
+    <div class="manual-mask"></div>
+</div>
+
+<script type="text/javascript">
+	//页面加载完成处理函数    
+	$(document).ready(function(){
+		console.log("Page is ready");
+		showShareList();
+	});
+</script>
+
+<script type="text/javascript">	
+	//进入分享编辑状态
+    function editShare() {
+    	console.log("editShare");
+    	$("#btnSaveShare").show();
+        $("#btnCancelSaveShare").show();
+    }
+    
+    //将权限保存到后台
+    function saveShare() {
+    	console.log("saveShare");
+    	$("#btnSaveShare").hide();
+        $("#btnCancelSaveShare").hide();
+        
+		//遍历所有勾选的用户权限
+		var docShares = [];
+		$("#shareListArea >li").each(function(){
+          	var index =$(this).val();  //获取li的索引
+          	//alert(index);
+          	if($("#DocShare"+index).prop("checked") == true)
+          	{
+          		var docShare = [];
+				docShare.shareId = $("#DocShare"+index).val();
+				docShare.editEn = $("#EditEn"+index).prop("checked")?1:0;
+				docShare.addEn = $("#AddEn"+index).prop("checked")?1:0;
+				docShare.deleteEn = $("#DeleteEn"+index).prop("checked")?1:0;
+				docShare.downloadEn = $("#DownloadEn"+index).prop("checked")?1:0;
+				console.log(docShare);
+				docShares.push(docShare);	//将用户加入到列表中
+		    }
+		});
+		console.log(docShares);
+		
+		ConfigDocShare.configDocShares(docShares);
+    }
+	
+	function cancelSaveShare() {
+    	console.log("cancelSaveShare");
+        $("#btnSaveShare").hide();
+        $("#btnCancelSaveShare").hide();
+        //刷新分享列表
+        showShareList();
+    }
+	
+	function showDocShareEditPanel(index)
+	{
+		var docShare = gDocShareList[index];
+		var url = getDocShareLink(docShare.vid,docShare,docShare.serverIp);
+	 	console.log(url);	 		
+	 	showDocSharePanel(docShare, docShare.name, url, showShareList);
+	}
+	
+	function showDocSharePanel(docShare, docName, url, callback)
+	{
+		console.log("showDocSharePanel docName:" + docName);
+		bootstrapQ.dialog({
+			id: 'docShare',
+			url: 'docShare.html',
+			title: '文件分享:' + docName,
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false,
+			callback: function(){
+				DocSharePageInit(docShare, docName, url, callback);
+			},
+		});
+	}
+	
+	var gDocShareList = [];
+	function showShareList(){
+	   	console.log("showShareList()");
+	   	$.ajax({
+	                url : "/DocSystem/Doc/getDocShareList.do",
+	                type : "post",
+	                dataType : "json",
+	                data : {
+	                    //reposId : vid, //指定仓库
+	                	//path: parentPath, //指定文件
+	                	//name: docName,
+	                },
+	                success : function (ret) {
+	                    if( "ok" == ret.status ){
+					        $("#btnSaveShare").hide();
+					        $("#btnCancelSaveShare").hide();
+					        gDocShareList = ret.data;
+	                    	showDocShareList(ret.data);
+	                    }
+	                    else
+	                    {
+					        $("#btnSaveShare").hide();
+					        $("#btnCancelSaveShare").hide();
+	                    	showErrorMessage("文件分享列表获取失败:" + ret.msgInfo);
+	                    }
+	                },
+	                error : function () {
+	    		        $("#btnSaveShare").hide();
+				        $("#btnCancelSaveShare").hide();
+	                   	showErrorMessage('文件分享列表获取失败：服务器异常');
+	                }
+	    });
+	    
+	    
+	    function shareAuthCovert(docShare)
+	    {
+			//分享权限转换
+			var shareAuth = JSON.parse(docShare.shareAuth);
+			if(shareAuth.downloadEn && shareAuth.downloadEn == 1)
+			{
+				docShare.downloadEn = 1;			
+			}
+			else
+			{
+				docShare.downloadEn = 0;
+			}
+			
+			if(shareAuth.addEn && shareAuth.addEn == 1)
+			{
+				docShare.addEn = 1;			
+			}
+			else
+			{
+				docShare.addEn = 0;
+			}
+			
+			if(shareAuth.editEn && shareAuth.editEn == 1)
+			{
+				docShare.editEn = 1;			
+			}
+			else
+			{
+				docShare.editEn = 0;
+			}
+			
+			if(shareAuth.deleteEn && shareAuth.deleteEn == 1)
+			{
+				docShare.deleteEn = 1;			
+			}
+			else
+			{
+				docShare.deleteEn = 0;
+			}
+	    }
+	
+		function showDocShareList(data){
+			console.log("showDocShareList");
+			console.log(data);
+			
+			var c = $("#shareListArea").children();
+			$(c).remove();
+			if(data.length==0)
+			{
+				$("#shareListArea").append("<p>暂无数据</p>");
+			}
+			
+			for(var i=0;i<data.length;i++){
+				var d = data[i];
+				shareAuthCovert(d);			
+				var editChecked = d.editEn == 1? "checked":"";
+				var addChecked = d.addEn == 1? "checked":"";
+				var deleteChecked = d.deleteEn == 1? "checked":"";
+				var downloadChecked = d.downloadEn == 1? "checked":"";
+				var selectAllChecked = "";
+				
+				var opBtn1 = "";
+				var opBtn2 = "";
+				var docShareId = "";
+				docShareId = d.shareId;
+				opBtn1 = "<a href='javascript:void(0)' onclick='showDocShareEditPanel("+i+");' class='mybtn-primary'>编辑</a>";
+				opBtn2 = "<a href='javascript:void(0)' onclick='deleteDocShareConfirm("+docShareId+");' class='mybtn-primary'>删除</a>";
+								
+				var shareInfo = d.reposName + "::" + d.path + d.name;
+				var expireTime = getDate(d.expireTime);
+				var se = "<li value="+ i +">"
+					+"	<i class='cell select w5'>"
+					+"		<input class='DocShareEnable' id='DocShare"+i+"' value='"+docShareId+"' type='checkbox' onclick='editShare()'/>"
+					+"	</i> "
+					+"	<i class='cell shareinfo w30'>"
+					+"		<span class='name'>"
+					+"			<a id='ShareInfo"+i+"' value='"+d.vid+"' href='javascript:void(0)'>"+ shareInfo + "</a>"
+					+"		</span>"
+					+"	</i>"
+					+"	<i class='cell shareinfo w10'>"
+					+"		<span class='name'>"
+					+"			<a id='ExpireTime"+i+"' value='"+d.expireTime+"' href='javascript:void(0)'>"+ expireTime + "</a>"
+					+"		</span>"
+					+"	</i>"
+					+"	<i class='cell add w7'>"
+					+"		<input id='AddEn"+i+"'  value='"+ d.addEn+"' type='checkbox' " + addChecked + " onchange='EnableShareConfig("+i+");'>允许上传</input>"
+					+"	</i>"
+					+"	<i class='cell download w7'>"
+					+"		<input id='DownloadEn"+i+"' value='"+ d.downloadEn+"' type='checkbox' " + downloadChecked + " onchange='EnableShareConfig("+i+");'>允许下载</input>"
+					+"	</i>"
+					+"	<i class='cell edit w7'>"
+					+"		<input id='EditEn"+i+"' value='"+ d.editEn+"' type='checkbox' " + editChecked + " onchange='EnableShareConfig("+i+");'>允许修改</input>"
+					+"	</i>"
+					+"	<i class='cell delete w7'>"
+					+"		<input id='DeleteEn"+i+"' value='"+ d.deleteEn+"' type='checkbox' " + deleteChecked + " onchange='EnableShareConfig("+i+");'>允许删除</input>"
+					+"	</i>"
+					+"	<i class='cell selectAll w7'>"
+					+"		<input id='SelectAll"+i+"' value='"+ d.selectAll+"' type='checkbox' " + selectAllChecked + " onclick='selectAllShare(" +i+")' onchange='EnableShareConfig("+i+");'>全部</input>"
+					+"	</i>"
+					+"	<i class='cell operation w10'>"
+					+ 		opBtn1
+					+ " "
+					+ 		opBtn2
+					+"	</i>"
+					+"</li>";
+				
+				$("#shareListArea").append(se);
+			}
+		}
+	}
+
+	function EnableShareConfig(index){
+		editShare();
+		if($("#DocShare"+index).prop("checked") == false)
+		{
+			$("#DocShare"+index).prop("checked",true);
+		}
+	}
+
+	function selectAllShare(index)
+	{
+		if($("#SelectAll"+index).prop("checked") == true)
+		{
+			//SelectAll
+			$("#EditEn"+index).prop("checked",true);
+			$("#AddEn"+index).prop("checked",true);
+			$("#DeleteEn"+index).prop("checked",true);
+			$("#DownloadEn"+index).prop("checked",true);
+		}
+		else
+		{
+			//UnselectAll
+			$("#EditEn"+index).prop("checked",false);
+			$("#AddEn"+index).prop("checked",false);
+			$("#DeleteEn"+index).prop("checked",false);
+			$("#DownloadEn"+index).prop("checked",false);
+		}
+	}
+	
+	function deleteDocShareConfirm(shareId)
+	{
+	   	console.log("deleteDocDocShareConfirm()");
+			qiao.bs.confirm({
+	 	    	id: 'deleteDocShareConfirm',
+	 	        msg: "是否删除该分享?",
+	 	        close: false,		
+	 	        okbtn: "删除",
+	 	        qubtn: "取消",
+	 	    },function () {
+	 	    	//alert("点击了确定");
+	 	    	deleteDocShare(shareId);
+	 	    	return true;   
+	 	    },function(){
+	 	    	//alert("点击了取消");
+	 	    	return true;
+	 	    }); 
+	}
+	
+	function deleteDocShare(docShareId)
+	{	
+	   	console.log("deleteDocShare()");   	
+	   	$.ajax({
+	            url : "/DocSystem/Doc/deleteDocShare.do",
+	            type : "post",
+	            dataType : "json",
+	            data : {
+	                shareId: docShareId,
+	            },
+	            success : function (ret) {
+	                if( "ok" == ret.status ){
+	                    showShareList();
+                    	// 普通消息提示条
+						bootstrapQ.msg({
+								msg : '删除成功！',
+								type : 'success',
+								time : 2000,
+							    });
+	                }
+	                else
+	                {
+	                	showErrorMessage("删除失败:" + ret.msgInfo);
+	                }
+	            },
+	            error : function () {
+	               showErrorMessage('删除失败:服务器异常！');
+	            }
+	    });
+	}
+</script>
+<script type="text/javascript">
+	//ConfigDocShare类
+    var ConfigDocShare = (function () {
+        //当前操作的索引
+        var index = 0;
+        var docShareList = null; //id(docShareId), reposId, docPath, editEn, addEn, deleteEn, downloadEn
+        var totalNum = 0;
+        var failNum =0;
+        var successNum = 0;
+        var configErrorConfirmSet = 0;
+        
+        //标准Java成员操作接口
+		function getIndex()
+		{
+            return index;
+		}
+		
+		function setIndex(i)
+		{
+			index = i;
+		}
+		
+		function getDocAutList()
+		{
+            return docShareList;
+		}
+		
+		function setDocShareList(docShares)
+		{
+			docShareList = docShares;
+		}
+		
+		function getTotalNum()
+		{
+            return totalNum;
+		}
+		
+		function setTotalNum(num)
+		{
+			totalNum = num;
+		}
+      	
+      	function ConfigDocShareSet(docShares)
+		{
+			console.log("ConfigDocShareSet");
+
+			setIndex(0);
+
+			setDocShareList(docShares);
+			
+			var totalNum = 0;
+			if(docShareList && docShareList.length)
+			{
+				totalNum = docShareList.length;
+			}
+			setTotalNum(totalNum);
+			failNum = 0;
+			successNum = 0;
+			configErrorConfirmSet = 0;
+      	}
+      		
+		function configDocShare()
+    	{
+    		console.log("configDocShare index:" + index + " totalNum:" + totalNum);
+
+			//set docShare
+    		var docShare = docShareList[index];
+    		console.log(docShare);
+    		
+    		$.ajax({
+				  url : "/DocSystem/Doc/updateDocShare.do",
+				  	type : "post",
+				    dataType : "json",
+				    data : {
+				         shareId : docShare.shareId,
+			             isAdmin : 0,
+			             access : 1,
+					     editEn: docShare.editEn, 
+					     addEn: docShare.addEn, 
+					     deleteEn: docShare.deleteEn, 
+					     downloadEn: docShare.downloadEn,
+			             heritable : 1,     
+			             sharePwd : docShare.sharePwd,
+			             shareHours : docShare.shareHours,
+				     },
+				     success : function (ret) {
+				         if( "ok" == ret.status){
+					          	index++;
+				                if(index < totalNum)
+				                {
+				                	configDocShare();	//设置完成继续设置下一个
+				                }else{
+					                showShareList();
+			                    	// 普通消息提示条
+									bootstrapQ.msg({
+											msg : '设置完成！',
+											type : 'success',
+											time : 2000,
+										    });
+				                }
+ 				          }else{
+								//设置失败
+								configErrorConfirmHandler(docShare.userName, ret.msgInfo);
+								return;
+				            }
+				      },
+				      error : function () {
+						  		//设置失败
+						  		configErrorConfirmHandler(docShare.userName, "设置异常");
+								return;
+					 }	
+				});				
+    	}
+    	
+    	//获取错误处理设置 
+    	function getConfigErrorConfirmSetting()
+      	{
+	 		return configErrorConfirmSet;
+      	}
+      	
+    	//config Error Confirm
+      	function configErrorConfirm(ShareName,errMsg)
+      	{
+      		var configErrorTimer = setTimeout(function () {	//超时用户没有动作，则直接继续
+            	console.log("用户确认超时,继续配置其他分享");
+            	configErrorConfirmSet = 1; //全局继续
+            	closeBootstrapDialog("configErrorConfirm");
+            	configErrorHanlder(ShareName,errMsg);
+            },5*60*1000);	//5分鐘用戶不確認則關閉對話框
+      		
+			//弹出用户确认窗口
+      		qiao.bs.confirm({
+    	    	id: 'configErrorConfirm',
+    	        msg: ShareName + "权限设置失败（"+errMsg+"）,是否继续设置其他用户？",
+    	        close: false,		
+    	        okbtn: "继续",
+    	        qubtn: "退出",
+    	    },function () {
+    	    	//alert("点击了确定");
+				clearTimeout(configErrorTimer);			
+    	 		if(index < (totalNum-1))	//后续还有用户
+                {
+    	      		var configErrorTimer1 = setTimeout(function () {	//超时用户没有动作，则直接覆盖
+    	            	console.log("用户确认超时,后续错误都继续设置");
+    	            	configErrorConfirmSet = 1; //全局继续上传
+    	            	closeBootstrapDialog("takeSameActionConfirm");
+    	            	configErrorHanlder(ShareName,errMsg);
+    	            },5*60*1000);	//5分鐘用戶不確認則關閉對話框
+    	 			
+  	 	    	    qiao.bs.confirm({
+  	 	    	    	id: 'takeSameActionConfirm3',
+  	 	    	        msg: "后续错误是否执行此操作？",
+  	 	    	        close: false,		
+  	 	    	        okbtn: "是",
+  	 	    	        qubtn: "否",
+  	 	    	    },function () {
+  	 	    	    	//后续错误将不再弹出窗口
+  	 	    	    	clearTimeout(configErrorTimer1);
+  	 	    	    	configErrorConfirmSet = 1;	//全局覆盖
+  	 	    	    	configErrorHandler(ShareName,errMsg); //reEnter config
+  	  	 				return true;
+  	 				},function(){
+  	 					//后续错误将继续弹出错误确认窗口
+  	 					clearTimeout(configErrorTimer1);
+  	 	    	    	configErrorHandler(ShareName,errMsg);
+  	  	 				return true;
+  	 				});	
+                }
+    	 		else
+    	 		{
+             		configErrorHandler(ShareName,errMsg);
+             		return;
+    	 		}
+    		},function(){
+    	    	//alert("点击了取消");
+    	    	clearTimeout(configErrorTimer);
+          		configErrorConfirmSet = 2; //全局取消上传    	 		
+		 		configErrorAbortHandler(ShareName,errMsg);
+      		});
+      	}
+      	
+      	//configErrorConfirmHandler
+      	function configErrorConfirmHandler(ShareName,errMsg)
+      	{
+			console.log("设置失败" + errMsg);
+			var confirm = getConfigErrorConfirmSetting();
+			if(confirm == 1)
+			{
+				configErrorHandler(ShareName, errMsg);
+			}
+			else if(confirm == 2)	//结束上传
+			{
+				configErrorAbortHandler(ShareName, errMsg);
+				return;
+			}
+			else
+			{
+				configErrorConfirm(ShareName, errMsg);
+			}
+      	}
+      	
+      	//configErrorHandler
+      	function configErrorHandler(ShareName,errMsg)
+      	{
+      		failNum++;
+    		configNextShare();		 	
+      	}
+      	
+      	//configErrorAbortHandler
+      	function configErrorAbortHandler(ShareName,errMsg)
+      	{
+      		failNum++;
+    		configEndHandler();
+      	}
+
+      	//uploadSuccessHandler
+      	function configSuccessHandler(name,msgInfo)
+      	{
+      		successNum++;
+			configNextShare();
+      	}
+      	
+      	//configEndHandler
+      	function configEndHandler()
+      	{
+      		console.log("设置结束，共"+ totalNum +"，成功"+successNum+"个，失败"+failNum+"个！");
+      		// 普通消息提示条
+			bootstrapQ.msg({
+					msg : '设置完成！',
+					type : 'success',
+					time : 2000,
+				    });
+      	}
+      	
+      	//configNextDoc，如果后续有未上传文件则上传下一个文件 
+		function configNextShare()
+		{
+			index++;
+			if(index < totalNum)
+			{
+				configDocShare(); 
+			}
+			else
+			{
+				configEndHandler();
+			}
+		}
+
+		//多文件move接口
+		function configDocShares(docShares)	//多用户设置函数
+		{
+			console.log("configDocShares");
+			ConfigDocShareSet(docShares);	//设置configDocShare Parameters
+
+			//启动复制操作      		
+			configDocShare();	//start set
+		}
+		
+		//开放给外部的调用接口
+        return {
+            configDocShares: function(docShares){
+            	configDocShares(docShares);
+            },
+            configDocShare: function(){
+            	configDocShare();
+            }
+            
+        };
+    })();
+</script>
+
+</body>
+</html>

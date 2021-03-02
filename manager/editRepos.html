@@ -1,0 +1,110 @@
+<script type="text/javascript">
+	function EditReposPageInit()
+	{
+		console.log("EditReposPageInit()");
+		EnterKeyListenerForEditRepos();
+	}
+	
+	function showEditReposModal(text){
+		$(".editReposModal").fadeIn("slow");
+		$("#name").focus();
+	}
+	
+	function closeEditReposModal(){
+		$(".editReposModal").fadeOut("slow");
+	}
+	
+	//回车键监听函数
+	function EnterKeyListenerForEditRepos(){
+		console.log("start enter key listener");
+		var event=arguments.callee.caller.arguments[0]||window.event;//消除浏览器差异  
+	 	if (event.keyCode == 13){  
+	 		editRepos();
+	 	}  
+	}
+	
+	function editRepos(){
+		console.log("editRepos()");
+
+		var reposId =  $("#reposId").val();
+		var name = $("#name").val();
+	    var info = $("#info").val();
+	    var path = $("#path").val();
+	    var type = $("#type").val();
+	    
+	    console.log(reposId,name,info,path,type);
+	    
+        $.ajax({
+            url : "/DocSystem/Repos/updateReposInfo.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            	 reposId : reposId,
+                 name : name,
+                 info : info,
+                 path : path,
+                 type : type,
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                	showReposList();	//刷新ReposList
+                	alert("更新成功");
+                }else {
+                	alert("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	alert("服务器异常:更新失败");
+            }
+        });
+	}
+	
+	//页面初始化代码    
+    $(function(){
+    	console.log("editRepos Page init");
+    	EditReposPageInit();
+		$("#name").click().focus();
+	});
+</script>
+                    
+                  <div class="form-horizontal">
+                    <div class="form-group" hidden>
+                      <label class="control-label col-lg-3" for="reposId">仓库ID</label>
+                      <div class="col-lg-9">
+                        <input type="text" class="form-control" id="reposId" name="reposId">
+                      </div>
+                    </div>
+                    <!-- ReposName -->
+                    <div class="form-group">
+                      <label class="control-label col-lg-3" for="name">仓库名称</label>
+                      <div class="col-lg-9">
+                        <input type="text" class="form-control" id="name" name="name">
+                      </div>
+                    </div>
+                    <!-- info -->
+                    <div class="form-group">
+                      <label class="control-label col-lg-3" for="info">简介</label>
+                      <div class="col-lg-9">
+                        <input type="text" class="form-control" id="info" name="info">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-lg-3" for="path">仓库位置</label>
+                      <div class="col-lg-9">
+                        <input type="text" class="form-control" id="path" name="path">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-lg-3" for="type">仓库类型</label>
+                      <div class="col-lg-9">
+                        <input type="number" class="form-control" id="type" name="type">
+                      </div>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="form-group">
+                      <!-- Buttons -->
+                      <div class="col-lg-offset-9 col-lg-2">
+                        <button type="submit" class="btn btn-success" id="btn_editRepos" onclick="editRepos()">保存</button>
+                      </div>
+                    </div>
+                  </div>

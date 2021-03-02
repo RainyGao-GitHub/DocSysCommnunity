@@ -1,0 +1,2586 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <!-- Title and other stuffs -->
+  <title>后台管理系统</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="keywords" content="MxsDoc" />
+  <meta name="description" content="MxsDoc管理后台" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Rainy">
+  <!-- Stylesheets -->
+  <link href="./static/style/bootstrap.css" rel="stylesheet">
+  <!-- Font awesome icon -->
+  <link rel="stylesheet" href="./static/style/font-awesome.css">
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="./static/style/jquery-ui.css">
+  <!-- Calendar -->
+  <link rel="stylesheet" href="./static/style/fullcalendar.css">
+  <!-- prettyPhoto -->
+  <link rel="stylesheet" href="./static/style/prettyPhoto.css">
+  <!-- Star rating -->
+  <link rel="stylesheet" href="./static/style/rateit.css">
+  <!-- Date picker -->
+  <link rel="stylesheet" href="./static/style/bootstrap-datetimepicker.min.css">
+  <!-- CLEditor -->
+  <link rel="stylesheet" href="./static/style/jquery.cleditor.css">
+  <!-- Bootstrap toggle -->
+  <link rel="stylesheet" href="./static/style/bootstrap-switch.css">
+  <!-- Main stylesheet -->
+  <link href="./static/style/style.css" rel="stylesheet">
+  <!-- Widgets stylesheet -->
+  <link href="./static/style/widgets.css" rel="stylesheet">
+  
+  <!-- jQuery -->
+  <script src="./static/js/jquery.js"></script>
+  <script src="./static/js/bootstrap.js"></script> <!-- Bootstrap -->
+  <script src="./static/js/jquery-ui-1.9.2.custom.min.js"></script> <!-- jQuery UI -->
+  <script src="./static/js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+  <script src="./static/js/jquery.rateit.min.js"></script> <!-- RateIt - Star rating -->
+  <script src="./static/js/jquery.prettyPhoto.js"></script> <!-- prettyPhoto -->
+  <script src="./static/js/ajaxfileupload.js"></script>
+
+  <!-- jQuery Flot -->
+  <script src="./static/js/excanvas.min.js"></script>
+  <script src="./static/js/jquery.flot.js"></script>
+  <script src="./static/js/jquery.flot.resize.js"></script>
+  <script src="./static/js/jquery.flot.pie.js"></script>
+  <script src="./static/js/jquery.flot.stack.js"></script>
+
+  <!-- jQuery Notification - Noty -->
+  <script src="./static/js/jquery.noty.js"></script> <!-- jQuery Notify -->
+  <script src="./static/js/themes/default.js"></script> <!-- jQuery Notify -->
+  <script src="./static/js/layouts/bottom.js"></script> <!-- jQuery Notify -->
+  <script src="./static/js/layouts/topRight.js"></script> <!-- jQuery Notify -->
+  <script src="./static/js/layouts/top.js"></script> <!-- jQuery Notify -->
+  <!-- jQuery Notification ends -->
+
+
+  <script src="./static/js/sparklines.js"></script> <!-- Sparklines -->
+  <script src="./static/js/jquery.cleditor.min.js"></script> <!-- CLEditor -->
+  <script src="./static/js/bootstrap-datetimepicker.min.js"></script> <!-- Date picker -->
+  <script src="./static/js/bootstrap-switch.min.js"></script> <!-- Bootstrap Toggle -->
+
+  <script src="./static/js/jquery.raty.js"></script>
+  <script src="./static/js/jquery.toastmessage-min.js"></script>
+  <script src="./static/js/filter.js"></script> <!-- Filter for support page -->
+  <script src="./static/js/custom.js"></script> <!-- Custom codes -->
+  <script src="./static/js/config.js"></script>
+  <script src="./static/js/tmpl.js"></script>
+  
+  <!-- bootstrapQ based on jquery and bootstrap-->
+  <link href="./static/bootstrapQ/qiao.css" rel="stylesheet">
+  <script type="text/javascript" src="./static/bootstrapQ/qiao.js"></script>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./static/img/icons/metro.png">
+
+    <!-- pagination -->
+    <link rel="stylesheet" href="./static/pagination/pagination.css"/>
+    <script type="text/javascript" src="./static/pagination/jquery.pagination.js"></script>
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top bs-docs-nav" role="banner">
+
+  <div class="conjtainer">
+    <!-- Menu button for smallar screens -->
+    <div class="navbar-header">
+      <button class="navbar-toggle btn-navbar" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span>菜单</span>
+      </button>
+      <!-- Site name for smallar screens -->
+      <a href="./" class="navbar-brand hidden-lg">首页</a>
+    </div>
+    <!-- Navigation starts -->
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <!-- Links -->
+      <ul class="nav navbar-nav pull-right" id="headbar" data-tmpl="headbar">
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<!-- Header starts -->
+<header>
+  <div class="container">
+    <div class="row">
+      <!-- Logo section -->
+      <div class="col-md-4">
+        <!-- Logo. -->
+        <div class="logo">
+          <h1><a href="/DocSystem">MxsDoc<span class="bold"></span></a></h1>
+          <p class="meta">后台管理系统</p>
+        </div>
+        <!-- Logo ends -->
+      </div>
+
+      <!-- Data section -->
+
+      <div class="col-md-5" style="float: right" id="metainfo">
+
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- Header ends -->
+
+<!-- Main content starts -->
+
+<div class="content">
+<div class="sidebar" id="sidebar" data-tmpl="sidebar">
+</div>
+
+<!-- Main bar -->
+<div class="mainbar" >
+    <!-- Page heading -->
+    <div class="page-head" id="pagehead">
+    </div>
+    <!-- Page heading ends -->
+
+
+  <!-- Matter -->
+  <div class="matter">
+    <div class="container" id="container">
+
+    </div>
+  </div>
+  <!-- Matter ends -->
+
+</div>
+
+<!-- Mainbar ends -->
+<div class="clearfix"></div>
+
+</div>
+<!-- Content ends -->
+
+<!-- Footer starts -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Copyright info -->
+        <p class="copy">Copyright &copy; 2017 | <a href="http://dw.gofreeteam.com/DocSystem">MxsDoc</a> </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Footer ends -->
+
+<!-- Scroll to top -->
+<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span>
+
+<div style="display:none">
+	<input id="importDBFiles" name="importDBFiles" type="file" onchange="importDBDataConfirm(event)" multiple="multiple"/>
+	<input id="upgradeFiles" name="upgradeFiles" type="file" onchange="upgradeSystemConfirm(event)" multiple="multiple"/>
+	<input id="installSystemLicense" name="installSystemLicense" type="file" onchange="installSystemLicenseConfirm(event)" multiple="multiple"/>
+	<input id="installOfficeLicense" name="installOfficeLicense" type="file" onchange="installOfficeLicenseConfirm(event)" multiple="multiple"/>
+</div>
+
+<script type="application/javascript">
+	//通用函数接口
+	function showErrorMessage($msg) {
+		qiao.bs.alert($msg);
+	}
+	
+  function addToUrlParam(key,value,url){
+    var ref = "";
+    if( url ){
+      ref = url;
+    }
+    else
+    {
+      ref = location.href;
+    }
+    if( ref.endsWith("#") ){
+      ref = ref.substr(0,ref.length -1);
+    }
+    if( ref.indexOf("?") > 0 ){
+      var p = getQuery(key);
+      if( p ){
+        var end = ref.replace(key + "=" + p,key + "=" + value);
+        return end;
+      }else{
+        return ref + "&"+ key +"=" + value;
+      }
+    }else{
+      return ref + "?" + key + "=" + value;
+    }
+  }
+
+  $(document).on("changePage",function(e,msg){
+    location.href = addToUrlParam("page",msg.page);
+  });
+    
+</script>
+
+<script type="application/javascript">
+	var gPageIndex = 0;
+	var gPageSize = 15;
+
+	pageInit();
+	
+	//页面初始化
+	var loginUser = "";	//用来保存刚注册的用户、或刚才登录的用户
+	function pageInit()
+	{
+		console.log("pageInit");
+		//确定当前登录用户是否已登录
+		$.ajax({
+	        url : "/DocSystem/User/getLoginUser.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {},
+	        success : function (ret) {
+				console.log("getLoginUser ret",ret);
+	        	if( "ok" == ret.status )
+	            {
+	            	//Get用户信息
+					var user = ret.data;
+					var total = ret.dataEx; //查询结果总数
+					
+	            	loginUser = user;
+					if(!user.type || user.type < 1)
+					{
+		        		showErrorMessage("非管理员用户，请联系系统管理员");
+					}
+					else
+					{
+						//显示用户信息
+		                $Func.render($("#headbar"),"headbar",user);
+						//显示菜单
+		            	$Func.render($("#sidebar"),"sidebar");	//用户crrent参数来渲染sidebar.html文件
+						//显示内容部分
+		            	showContentPage("user");	           
+					}
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	                window.location.href = "login.html";
+	            }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:获取用户信息失败");
+	        }
+	    });
+	}
+	
+	//展开子项目
+	$(document).on("click",".has_sub",function(){
+		  console.log(".has_sub onclick()");
+	      var title = $(this).children("a");
+	      if( title.hasClass("subdrop") ){
+	          title.removeClass("subdrop");
+	          $(this).children("ul").hide();
+	      }else{
+	          title.addClass("subdrop");
+	          $(this).children("ul").show();
+	      }
+	  });
+
+	  //展开子目录
+	  $(document).on("click","li.has_sublist",function(){
+		  console.log("li.has_sublist onclick()");
+		  var $this = $(this);
+	      if( ! $this.children("a").hasClass("open") ){
+	          $this.children("ul.sublist").toggle();
+	      }
+	  });
+	  
+	//click event handler  for data-eb-event="content.refresh"
+	$(document).on("click","[data-eb-event]", function (e) {
+		console.log("[data-eb-event] onclick()");
+		stopBubble(e); //阻止冒泡
+
+        var event = $(this).attr("data-eb-event");
+        var params = $(this).attr("data-eb-params");
+      	
+        console.log("data-eb-event:"+ event + " " + params);
+        
+        //非回调方式更加容易被理解，so I give up the event bus 
+        switch(event)
+        {
+        //菜单点击
+        case "content.refresh":
+        	showContentPage(params);
+        	break;
+        }
+    });
+	
+	function stopBubble(e) { 
+		//如果提供了事件对象，则这是一个非IE浏览器 
+		if ( e && e.stopPropagation ) 
+		    //因此它支持W3C的stopPropagation()方法 
+		    e.stopPropagation(); 
+		else 
+		    //否则，我们需要使用IE的方式来取消事件冒泡 
+		    window.event.cancelBubble = true; 
+		}
+	
+	//显示对应菜单
+	function showContentPage(curPath) {
+	    console.log("showContentPage() " + curPath);
+		var title = "载入中...";
+	    var subtitle = "载入中...";
+		
+	    $("#container").html("载入中...");
+	
+	    $("#nav li>a").removeClass("open");
+	    $("ul.sublist").hide();
+	
+	    switch ( curPath ){
+	        case "user":
+	            title = "用户管理";
+	            showUserList();
+	            $("#nav li[data-eb-params=user]>a").addClass("open");
+	            break;
+	        case "group":
+	            title = "用户组管理";
+	            showGroupList();
+	            $("#nav li[data-eb-params=group]>a").addClass("open");
+	            break;
+	        case "repos":
+	            title = "仓库管理";
+	            showReposList();
+	            $("#nav li[data-eb-params=repos]>a").addClass("open");
+	            break;  
+	        case "license":
+	            title = "证书管理";
+	            $("#nav li[data-eb-params=license]>a").addClass("open");
+	            showLicenseList();
+	            break;
+	        case "system":
+	        case "systemEmailConfig":
+	        case "systemSmsConfig":
+	        case "systemDbConfig":
+	        case "systemUpgrade":
+	        case "systemLicenses":
+	        	title = "系统管理";
+	            $("#nav li[data-eb-params=system]>a").addClass("open");
+	            $("ul.sublist").show();	        	
+	            showSystemPage(curPath);
+	        	break;
+	    }
+	    
+	    $Func.render($("#pagehead"),"pagehead",{
+	        title : title,
+	        subtitle : title
+	    });
+	}
+
+	function showSystemPage(curPath)
+    {
+    	switch(curPath)
+       	{
+	   	case "system":
+            showSystemEmailConfig();
+            break;
+        case "systemEmailConfig":
+        	showSystemEmailConfig();
+            break;
+        case "systemSmsConfig":
+        	showSystemSmsConfig();
+            break;
+        case "systemDbConfig":
+        	showSystemDbConfig();
+        	break;
+        case "systemUpgrade":
+            showSystemUpgrade();
+        	break;
+        case "systemLicenses":
+            showSystemLicenses();
+        	break;        	
+	    }
+    }
+	
+	//系统邮件服务设置
+	var systemEmailConfig = {
+			host: "",
+			email: "",
+			pwd: "",
+	}
+	function enableSystemEmailSet(){
+		$("#btnEnableSystemEmailSet").hide();
+		$("#btnCancelSystemEmailSet").show();
+		$("#btnSaveSystemEmailSet").show();
+		$("#systemEmailHost").val(systemEmailConfig.host);
+		$("#systemEmailUser").val(systemEmailConfig.email);
+		$("#systemEmailPwd").val(systemEmailConfig.pwd);
+		$("#systemEmailHost").attr('disabled',false);
+		$("#systemEmailUser").attr('disabled',false);
+		$("#systemEmailPwd").attr('disabled',false);
+	}
+	
+	function cancelSystemEmailSet(){
+		$("#btnEnableSystemEmailSet").show();
+		$("#btnCancelSystemEmailSet").hide();
+		$("#btnSaveSystemEmailSet").hide();
+		//revert the value
+		$("#systemEmailHost").attr('disabled',true);
+		$("#systemEmailUser").attr('disabled',true);
+		$("#systemEmailPwd").attr('disabled',true);
+		$("#systemEmailHost").val(systemEmailConfig.host);
+		$("#systemEmailUser").val(systemEmailConfig.email);
+		$("#systemEmailPwd").val(systemEmailConfig.pwd);
+	}
+	
+	function saveSystemEmailSet(){
+		$("#btnEnableSystemEmailSet").show();
+		$("#btnCancelSystemEmailSet").hide();
+		$("#btnSaveSystemEmailSet").hide();
+		//revert the value
+		$("#systemEmailHost").attr('disabled',true);
+		$("#systemEmailUser").attr('disabled',true);
+		$("#systemEmailPwd").attr('disabled',true);
+		var host = $("#systemEmailHost").val();
+		var user = $("#systemEmailUser").val();
+		var pwd = $("#systemEmailPwd").val();
+		updateSystemEmailConfig(host, user, pwd);
+	}
+
+	function showSystemEmailConfig(){
+		$.ajax({
+	        url : "/DocSystem/Manage/getSystemEmailConfig.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {},
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {
+	            	//console.log("getSystemEmailConfig ret", ret);
+					var config = ret.data; 	
+					systemEmailConfig.host = config.host;
+	            	systemEmailConfig.email = config.email;
+	            	systemEmailConfig.pwd = config.pwd;
+	            	console.log("getSystemEmailConfig systemEmailConfig",systemEmailConfig);
+	            	$Func.render($("#container"),"systemEmailConfig",{"value":systemEmailConfig});
+	            }
+	            else 
+	            {
+	            	showErrorMessage("获取邮件服务配置信息失败:" + ret.msgInfo);
+	            	console.log(ret.msgInfo);
+	            }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:获取邮件服务配置信息失败");
+	        }
+	    });
+	}
+	
+	function updateSystemEmailConfig(host, email, pwd){
+		$.ajax({
+	        url : "/DocSystem/Manage/setSystemEmailConfig.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	        	host: host,
+	        	email: email,
+	        	pwd: pwd,
+	        },
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {	        		
+	        		systemEmailConfig.host = host;
+	            	systemEmailConfig.email = email;
+	        		systemEmailConfig.pwd = pwd;
+	        		showErrorMessage("更新邮件服务配置成功");
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	                showErrorMessage("更新邮件服务配置失败:" + ret.msgInfo);
+	        		//restore the setting
+	        		$("#systemEmailHost").val(systemEmailConfig.host);
+	        		$("#systemEmailUser").val(systemEmailConfig.email);
+	        		$("#systemEmailPwd").val(systemEmailConfig.pwd);
+		        }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:更新邮件服务配置失败");
+        		//restore the setting
+	        	$("#systemEmailHost").val(systemEmailConfig.host);
+        		$("#systemEmailUser").val(systemEmailConfig.email);
+        		$("#systemEmailPwd").val(systemEmailConfig.pwd);
+	        }
+	    });
+	}
+	
+	//系统短信服务设置
+	var systemSmsSetting = {
+			server: "",
+			apikey: "",
+	}
+	function showSystemSmsConfig(){
+		$.ajax({
+	        url : "/DocSystem/Manage/getSystemSmsConfig.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {},
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {
+					var config = ret.data; 	
+					systemSmsSetting.server = config.server;
+	            	systemSmsSetting.apikey = config.apikey;
+	            	$Func.render($("#container"),"systemSmsConfig",{"value":systemSmsSetting});
+	            }
+	            else 
+	            {
+		        	showErrorMessage("获取短信服务配置信息失败:" + ret.msgInfo);
+	            	console.log(ret.msgInfo);
+	            }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:获取短信服务配置信息失败");
+	        }
+	    });
+	}
+	
+	//系统数据库设置
+	var systemDbSetting = {
+			type: "",
+			url: "",
+			user: "",
+			pwd: "",
+	}
+	function enableSystemDBSet(){
+		$("#btnEnableSystemDBSet").hide();
+		$("#btnCancelSystemDBSet").show();
+		$("#btnSaveSystemDBSet").show();
+		$("#systemDbType").val(systemDbSetting.type);
+		$("#systemDbUrl").val(systemDbSetting.url);
+		$("#systemDbUser").val(systemDbSetting.user);
+		$("#systemDbPwd").val(systemDbSetting.pwd);
+		
+		$("#systemDbType").attr('disabled',false);;
+		$("#systemDbUrl").attr('disabled',false);;
+		$("#systemDbUser").attr('disabled',false);
+		$("#systemDbPwd").attr('disabled',false);
+	}
+	
+	function cancelSystemDBSet(){
+		$("#btnEnableSystemDBSet").show();
+		$("#btnCancelSystemDBSet").hide();
+		$("#btnSaveSystemDBSet").hide();
+		//revert the value
+		$("#systemDbType").attr('disabled',true);;
+		$("#systemDbUrl").attr('disabled',true);;
+		$("#systemDbUser").attr('disabled',true);
+		$("#systemDbPwd").attr('disabled',true);
+		
+		$("#systemDbType").val(systemDbSetting.type);
+		$("#systemDbUrl").val(systemDbSetting.url);
+		$("#systemDbUser").val(systemDbSetting.user);
+		$("#systemDbPwd").val(systemDbSetting.pwd);
+	}
+	
+	function saveSystemDBSet(){
+		$("#btnEnableSystemDBSet").show();
+		$("#btnCancelSystemDBSet").hide();
+		$("#btnSaveSystemDBSet").hide();
+
+		//save the value
+		$("#systemDbType").attr('disabled',true);;
+		$("#systemDbUrl").attr('disabled',true);;
+		$("#systemDbUser").attr('disabled',true);
+		$("#systemDbPwd").attr('disabled',true);
+		
+		var type = $("#systemDbType").val();
+		var url = $("#systemDbUrl").val();
+		var user = $("#systemDbUser").val();
+		var pwd = $("#systemDbPwd").val();
+		updateSystemDBConfig(type, url, user, pwd);
+	}
+
+	function showSystemDbConfig(){
+		$.ajax({
+	        url : "/DocSystem/Manage/getSystemDbConfig.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {},
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {
+					var config = ret.data; 	
+					systemDbSetting.type = config.type;
+					systemDbSetting.url = config.url;
+					systemDbSetting.user = config.user;
+					systemDbSetting.pwd = config.pwd;
+	            	$Func.render($("#container"),"systemDbConfig",{"value":systemDbSetting});
+	            }
+	            else 
+	            {
+		        	showErrorMessage("获取数据库信息失败:" + ret.msgInfo);
+	            	console.log(ret.msgInfo);
+	            }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:获取数据库信息失败");
+	        }
+	    });
+	}
+	
+	function updateSystemDBConfig(type, url, user, pwd){
+		$.ajax({
+	        url : "/DocSystem/Manage/setSystemDBConfig.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	        	type: type,
+	        	url: url,
+	        	user: user,
+	        	pwd: pwd,
+	        },
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {	      
+	            	systemDbSetting.type = type;
+	        		systemDbSetting.url = url;
+	        		systemDbSetting.user = user;
+	        		systemDbSetting.pwd = pwd;
+	        		showErrorMessage("更新成功,重启服务后生效！");
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	                showErrorMessage("更新数据库配置信息失败:" + ret.msgInfo);
+	        		//restore the setting
+	        		$("#systemDbType").val(systemDbSetting.type);
+	        		$("#systemDbUrl").val(systemDbSetting.url);
+	        		$("#systemDbUser").val(systemDbSetting.user);
+	        		$("#systemDbPwd").val(systemDbSetting.pwd);
+		        }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:更新数据库配置信息失败");
+        		//restore the setting
+        		$("#systemDbType").val(systemDbSetting.type);
+	    		$("#systemDbUrl").val(systemDbSetting.url);
+	    		$("#systemDbUser").val(systemDbSetting.user);
+	    		$("#systemDbPwd").val(systemDbSetting.pwd);
+	        }
+	    });
+	}
+	
+	function testDatabase(){
+		var dbType = $("#systemDbType").val();
+		var dbUrl = $("#systemDbUrl").val();
+		var dbUser = $("#systemDbUser").val();
+		var dbPwd = $("#systemDbPwd").val();
+		
+		$.ajax({
+	        url : "/DocSystem/Manage/testDatabase.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	        	type: dbType,
+	        	url: dbUrl,
+	        	user: dbUser,
+	        	pwd: dbPwd,
+	        },
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {	        		
+	            	//设置成功
+	            	showErrorMessage("数据库连接成功");
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	                showErrorMessage("数据库连接失败:" + ret.msgInfo);
+		        }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:数据库连接失败");
+	        }
+	    });
+	}
+	
+	function deleteDatabaseConfirm()
+	{
+		console.log("deleteDatabaseConfirm()");
+		
+	    qiao.bs.confirm({
+	    		id: "deleteDatabaseConfirmDialog",
+		        title: "删除数据库",
+		        msg: "是否删除数据库？",
+		        okbtn: "确认",
+		        qubtn: "取消",
+	    	},function () {
+		    	//showErrorMessage("点击了确定");
+				deleteDatabase();
+		    	return true;   //close dialog
+	    	},function()
+	    	{
+	    		//showErrorMessage("点击了取消")
+	    		return true;	//close dialog
+	    	}
+	    );
+	}
+	
+	function deleteDatabase(){
+		var dbType = $("#systemDbType").val();
+		var dbUrl = $("#systemDbUrl").val();
+		var dbUser = $("#systemDbUser").val();
+		var dbPwd = $("#systemDbPwd").val();
+		
+		$.ajax({
+	        url : "/DocSystem/Manage/deleteDatabase.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	        	type: dbType,
+	        	url: dbUrl,
+	        	user: dbUser,
+	        	pwd: dbPwd,
+	        },
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {	        		
+	            	//设置成功
+	            	showErrorMessage("删除数据库成功");
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	                showErrorMessage("删除数据库失败:" + ret.msgInfo);
+		        }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:删除数据库失败");
+	        }
+	    });
+	}
+	
+	function resetDatabaseConfirm()
+	{
+		console.log("resetDatabaseConfirm()");
+	    qiao.bs.confirm({
+	    		id: "resetDatabaseConfirmDialog",
+		        title: "重置数据库",
+		        msg: "是否重置数据库？",
+		        okbtn: "确认",
+		        qubtn: "取消",
+	    	},function () {
+		    	//showErrorMessage("点击了确定");
+				resetDatabase();
+		    	return true;   //close dialog
+	    	},function()
+	    	{
+	    		//showErrorMessage("点击了取消")
+	    		return true;	//close dialog
+	    	}
+	    );
+	}
+	
+	function resetDatabase(){
+		var dbType = $("#systemDbType").val();
+		var dbUrl = $("#systemDbUrl").val();
+		var dbUser = $("#systemDbUser").val();
+		var dbPwd = $("#systemDbPwd").val();
+		
+		$.ajax({
+	        url : "/DocSystem/Manage/resetDatabase.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	        	type: dbType,
+	        	url: dbUrl,
+	        	user: dbUser,
+	        	pwd: dbPwd,
+	        },
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {	        		
+	            	//设置成功
+	            	showErrorMessage("重置数据库成功");
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	                showErrorMessage("重置数据库失败:" + ret.msgInfo);
+		        }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:重置数据库失败");
+	        }
+	    });
+	}
+	
+	function exportDBData(){
+		var dbType = $("#systemDbType").val();
+		var dbUrl = $("#systemDbUrl").val();
+		var dbUser = $("#systemDbUser").val();
+		var dbPwd = $("#systemDbPwd").val();
+		
+		$.ajax({
+	        url : "/DocSystem/Manage/exportDBData.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	        	type: dbType,
+	        	url: dbUrl,
+	        	user: dbUser,
+	        	pwd: dbPwd,
+	        },
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {	        		
+	            	//设置成功
+            	    console.log("exportDBData Ok:",ret);        	   		
+	            	window.location.href = ret.data;
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	                showErrorMessage("数据库导出失败:" + ret.msgInfo);
+		        }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:数据库导出失败");
+	        }
+	    });
+	}
+	
+	function importDBData(){
+		console.log("importDBData()");
+  		//清除文件控件
+		$("#importDBFiles").val("");
+	    return $("#importDBFiles").click();
+	}
+	
+	function importDBDataConfirm(e)
+	{
+		console.log("importDBDataConfirm()");
+		
+		var dbType = $("#systemDbType").val();
+		var dbUrl = $("#systemDbUrl").val();
+		var dbUser = $("#systemDbUser").val();
+		var dbPwd = $("#systemDbPwd").val();
+		
+	    var files = e.target.files;
+	    var firstFile;
+	    if(files.length > 0)
+	   	{
+	    	console.log("files.length:" + files.length);
+	    	for( var i = 0 ; i < files.length ; i++ )
+	    	{  
+	    		firstFile = files[i];
+	    	   	if(typeof firstFile == 'object')
+	    	   	{
+	    	   		var relativePath = firstFile.webkitRelativePath;	//获取第一个文件的相对路径
+	    	   		console.log("firstFile relativePath:"+firstFile.webkitRelativePath);
+	    	   		break;
+	    	   	}
+	    	   	else
+	    	   	{
+	    	   		//This is something else 
+	    	   		//console.log("it is not a file");
+	    	   	}
+	    	}
+	    }
+	    else
+	   	{
+	   		showErrorMessage("请选择文件");
+	      	return false;
+	   	}  
+		
+		var fileName = firstFile.name;
+	    console.log("firstFile:"+fileName);
+	    
+	    qiao.bs.confirm({
+	    		id: "importDBDataConfirmDialog",
+		        title: "导入数据",
+		        msg: "是否导入 " + fileName+ " ？",
+		        okbtn: "确认",
+		        qubtn: "取消",
+	    	},function () {
+		    	//showErrorMessage("点击了确定");
+				//开始上传
+				startImportDBData(firstFile, dbType, dbUrl, dbUser, dbPwd);
+		    	return true;   //close dialog
+	    	},function()
+	    	{
+	    		//showErrorMessage("点击了取消")
+	    		return true;	//close dialog
+	    	}
+	    );
+	}
+	
+	function startImportDBData(file, dbType, dbUrl, dbUser, dbPwd)
+	{
+		//新建文件上传表单
+		var form = new FormData();
+		form.append("type", dbType);
+		form.append("url", dbUrl);
+		form.append("user", dbUser);
+		form.append("pwd", dbPwd);
+		form.append("uploadFile", file);
+
+		//新建http异步请求
+		var xhr = new XMLHttpRequest();
+		
+		//设置异步上传状态变化回调处a理函数
+		xhr.onreadystatechange = function() {				
+			//文件上传状态
+			console.log("xhr onreadystatechange() status:" + xhr.status + " readyState:" + xhr.readyState);
+			if(xhr.status == 200) 
+			{
+				if(xhr.readyState != 4)
+				{
+					//文件上传未结束
+					return;
+				}
+				
+				//上传成功！
+				var ret = JSON.parse(xhr.responseText);
+				if("ok" == ret.status){
+					showErrorMessage("导入成功");
+				 }
+				 else	//上传失败
+				 {
+					//上传失败
+					console.log("上传失败：" + ret.msgInfo);
+					showErrorMessage("导入失败:" + ret.msgInfo);
+					return;
+	             }
+			}else{
+				if(xhr.status < 300) 
+				{
+					//不是真正的异常
+					return;
+				}
+				//上传失败
+				console.log("系统异常: " + file.name + " 上传异常！");
+				showErrorMessage("系统异常: 上传异常");
+				return;
+			}
+		};
+		
+		//上传表单			
+		xhr.open("post", "/DocSystem/Manage/importDBData.do");
+		xhr.send(form);
+	}
+	
+	var systemInfo = {
+			version: "",
+			tomcatPath: "",
+			javaHome: "",
+			openOfficePath:"",
+			officeEditorApi:"",
+			defaultReposStorePath:"",
+	}
+	function enableSystemInfoSet(){
+		$("#btnEnableSystemInfoSet").hide();
+		$("#btnCancelSystemInfoSet").show();
+		$("#btnSaveSystemInfoSet").show();
+		$("#tomcatPath").val(systemInfo.tomcatPath);
+		$("#javaHome").val(systemInfo.javaHome);
+		$("#openOfficePath").val(systemInfo.openOfficePath);
+		$("#officeEditorApi").val(systemInfo.officeEditorApi);
+		$("#defaultReposStorePath").val(systemInfo.defaultReposStorePath);
+		
+		$("#tomcatPath").attr('disabled',false);
+		$("#javaHome").attr('disabled',false);
+		$("#openOfficePath").attr('disabled',false);
+		$("#officeEditorApi").attr('disabled',false);
+		$("#defaultReposStorePath").attr('disabled',false);
+	}
+	
+	function cancelSystemInfoSet(){
+		$("#btnEnableSystemInfoSet").show();
+		$("#btnCancelSystemInfoSet").hide();
+		$("#btnSaveSystemInfoSet").hide();
+		//revert the value
+		$("#tomcatPath").attr('disabled',true);
+		$("#javaHome").attr('disabled',true);
+		$("#openOfficePath").attr('disabled',true);
+		$("#officeEditorApi").attr('disabled',true);
+		$("#defaultReposStorePath").attr('disabled',true);
+
+		$("#tomcatPath").val(systemInfo.tomcatPath);
+		$("#javaHome").val(systemInfo.javaHome);
+		$("#openOfficePath").val(systemInfo.openOfficePath);
+		$("#officeEditorApi").val(systemInfo.officeEditorApi);
+		$("#defaultReposStorePath").val(systemInfo.defaultReposStorePath);
+	}
+	
+	function saveSystemInfoSet(){
+		$("#btnEnableSystemInfoSet").show();
+		$("#btnCancelSystemInfoSet").hide();
+		$("#btnSaveSystemInfoSet").hide();
+		//revert the value
+		$("#tomcatPath").attr('disabled',true);
+		$("#javaHome").attr('disabled',true);
+		$("#openOfficePath").attr('disabled',true);
+		$("#officeEditorApi").attr('disabled',true);
+		$("#defaultReposStorePath").attr('disabled',true);
+
+		var tomcatPath = $("#tomcatPath").val();
+		var javaHome = $("#javaHome").val();
+		var openOfficePath = $("#openOfficePath").val();
+		var officeEditorApi = $("#officeEditorApi").val();
+		var defaultReposStorePath = $("#defaultReposStorePath").val();
+		
+		updateSystemInfo(tomcatPath, javaHome, openOfficePath, officeEditorApi, defaultReposStorePath);
+	}
+	
+	function updateSystemInfo(tomcatPath, javaHome, openOfficePath, officeEditorApi, defaultReposStorePath){
+		$.ajax({
+	        url : "/DocSystem/Manage/setSystemInfo.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	        	tomcatPath: tomcatPath,
+	        	javaHome: javaHome,
+	        	openOfficePath: openOfficePath,
+	        	officeEditorApi: officeEditorApi,
+	        	defaultReposStorePath: defaultReposStorePath,
+	        },
+	        success : function (ret) {
+	        	console.log("setSystemInfo ret:",ret);
+	            if( "ok" == ret.status )
+	            {	        		
+	        		systemInfo.tomcatPath = tomcatPath;
+	        		systemInfo.javaHome = javaHome;
+	        		systemInfo.openOfficePath = openOfficePath;
+	        		systemInfo.officeEditorApi = officeEditorApi;
+	        		systemInfo.defaultReposStorePath = defaultReposStorePath;
+	        		showErrorMessage("更新成功！");
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	                showErrorMessage("更新数据库配置信息失败:" + ret.msgInfo);
+	        		//restore the setting
+	        		$("#tomcatPath").val(systemInfo.tomcatPath);
+	        		$("#javaHome").val(systemInfo.javaHome);
+	        		$("#openOfficePath").val(systemInfo.openOfficePath);
+	        		$("#officeEditorApi").val(systemInfo.officeEditorApi);
+	        		$("#defaultReposStorePath").val(systemInfo.defaultReposStorePath);
+		        }
+	        },
+	        error : function () {
+	        	showErrorMessage("更新数据库配置信息失败:服务器异常");
+        		//restore the setting
+        		$("#tomcatPath").val(systemInfo.tomcatPath);
+        		$("#javaHome").val(systemInfo.javaHome);
+        		$("#openOfficePath").val(systemInfo.openOfficePath);
+        		$("#officeEditorApi").val(systemInfo.officeEditorApi);
+        		$("#defaultReposStorePath").val(systemInfo.defaultReposStorePath);
+	        }
+	    });
+	}
+	
+	function showSystemUpgrade(){
+		$.ajax({
+	        url : "/DocSystem/Manage/getSystemInfo.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {},
+	        success : function (ret) {
+	            console.log("showSystemUpgrade() ret", ret);
+	        	if( "ok" == ret.status )
+	            {
+	            	var config = ret.data; 	
+	            	systemInfo = config;
+	            	$Func.render($("#container"),"systemUpgrade",{"value":systemInfo});
+	            }
+	            else 
+	            {
+		        	showErrorMessage("获取系统信息失败:" + ret.msgInfo);
+	            	console.log(ret.msgInfo);
+	            }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:获取系统信息失败");
+	        }
+	    });
+	}
+	
+	function restartTomcat(){
+		console.log("restartTomcat()");
+	    qiao.bs.confirm({
+	    		id: "restartTomcatConfirmDialog",
+		        title: "重启服务",
+		        msg: "是否重启服务？",
+		        okbtn: "确认",
+		        qubtn: "取消",
+	    	},function () {
+		    	//showErrorMessage("点击了确定");
+				//开始上传
+				var tomcatPath = $("#tomcatPath").val();
+				var javaHome = $("#javaHome").val();
+				doRestartTomcat(tomcatPath, javaHome);
+		    	return true;   //close dialog
+	    	},function()
+	    	{
+	    		//showErrorMessage("点击了取消")
+	    		return true;	//close dialog
+	    	}
+	    );
+	}
+	
+	function doRestartTomcat(tomcatPath, javaHome)
+	{
+		console.log("doRestartTomcat tomcatPath:" + tomcatPath + " javaHome:" + javaHome);
+		$.ajax({
+	        url : "/DocSystem/Manage/restartServer.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	        	tomcatPath: tomcatPath,
+	        	javaHome: javaHome,
+	        },
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {
+	            	showErrorMessage("重启成功!");
+	        	}
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	                showErrorMessage("重启失败:" + ret.msgInfo);
+		        }
+	        },
+	        error : function () {
+	        	showErrorMessage("重启失败:服务器异常");
+	        }
+	    });
+	}
+	
+	function generateRootKey()
+	{
+        $.ajax({
+            url : "/DocSystem/Sales/generateRootKey.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                   	showErrorMessage("生成密钥成功");
+                }else {
+                	showErrorMessage("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage("生成密钥失败:服务器异常");
+            }
+        });
+	}
+	
+	function exportRootKey(){
+		$.ajax({
+	        url : "/DocSystem/Sales/exportRootKey.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	        },
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {	        		
+	         	    console.log("exportRootKey Ok:",ret);	   		
+	            	window.location.href = ret.data;
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	                showErrorMessage("密钥导出失败:" + ret.msgInfo);
+		        }
+	        },
+	        error : function () {
+	        	showErrorMessage("密钥导出失败:服务器异常");
+	        }
+	    });
+	}
+	
+	function deleteRootKey()
+	{
+		deleteRootKeyConfirm();
+	}
+	
+	function deleteRootKeyConfirm()
+	{
+		console.log("deleteRootKeyConfirm()");
+	    qiao.bs.confirm({
+	    		id: "deleteRootKeyConfirmDialog",
+		        title: "删除密钥",
+		        msg: "是否删除系统密钥？",
+		        okbtn: "是",
+		        qubtn: "否",
+	    	},function () {
+	    		startDeleteRootKey();
+		    	return true;   //close dialog
+	    	},function()
+	    	{
+	    		return true;	//close dialog
+	    	}
+	    );
+	}
+	
+	function startDeleteRootKey()
+	{
+        $.ajax({
+            url : "/DocSystem/Sales/deleteRootKey.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                   	showErrorMessage("删除密钥成功");
+                }else {
+                	showErrorMessage("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage("删除密钥失败:服务器异常");
+            }
+        });
+	}
+	
+	function generateLicenseKeyPair()
+	{
+        $.ajax({
+            url : "/DocSystem/Sales/generateLicenseKeyPair.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                   	showErrorMessage("生成密钥成功");
+                }else {
+                	showErrorMessage("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage("生成密钥失败:服务器异常");
+            }
+        });
+	}
+	
+	function exportLicenseKeyPair(){
+		$.ajax({
+	        url : "/DocSystem/Sales/exportLicenseKeyPair.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	        },
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {	        		
+	         	    console.log("exportLicenseKeyPair Ok:",ret);	   		
+	            	window.location.href = ret.data;
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	                showErrorMessage("密钥导出失败:" + ret.msgInfo);
+		        }
+	        },
+	        error : function () {
+	        	showErrorMessage("密钥导出失败:服务器异常");
+	        }
+	    });
+	}
+	
+	function deleteLicenseKeyPair()
+	{
+		deleteLicenseKeyPairConfirm();
+	}
+	
+	function deleteLicenseKeyPairConfirm()
+	{
+		console.log("deleteLicenseKeyPairConfirm()");
+	    qiao.bs.confirm({
+	    		id: "deleteLicenseKeyPairConfirm",
+		        title: "删除密钥",
+		        msg: "是否删除证书密钥？",
+		        okbtn: "是",
+		        qubtn: "否",
+	    	},function () {
+				startDeleteLicenseKeyPair();
+		    	return true;   //close dialog
+	    	},function()
+	    	{
+	    		return true;	//close dialog
+	    	}
+	    );
+	}
+	
+	function startDeleteLicenseKeyPair()
+	{
+        $.ajax({
+            url : "/DocSystem/Sales/deleteLicenseKeyPair.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                   	showErrorMessage("删除密钥成功");
+                }else {
+                	showErrorMessage("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage("删除密钥失败:服务器异常");
+            }
+        });
+	}
+	
+	function deleteSystemLicense(){
+		console.log("deleteSystemLicense()");
+		var systemLicense = systemLicenses.systemLicense;
+		if(systemLicense.hasLicense == false)
+		{
+			return;
+		}
+		
+		deleteSystemLicenseConfirm();
+	}
+	
+	function deleteSystemLicenseConfirm()
+	{
+		console.log("deleteSystemLicenseConfirm()");
+	    qiao.bs.confirm({
+	    		id: "deleteSystemLicenseConfirmDialog",
+		        title: "删除证书",
+		        msg: "是否删除证书？",
+		        okbtn: "是",
+		        qubtn: "否",
+	    	},function () {
+				startDeleteSystemLicense();
+		    	return true;   //close dialog
+	    	},function()
+	    	{
+	    		return true;	//close dialog
+	    	}
+	    );
+	}
+	
+	function startDeleteSystemLicense()
+	{
+        $.ajax({
+            url : "/DocSystem/Bussiness/deleteSystemLicense.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+					updateSystemLicenseInfo(ret.data);
+					showSystemLicenses(systemLicenses);
+                   	showErrorMessage("删除成功");
+                }else {
+                	showErrorMessage("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage("服务器异常:删除失败");
+            }
+        });
+	}
+
+	
+	function installSystemLicense(){
+		console.log("installSystemLicense()");
+  		//清除文件控件
+		$("#installSystemLicense").val("");
+	    return $("#installSystemLicense").click();
+	}
+	
+	
+	function installSystemLicenseConfirm(e)
+	{
+		console.log("installSystemLicenseConfirm()");
+	    var files = e.target.files;
+	    var firstFile;
+	    if(files.length > 0)
+	   	{
+	    	console.log("files.length:" + files.length);
+	    	for( var i = 0 ; i < files.length ; i++ )
+	    	{  
+	    		firstFile = files[i];
+	    	   	if(typeof firstFile == 'object')
+	    	   	{
+	    	   		//var relativePath = firstFile.webkitRelativePath;	//获取第一个文件的相对路径
+	    	   		//console.log("firstFile relativePath:"+firstFile.webkitRelativePath);
+	    	   		break;
+	    	   	}
+	    	   	else
+	    	   	{
+	    	   		//This is something else 
+	    	   		//console.log("it is not a file");
+	    	   	}
+	    	}
+	    }
+	    else
+	   	{
+	   		showErrorMessage("请选择文件");
+	      	return false;
+	   	}  
+		
+		//var fileName = firstFile.name;
+	    //console.log("firstFile:"+fileName);
+
+	    qiao.bs.confirm({
+	    		id: "installSystemLicenseConfirmDialog",
+		        title: "安装证书",
+		        msg: "是否安装证书？",
+		        okbtn: "是",
+		        qubtn: "否",
+	    	},function () {
+		    	//showErrorMessage("点击了确定");
+				//开始上传
+				startInstallSystemLicense(firstFile);
+		    	return true;   //close dialog
+	    	},function()
+	    	{
+	    		//showErrorMessage("点击了取消")
+	    		return true;	//close dialog
+	    	}
+	    );
+	}
+	
+	function startInstallSystemLicense(file)
+	{
+		//新建文件上传表单
+		var form = new FormData();
+		form.append("uploadFile", file);
+
+		//新建http异步请求
+		var xhr = new XMLHttpRequest();
+		
+		//设置异步上传状态变化回调处a理函数
+		xhr.onreadystatechange = function() {				
+			//文件上传状态
+			console.log("xhr onreadystatechange() status:" + xhr.status + " readyState:" + xhr.readyState);
+			if(xhr.status == 200) 
+			{
+				if(xhr.readyState != 4)
+				{
+					//文件上传未结束
+					return;
+				}
+				
+				//上传成功！
+				var ret = JSON.parse(xhr.responseText);
+				if("ok" == ret.status){
+					showErrorMessage("安装成功");
+					updateSystemLicenseInfo(ret.data);
+					showSystemLicenses(systemLicenses);
+				 }
+				 else	//上传失败
+				 {
+					//上传失败
+					console.log("安装失败：" + ret.msgInfo);
+					showErrorMessage("安装失败:" + ret.msgInfo);
+					return;
+	             }
+			}else{
+				if(xhr.status < 300) 
+				{
+					//不是真正的异常
+					return;
+				}
+				//上传失败
+				console.log("安装失败: " + file.name + " 上传异常！");
+				showErrorMessage("安装失败: 上传异常");
+				return;
+			}
+		};
+		
+		//上传表单			
+		xhr.open("post", "/DocSystem/Bussiness/installSystemLicense.do");
+		xhr.send(form);
+	}
+	
+	function updateSystemLicenseInfo(licenseInfo)
+	{
+		var systemLicenseInfo = systemLicenses.systemLicense;
+		systemLicenseInfo.hasLicense = licenseInfo.hasLicense;
+		systemLicenseInfo.id = licenseInfo.id;
+		systemLicenseInfo.customer = licenseInfo.customer;
+		systemLicenseInfo.usersCount = licenseInfo.usersCount;
+		systemLicenseInfo.expireTime = licenseInfo.expireTime;
+		systemLicenseInfo.createTime = licenseInfo.createTime;
+	}
+	
+	function deleteOfficeLicense(){
+		console.log("deleteOfficeLicense()");
+		var officeLicense = systemLicenses.officeLicense;
+		if(officeLicense.hasLicense == false)
+		{
+			return;
+		}
+		
+		deleteOfficeLicenseConfirm();
+	}
+	
+	function deleteOfficeLicenseConfirm()
+	{
+		console.log("deleteOfficeLicenseConfirm()");
+	    qiao.bs.confirm({
+	    		id: "deleteOfficeLicenseConfirmDialog",
+		        title: "删除证书",
+		        msg: "是否删除证书？",
+		        okbtn: "是",
+		        qubtn: "否",
+	    	},function () {
+				startDeleteOfficeLicense();
+		    	return true;   //close dialog
+	    	},function()
+	    	{
+	    		return true;	//close dialog
+	    	}
+	    );
+	}
+	
+	function startDeleteOfficeLicense()
+	{
+        $.ajax({
+            url : "/DocSystem/Bussiness/deleteOfficeLicense.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+					updateOfficeLicenseInfo(ret.data);
+					showSystemLicenses(systemLicenses);
+                   	showErrorMessage("删除成功");
+                }else {
+                	showErrorMessage("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage("服务器异常:删除失败");
+            }
+        });
+	}
+
+	
+	function installOfficeLicense(){
+		console.log("installOfficeLicense()");
+  		//清除文件控件
+		$("#installOfficeLicense").val("");
+	    return $("#installOfficeLicense").click();
+	}
+	
+	
+	function installOfficeLicenseConfirm(e)
+	{
+		console.log("installOfficeLicenseConfirm()");
+	    var files = e.target.files;
+	    var firstFile;
+	    if(files.length > 0)
+	   	{
+	    	console.log("files.length:" + files.length);
+	    	for( var i = 0 ; i < files.length ; i++ )
+	    	{  
+	    		firstFile = files[i];
+	    	   	if(typeof firstFile == 'object')
+	    	   	{
+	    	   		//var relativePath = firstFile.webkitRelativePath;	//获取第一个文件的相对路径
+	    	   		//console.log("firstFile relativePath:"+firstFile.webkitRelativePath);
+	    	   		break;
+	    	   	}
+	    	   	else
+	    	   	{
+	    	   		//This is something else 
+	    	   		//console.log("it is not a file");
+	    	   	}
+	    	}
+	    }
+	    else
+	   	{
+	   		showErrorMessage("请选择文件");
+	      	return false;
+	   	}  
+		
+		//var fileName = firstFile.name;
+	    //console.log("firstFile:"+fileName);
+
+	    qiao.bs.confirm({
+	    		id: "installOfficeLicenseConfirmDialog",
+		        title: "安装证书",
+		        msg: "是否安装证书？",
+		        okbtn: "是",
+		        qubtn: "否",
+	    	},function () {
+		    	//showErrorMessage("点击了确定");
+				//开始上传
+				startImportOfficeLicense(firstFile);
+		    	return true;   //close dialog
+	    	},function()
+	    	{
+	    		//showErrorMessage("点击了取消")
+	    		return true;	//close dialog
+	    	}
+	    );
+	}
+	
+	function startImportOfficeLicense(file)
+	{
+		//新建文件上传表单
+		var form = new FormData();
+		form.append("uploadFile", file);
+
+		//新建http异步请求
+		var xhr = new XMLHttpRequest();
+		
+		//设置异步上传状态变化回调处a理函数
+		xhr.onreadystatechange = function() {				
+			//文件上传状态
+			console.log("xhr onreadystatechange() status:" + xhr.status + " readyState:" + xhr.readyState);
+			if(xhr.status == 200) 
+			{
+				if(xhr.readyState != 4)
+				{
+					//文件上传未结束
+					return;
+				}
+				
+				//上传成功！
+				var ret = JSON.parse(xhr.responseText);
+				if("ok" == ret.status){
+					showErrorMessage("安装成功");
+					updateOfficeLicenseInfo(ret.data);
+					showSystemLicenses(systemLicenses);
+				 }
+				 else	//上传失败
+				 {
+					//上传失败
+					console.log("安装失败：" + ret.msgInfo);
+					showErrorMessage("安装失败:" + ret.msgInfo);
+					return;
+	             }
+			}else{
+				if(xhr.status < 300) 
+				{
+					//不是真正的异常
+					return;
+				}
+				//上传失败
+				console.log("安装失败: " + file.name + " 上传异常！");
+				showErrorMessage("安装失败: 上传异常");
+				return;
+			}
+		};
+		
+		//上传表单			
+		xhr.open("post", "/DocSystem/Bussiness/installOfficeLicense.do");
+		xhr.send(form);
+	}
+	
+	function updateOfficeLicenseInfo(licenseInfo)
+	{
+		var officeLicenseInfo = systemLicenses.officeLicense;
+		officeLicenseInfo.hasLicense = licenseInfo.hasLicense;
+		officeLicenseInfo.usersCount = licenseInfo.usersCount;
+		officeLicenseInfo.connections = licenseInfo.connections;
+		officeLicenseInfo.mode = licenseInfo.mode;
+		officeLicenseInfo.type = licenseInfo.type;		
+	}
+	
+	function upgradeSystem(){
+		console.log("upgradeSystem()");
+  		//清除文件控件
+		$("#upgradeFiles").val("");
+	    return $("#upgradeFiles").click();
+	}
+
+	function upgradeSystemConfirm(e)
+	{
+		console.log("upgradeSystemConfirm()");
+	    var files = e.target.files;
+	    var firstFile;
+	    if(files.length > 0)
+	   	{
+	    	console.log("files.length:" + files.length);
+	    	for( var i = 0 ; i < files.length ; i++ )
+	    	{  
+	    		firstFile = files[i];
+	    	   	if(typeof firstFile == 'object')
+	    	   	{
+	    	   		var relativePath = firstFile.webkitRelativePath;	//获取第一个文件的相对路径
+	    	   		console.log("firstFile relativePath:"+firstFile.webkitRelativePath);
+	    	   		break;
+	    	   	}
+	    	   	else
+	    	   	{
+	    	   		//This is something else 
+	    	   		//console.log("it is not a file");
+	    	   	}
+	    	}
+	    }
+	    else
+	   	{
+	   		showErrorMessage("请选择文件");
+	      	return false;
+	   	}  
+		
+		var fileName = firstFile.name;
+	    console.log("firstFile:"+fileName);
+	    if(fileName != "DocSystem.war")
+	    {
+	    	showErrorMessage("非法升级文件");
+	    	return false;
+	    }
+	    
+	    qiao.bs.confirm({
+	    		id: "upgradeSystemConfirmDialog",
+		        title: "系统升级",
+		        msg: "是否升级系统？",
+		        okbtn: "确认",
+		        qubtn: "取消",
+	    	},function () {
+		    	//showErrorMessage("点击了确定");
+				//开始上传
+				startUpgradeSystem(firstFile);
+		    	return true;   //close dialog
+	    	},function()
+	    	{
+	    		//showErrorMessage("点击了取消")
+	    		return true;	//close dialog
+	    	}
+	    );
+	}
+	
+	function startUpgradeSystem(file)
+	{
+		//新建文件上传表单
+		var form = new FormData();
+		form.append("uploadFile", file);
+
+		//新建http异步请求
+		var xhr = new XMLHttpRequest();
+		
+		//设置异步上传状态变化回调处a理函数
+		xhr.onreadystatechange = function() {				
+			//文件上传状态
+			console.log("xhr onreadystatechange() status:" + xhr.status + " readyState:" + xhr.readyState);
+			if(xhr.status == 200) 
+			{
+				if(xhr.readyState != 4)
+				{
+					//文件上传未结束
+					return;
+				}
+				
+				//上传成功！
+				var ret = JSON.parse(xhr.responseText);
+				if("ok" == ret.status){
+					showErrorMessage("升级成功");
+				 }
+				 else	//上传失败
+				 {
+					//上传失败
+					console.log("升级失败：" + ret.msgInfo);
+					showErrorMessage("升级失败:" + ret.msgInfo);
+					return;
+	             }
+			}else{
+				if(xhr.status < 300) 
+				{
+					//不是真正的异常
+					return;
+				}
+				//上传失败
+				console.log("升级失败: " + file.name + " 上传异常！");
+				showErrorMessage("升级失败: 上传异常");
+				return;
+			}
+		};
+		
+		//上传表单			
+		xhr.open("post", "/DocSystem/Manage/upgradeSystem.do");
+		xhr.send(form);
+	}
+	
+	//证书管理
+	function showLicenseList(pageIndex){
+		var searchWord = $("#search-licenseInfo").val();
+		var pageSize = gPageSize;
+		
+		$.ajax({
+	        url : "/DocSystem/Sales/getLicenseList.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	            // 新增用户名搜索条件
+	            searchWord: searchWord,
+	        	pageIndex: pageIndex ? pageIndex : 0,
+	        	pageSize: pageSize
+	        },
+	        success : function (ret) {
+	        	console.log("getLicenseList ret",ret);
+	            if( "ok" == ret.status )
+	            {
+	            	LicenseListDisplay(ret.data);
+
+                    // 渲染分页
+                    var total = ret.dataEx;
+                    $("#licenseList-pagination").pagination({
+                        /*当前页码*/
+                        currentPage: pageIndex + 1,
+                        /*总共有多少页*/
+                        totalPage: Math.ceil(total/pageSize),
+                        /*是否显示首页、尾页 true：显示 false：不显示*/
+                        isShow:true,
+                        /*分页条显示可见页码数量*/
+                        count:5,
+                        /*第一页显示文字*/
+                        homePageText:'首页',
+                        /*最后一页显示文字*/
+                        endPageText:'尾页',
+                        /*上一页显示文字*/
+                        prevPageText:'上一页',
+                        /* 下一页显示文字*/
+                        nextPageText:'下一页',
+                        /*点击翻页绑定事件*/
+                        callback: function(newPageIndex) {
+                            // 分页插件的页码从1开始，减1处理
+                            showLicenseList(newPageIndex - 1);
+                        }
+                    });
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	            }
+	        },
+	        error : function () {
+	        	showErrorMessage("获取证书列表失败:服务器异常");
+	        }
+	    });
+	}
+	
+	function LicenseListDisplay(list)
+    {
+       	for(var i=0; i<list.length; i++)
+ 	    {
+       		var node = list[i];
+			node.createDate = formatDate(node.createTime);
+			node.expireDate = "长期";
+			if(node.expireTime)
+			{
+				node.expireDate = formatDate(node.expireTime);				
+			}
+ 	    }		
+		$Func.render($("#container"),"license",{"list":list});
+    }
+	
+	function downloadLicenseConfirm(id)
+	{	
+		console.log("downloadLicenseConfirm id:", id);
+		qiao.bs.confirm({
+			id: "downloadLicenseConfirm",
+	        title: "下载证书",
+	        msg: "是否下载证书？",
+	        okbtn: "下载",
+	        qubtn: "取消",
+	    },function () {
+	    	downloadLicense(id);
+	    	return true;   
+	    });
+	}
+	
+	function downloadLicense(id){
+        $.ajax({
+            url : "/DocSystem/Sales/downloadLicense.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            	licenseId : id,
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+            	    console.log("downloadLicense Ok:",ret);        	   		
+	            	window.location.href = ret.data;
+                }else {
+                	showErrorMessage("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage("服务器异常:删除失败");
+            }
+        });
+	}
+	
+	function delLicenseConfirm(id)
+	{	
+		console.log("delLicenseConfirm");
+		qiao.bs.confirm({
+			id: "delLicenseConfirm",
+	        title: "删除证书",
+	        msg: "是否删除证书？",
+	        okbtn: "删除",
+	        qubtn: "取消",
+	    },function () {
+	    	delLicense(id);
+	    	return true;   
+	    });
+	}
+	
+	function delLicense(id){
+        $.ajax({
+            url : "/DocSystem/Sales/deleteLicense.do",
+            type : "post",
+            dataType : "json",
+            data : {
+            	licenseId : id,
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                   	showLicenseList();	//刷新UserList
+                    showErrorMessage("删除成功");
+                }else {
+                	showErrorMessage("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage("服务器异常:删除失败");
+            }
+        });
+	}
+	
+	
+	//成员管理
+	function showUserList(pageIndex){
+		var userName = $("#search-userName").val();
+		var pageSize = gPageSize;
+		
+		$.ajax({
+	        url : "/DocSystem/Manage/getUserList.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	            // 新增用户名搜索条件
+	            userName: userName,
+	        	pageIndex: pageIndex ? pageIndex : 0,
+	        	pageSize: pageSize
+	        },
+	        success : function (ret) {
+	        	console.log("getUserList ret",ret);
+	            if( "ok" == ret.status )
+	            {
+	            	UserListDisplay(ret.data);
+
+                    // 渲染分页
+                    var total = ret.dataEx;
+                    $("#userList-pagination").pagination({
+                        /*当前页码*/
+                        currentPage: pageIndex + 1,
+                        /*总共有多少页*/
+                        totalPage: Math.ceil(total/pageSize),
+                        /*是否显示首页、尾页 true：显示 false：不显示*/
+                        isShow:true,
+                        /*分页条显示可见页码数量*/
+                        count:5,
+                        /*第一页显示文字*/
+                        homePageText:'首页',
+                        /*最后一页显示文字*/
+                        endPageText:'尾页',
+                        /*上一页显示文字*/
+                        prevPageText:'上一页',
+                        /* 下一页显示文字*/
+                        nextPageText:'下一页',
+                        /*点击翻页绑定事件*/
+                        callback: function(newPageIndex) {
+                            // 分页插件的页码从1开始，减1处理
+                            showUserList(newPageIndex - 1);
+                        }
+                    });
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	            }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:获取用户列表失败");
+	        }
+	    });
+	}
+	
+	function UserListDisplay(list)
+    {
+		$Func.render($("#container"),"user",{"list":list});
+    }
+	
+	function delUserConfirm(id)
+	{	
+		console.log("delUserConfirm");
+		qiao.bs.confirm({
+			id: "delUserConfirmDialog",
+	        title: "删除用户",
+	        msg: "是否删除用户？",
+	        okbtn: "删除",
+	        qubtn: "取消",
+	    },function () {
+	    	delUser(id);
+	    	return true;   
+	    });
+	}
+	
+	function delUser(id){
+        $.ajax({
+            url : "/DocSystem/Manage/delUser.do",
+            type : "post",
+            dataType : "json",
+            data : {
+                 userId : id,
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                   	showUserList();	//刷新UserList
+                    showErrorMessage("删除成功");
+                }else {
+                	showErrorMessage("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage("服务器异常:删除失败");
+            }
+        });
+	}
+	
+	//showAddUserPanel
+	function showAddUserPanel(){
+		console.log("showAddUserPanel");
+		qiao.bs.dialog({
+			id: 'addUser',
+			url: 'addUser.html',
+			title: '新增用户',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false
+		});
+	}
+	
+	//showAddOfficeLicensePanel
+	function showAddOfficeLicensePanel(){
+		console.log("showAddOfficeLicensePanel");
+		qiao.bs.dialog({
+			id: 'addOfficeLicense',
+			url: 'addOfficeLicense.html',
+			title: '新增Office证书',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false
+		});
+	}
+	
+	
+	//showAddLicensePanel
+	function showAddLicensePanel(){
+		console.log("showAddLicensePanel");
+		qiao.bs.dialog({
+			id: 'addLicense',
+			url: 'addLicense.html',
+			title: '新增证书',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false
+		});
+	}
+	
+	//showSystemLicensePanel
+	function showSystemLicenseInfoPanel(){
+		console.log("showSystemLicenseInfoPanel");
+		qiao.bs.dialog({
+			id: 'systemLicenseInfo',
+			url: 'systemLicenseInfo.html',
+			title: '系统证书',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false,
+			callback: function(){
+			    console.log("page loaded callback");
+			    var systemLicenseInfo = systemLicenses.systemLicense;
+			    SystemLicenseInfoPageCallback(systemLicenseInfo);
+			}
+		});
+	}
+
+	//showOfficeLicenseInfoPanel
+	function showOfficeLicenseInfoPanel(){
+		console.log("showOfficeLicenseInfoPanel");
+		//后台管理页面的对话框都需要指定id
+		qiao.bs.dialog({
+			id: 'officeLicenseInfo',
+			url: 'officeLicenseInfo.html',
+			title: 'Office证书',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false,
+			callback: function(){
+			    console.log("page loaded callback");
+			    var officeLicenseInfo = systemLicenses.officeLicense;
+			    OfficeLicenseInfoPageCallback(officeLicenseInfo);
+			}
+		});
+	}
+
+	function showEditUserPanel(e, id)
+	{
+		console.log("showEditUserPanel");
+		
+		console.log("showEditUserPanel() " + id);
+		//console.log("this", this); //this is not correct, so i get the current item from event
+		//alert($(this).attr("data-id"));
+		//console.log("event", e);
+		var Obj = e.target;
+		var trObj =  $(e.target).parent().parent();
+		var userId = trObj.children("td:eq(0)").text();
+		var name = trObj.children("td:eq(1)").text();
+		var type = trObj.children("td:eq(2)").text();
+		var nickName = trObj.children("td:eq(3)").text();
+		var realName = trObj.children("td:eq(4)").text();
+		var tel = trObj.children("td:eq(5)").text();
+		var email = trObj.children("td:eq(6)").text();
+		
+		
+		qiao.bs.dialog({
+			url: 'editUser.html',
+			title: '编辑用户',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false,
+			callback: function(){
+			    console.log("page loaded callback");
+			    //Page Value Init
+			    $("#userId").val(userId);
+				$("#name").val(name);
+			    $("#realName").val(realName);
+			    //$("#pwd").val(pwd);
+			    $("#type").val(type);
+			}
+		}, null);	
+	}
+	
+	function randomPassword(size)
+	{
+	  var seed = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','P','Q','R','S','T','U','V','W','X','Y','Z',
+	  'a','b','c','d','e','f','g','h','i','j','k','m','n','p','Q','r','s','t','u','v','w','x','y','z',
+	  '2','3','4','5','6','7','8','9'
+	  );//数组
+	  seedlength = seed.length;//数组长度
+	  var createPassword = '';
+	  for (i=0;i<size;i++) {
+	    j = Math.floor(Math.random()*seedlength);
+	    createPassword += seed[j];
+	  }
+	  return createPassword;
+	}
+	
+	function showResetPwdPanel(e, id)
+	{
+		console.log("showResetPwdPanel");
+		
+		console.log("showResetPwdPanel() " + id);
+		var Obj = e.target;
+		var trObj =  $(e.target).parent().parent();
+		var userId = trObj.children("td:eq(0)").text();
+		var name = trObj.children("td:eq(1)").text();
+		var pwd = randomPassword(8);
+		
+		qiao.bs.dialog({
+			url: 'resetPwd.html',
+			title: '重置密码',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false,
+			callback: function(){
+			    console.log("page loaded callback");
+			    //Page Value Init
+			    $("#userId").val(userId);
+				$("#name").val(name);
+			    $("#pwd").val(pwd);
+			}
+		}, null);	
+	}
+	
+	//证书安装
+	var systemLicenses = {};
+	function showSystemLicenses(){
+		$.ajax({
+	        url : "/DocSystem/Manage/getSystemLicenses.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {},
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {
+	            	systemLicenses = ret.data;
+	            	SystemLicensesDisplay(systemLicenses);
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	            }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:获取证书列表失败");
+	        }
+	    });
+	}
+	
+	function SystemLicensesDisplay(systemLicenses)
+	{
+		console.log("SystemLicensesDisplay", systemLicenses);
+		var systemLicense = systemLicenses.systemLicense;
+		if(systemLicense.hasLicense == false)
+		{
+			systemLicense.status = "未安装";
+		}
+		else
+		{
+			systemLicense.status = "已安装";			
+		}
+		
+		var officeLicense = systemLicenses.officeLicense;
+		if(officeLicense.hasLicense == false)
+		{
+			officeLicense.status = "未安装";
+		}
+		else{
+			officeLicense.status = "已安装";			
+		}
+		
+		$Func.render($("#container"),"systemLicenses",{"value":systemLicenses});
+	}
+	
+	//仓库管理
+	function showReposList(){
+		$.ajax({
+	        url : "/DocSystem/Manage/getReposList.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {},
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {
+	            	ReposListDisplay(ret.data);
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	            }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:获取仓库列表失败");
+	        }
+	    });
+	}
+
+	function ReposListDisplay(list)
+	{
+		console.log("ReposListDisplay", list);
+		$Func.render($("#container"),"repos",{"list":list});
+	}
+	
+	//showAddReposPanel
+	function showAddReposPanel(){
+		console.log("showAddReposPanel");
+		qiao.bs.dialog({
+			url: 'addRepos.html',
+			title: '新增仓库',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false
+		}, null);
+	}
+	
+	function delReposConfirm(id)
+	{	
+		console.log("delReposConfirm");
+		qiao.bs.confirm({
+			id: "delReposConfirmDialog",
+	        title: "删除仓库",
+	        msg: "是否删除仓库，仓库数据将无法恢复？",
+	        okbtn: "删除",
+	        qubtn: "取消",
+	    },function () {
+	    	delRepos(id);
+	    	return true;   
+	    });
+	}
+	
+	function delRepos(reposId){
+        $.ajax({
+            url : "/DocSystem/Repos/deleteRepos.do",
+            type : "post",
+            dataType : "json",
+            data : {
+                 vid : reposId,
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                   	showReposList();	//刷新ReposList
+                    showErrorMessage("删除成功");
+                }else {
+                	showErrorMessage("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage("服务器异常:删除失败");
+            }
+        });
+	}
+	
+	function showEditReposPanel(e, i)
+	{
+		console.log("showEditReposPanel() " + i);
+		var Obj = e.target;
+		var trObj =  $(e.target).parent().parent();
+		var reposId = trObj.children("td:eq(0)").text();
+		var name = trObj.children("td:eq(1)").text();
+		var info = trObj.children("td:eq(2)").text();		
+		var path = trObj.children("td:eq(3)").text();		
+		var type = trObj.children("td:eq(4)").text();		
+		
+		qiao.bs.dialog({
+			url: 'editRepos.html',
+			title: '编辑仓库',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false,
+			callback: function(){
+			    console.log("page loaded callback");
+			    //Page Value Init
+			    $("#reposId").val(reposId);
+				$("#name").val(name);
+			    $("#info").val(info);
+				$("#path").val(path);
+			    $("#type").val(type);
+			}
+		}, null);	
+	}
+	
+	//显示组成员管理页面
+	function showManageReposMemberPanel(e,reposId){
+		console.log("showManageReposMemberPanel reposId:" + reposId);
+		
+		//get current click the Repos Info
+		var Obj = e.target;
+		console.log(Obj);
+		var trObj =  $(e.target).parent().parent();
+		//var reposId = trObj.children("td:eq(0)").text();
+		var ReposName = trObj.children("td:eq(1)").text();
+		
+		qiao.bs.dialog({
+			title: '成员管理 -'+ ReposName,
+			url: 'manageReposMember.html',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: true,
+			callback: function(){
+				manageReposMemberPageInit(reposId);
+			},
+		});
+	}
+	
+	function showReposManagerPage(e, reposId){
+		//open reposManager in new page
+		window.open("/DocSystem/web/reposManager.html?vid=" + reposId);
+	}
+	
+	//用户组管理
+	function showGroupList(){
+		$.ajax({
+	        url : "/DocSystem/Manage/getGroupList.do",
+	        type : "post",
+	        dataType : "json",
+	        data : {},
+	        success : function (ret) {
+	            if( "ok" == ret.status )
+	            {
+	            	GroupListDisplay(ret.data);
+	            }
+	            else 
+	            {
+	                console.log(ret.msgInfo);
+	            }
+	        },
+	        error : function () {
+	        	showErrorMessage("服务器异常:获取用户组列表失败");
+	        }
+	    });
+	}
+
+	function GroupListDisplay(list)
+	{
+		console.log("GroupListDisplay", list);
+		$Func.render($("#container"),"group",{"list":list});
+	}
+		
+	
+	//showAddGroupPanel
+	function showAddGroupPanel(){
+		console.log("showAddGroupPanel");
+		qiao.bs.dialog({
+			id: 'addGroup',
+			url: 'addGroup.html',
+			title: '新增用户组',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false
+		}, null);
+	}
+	
+	function delGroupConfirm(id)
+	{	
+		console.log("delGroupConfirm");
+		qiao.bs.confirm({
+			id: "delGroupConfirmDialog",
+	        title: "删除用户组",
+	        msg: "是否删除用户组？",
+	        okbtn: "删除",
+	        qubtn: "取消",
+	    },function () {
+	    	delGroup(id);
+	    	return true;   
+	    });
+	}
+	
+	function delGroup(id){
+        $.ajax({
+            url : "/DocSystem/Manage/delGroup.do",
+            type : "post",
+            dataType : "json",
+            data : {
+                 id : id,
+            },
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                   	showGroupList();	//刷新GroupList
+                    showErrorMessage("删除成功");
+                }else {
+                	showErrorMessage("错误：" + ret.msgInfo);
+                }
+            },
+            error : function () {
+            	showErrorMessage("服务器异常:删除失败");
+            }
+        });
+	}
+	
+	function showEditGroupPanel(e, id)
+	{
+		console.log("showEditGroupPanel() " + id);
+		var Obj = e.target;
+		var trObj =  $(e.target).parent().parent();
+		var groupId = trObj.children("td:eq(0)").text();
+		var name = trObj.children("td:eq(1)").text();
+		var info = trObj.children("td:eq(2)").text();		
+		
+		qiao.bs.dialog({
+			url: 'editGroup.html',
+			title: '编辑用户组',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: false,
+			callback: function(){
+			    console.log("page loaded callback");
+			    //Page Value Init
+			    $("#groupId").val(groupId);
+				$("#name").val(name);
+			    $("#info").val(info);
+			}
+		}, null);	
+	}
+	
+	//显示组成员管理页面
+	function showManageGroupMemberPanel(e,groupId){
+		console.log("showManageGroupMemberPanel groupId:" + groupId);
+		
+		//get current click the Group Info
+		var Obj = e.target;
+		console.log(Obj);
+		var trObj =  $(e.target).parent().parent();
+		//var groupId = trObj.children("td:eq(0)").text();
+		var groupName = trObj.children("td:eq(1)").text();
+		
+		qiao.bs.dialog({
+			title: '成员管理 -'+ groupName,
+			url: 'manageGroupMember.html',
+			msg: '页面正在加载，请稍等...',
+			foot: false,
+			big: true,
+			callback: function(){
+				manageGroupMemberPageInit(groupId);
+			},
+		});
+	}
+	
+	// 快速查找指定的项
+	function fastSearch(_this){
+	    var $this = $(_this);
+	    var event = $this.attr("data-eb-xevent");
+	    var event2 = $("#examine").attr("data-eb-xparam");
+	    var value = $this.val();
+	    var type = $this.attr("data-type");
+	
+	    $Current.ajax(event,{name:value,type:type},function(ret){
+	        console.log(ret);
+	        ret.data.page.curExamine = "0";
+	        bus.trigger(event2,ret.data.page);
+	    });
+	}
+
+	function exit(){
+		console.log("logout");
+        $.ajax({
+            url : "/DocSystem/User/logout.do",
+            type : "post",
+            dataType : "json",
+            data : {},
+            success : function (ret) {
+                if( "ok" == ret.status ){
+                	console.log("已退出登录");
+                	window.location.href = "login.html";
+                }else {
+                    showErrorMessage("错误："+ret.msgInfo);
+                }
+            },
+            error : function () {
+                showErrorMessage("服务器异常:退出登录失败");
+            }
+        });
+	}
+	
+ 	function formatDate(date) {
+ 		var now = new Date(date);
+ 		var year=now.getFullYear(); 
+ 		var month=now.getMonth()+1;
+ 		var date=now.getDate(); 
+ 		return year+"-"+month+"-"+date; 
+ 	}
+ 	
+ 	function formatTime(time){
+ 		var now = new Date(time);
+ 		var year=now.getFullYear(); 
+ 		var month=now.getMonth()+1;
+ 		var date=now.getDate(); 
+ 		var hh=now.getHours(); 
+ 		var mm=now.getMinutes(); 
+ 		var ss=now.getSeconds(); 
+ 		
+ 		return year+"-"+month+"-"+date + " " + hh+":"+mm+":"+ss; 
+ 	}
+</script>
+</body>
+</html>
